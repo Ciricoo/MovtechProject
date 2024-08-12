@@ -1,0 +1,61 @@
+button {
+    margin: 25px;
+    border-radius: 20px;
+    border: 1px solid #141E30;
+    background: #141E30;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #FFF;
+    color: #141E30;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.fa-sign-out-alt {
+    margin-right: 50px;
+    color: #141E30;
+    font-size: 35px;
+}
+
+img {
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.user-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.user-icon i {
+    font-size: 35px;
+    color: #141E30;
+}
+
+.username {
+    margin: 0;
+    margin-top: 3px;
+    font-size: 16px;
+    color: #333;
+}
+
