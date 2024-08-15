@@ -8,31 +8,32 @@
 <div class="main">
     <div class="container" id="container">
         <div class="form-container sign-in-container">
+            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <h1>Sign in</h1>
+                <h1>Login</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your account</span>
+                <span>ou use a sua conta</span>
                 <div class="infield">
-                    <input type="text" placeholder="Username" formControlName="username" />
+                    <input type="text" placeholder="Nome" formControlName="username" />
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" placeholder="Password" formControlName="password" />
+                    <input type="password" placeholder="Senha" formControlName="password" />
                     <label></label>
                 </div>
-                <a href="#" class="forgot">Forgot your password?</a>
-                <button type="submit">SIGN IN</button>
+                <a href="#" class="forgot">Esqueceu a sua senha?</a>
+                <button type="submit">ENTRAR</button>
             </form>
         </div>
         <div class="overlay-container" id="overlayCon">
             <div class="overlay">
                 <div class="overlay-panel overlay-right">
                     <h1 class="title-overlay">Movtech Project!</h1>
-                    <p>Strategic systems for the success of your business</p>
+                    <p>Sistemas estratégicos para o sucesso do seu negócio</p>
                     <button>MOVTECH</button>
                 </div>
             </div>

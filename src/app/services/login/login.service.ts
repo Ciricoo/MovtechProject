@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { LoginResponse } from 'src/app/interfaces/LoginResponse';
+import { DecodedToken } from 'src/app/interfaces/DecodedToken ';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +15,13 @@ export class LoginService {
 
   constructor(private router:Router , private http: HttpClient) {}
 
-  login(login: { username: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.urlLogin}/login`, login).pipe(
+  login(login: { username: string; password: string }): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login).pipe(
       tap((response) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('username', login.username)
+        localStorage.setItem('username', login.username);
+        const decodedTokenRole: DecodedToken = jwtDecode(response.token);
+        localStorage.setItem('role', decodedTokenRole.role)
       })
     );
   }
@@ -26,10 +31,10 @@ export class LoginService {
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json' }).subscribe(
-        response => {
+        () => {
           localStorage.removeItem('token');
-          localStorage.removeItem('username')
-          console.log("Resposta do logout:", response);
+          localStorage.removeItem('username');
+          localStorage.removeItem('role');
         },
         error => {
           console.error('Erro no logout:', error);
@@ -42,13 +47,17 @@ export class LoginService {
     return localStorage.getItem('username');
   }
 
+  getUserRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
   isTokenExpired(): boolean {
     const token = localStorage.getItem('token');
     if (!token) {
       return true;
     }
 
-    const decodedToken: any = jwtDecode(token);
+    const decodedToken: DecodedToken = jwtDecode(token);
     const currentTime = Math.floor(new Date().getTime() / 1000);
 
     if(decodedToken.exp < currentTime){

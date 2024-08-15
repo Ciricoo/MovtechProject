@@ -1,0 +1,11 @@
+<dialog #delete id="delete">
+    <div class="base">
+        <div class="mensagem">
+            <h2>Tem certeza que deseja excluir?</h2>
+        </div>
+        <div class="buttons">
+            <button class="cancelar" (click)="closeModal()">Cancelar</button>
+            <button class="excluir" (click)="confirmDelete()">Deletar</button>
+        </div>
+    </div>
+</dialog>

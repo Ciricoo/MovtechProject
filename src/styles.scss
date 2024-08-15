@@ -13,4 +13,22 @@ body{
 }
 
 
+button {
+    border-radius: 20px;
+    border: 1px solid #141E30;
+    background: #141E30;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 35px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #FFF;
+    color: #141E30;
+}
+
 

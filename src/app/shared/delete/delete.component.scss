@@ -1,0 +1,48 @@
+#delete {
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 30%;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+}
+.base{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+.mensagem {
+    text-align: center; 
+    margin-top: 15px;
+}
+
+.buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 15px;
+}
+
+
+.cancelar{
+    background-color: rgb(30, 136, 30);
+}
+
+.excluir{
+    background-color: red;
+}
+
+button{
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+button:hover{
+    color: white;
+    transform: scale(1.05)
+}
