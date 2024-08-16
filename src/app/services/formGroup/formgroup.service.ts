@@ -7,7 +7,7 @@ import { FormGroupModel } from '../../interfaces/FormGroup';
   providedIn: 'root',
 })
 export class FormgroupService {
-  private apiUrl = 'https://localhost:7193/api/FormGroup';
+  private apiUrl = 'https://localhost:7193/api/FormGroup/';
   
   constructor(private http: HttpClient) {}
   
@@ -20,6 +20,12 @@ export class FormgroupService {
   deleteFormGroup(groupId: number): Observable<boolean> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete<boolean>(`${this.apiUrl}/${groupId}`, { headers });
+    return this.http.delete<boolean>(`${this.apiUrl}${groupId}`, { headers });
+  }
+
+  updateFormGroup(groupId: number, updatedGroup: FormGroupModel): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<boolean>(`${this.apiUrl}${groupId}`, updatedGroup, { headers });
   }
 }

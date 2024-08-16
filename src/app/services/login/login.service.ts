@@ -13,7 +13,7 @@ import { DecodedToken } from 'src/app/interfaces/DecodedToken ';
 export class LoginService {
   private urlLogin: string = 'https://localhost:7193/api/User';
 
-  constructor(private router:Router , private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   login(login: { username: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login).pipe(

@@ -11,7 +11,7 @@
     <div class="forms-groups">
       <ng-container *ngFor="let group of formGroups; let i = index">
         <div *ngIf="i % 5 === 0" style="width: 100%; display: flex; flex-wrap: wrap;"></div>
-        <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card border-dark mb-3" style="max-width: 17.5rem;">
           <div class="card-header">
             {{group.id}}
             <i class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
@@ -34,6 +34,7 @@
       </ng-container>
     </div>
   </div>
-  <app-forms *ngIf="modalForms" [groupId]="selectedGroupId"></app-forms>
-  <app-delete *ngIf="modalDelete" [itemId]="selectedGroupId" (deleteConfirmed)="onDeleteConfirmed($event)"></app-delete>
+  <app-forms *ngIf="modalType === 'forms'" [groupId]="selectedGroupId"></app-forms>
+  <app-delete *ngIf="modalType === 'delete'" [itemId]="selectedGroupId" (deleteConfirmed)="loadGroups()"></app-delete>
+  <app-edit *ngIf="modalType === 'edit'" [itemId]="selectedGroupId" (editConfirmed)="loadGroups()"></app-edit>
 </main>

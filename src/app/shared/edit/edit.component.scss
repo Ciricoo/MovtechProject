@@ -1,0 +1,81 @@
+#edit {
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 35%;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+}
+.base{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+.mensagem {
+    text-align: center; 
+    margin-top: 15px;
+}
+
+
+.infield{
+    position: relative;
+    margin: 8px 0px;
+    width: 100%;
+}
+
+input{
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+label{
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2px;
+    background: #141E30;
+    transition: 0.3s;
+}
+
+
+.buttons {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 15px;
+}
+
+
+.cancelar{
+    background-color: rgb(30, 136, 30);
+}
+
+.salvar {
+    background-color: rgb(0, 123, 255);
+    color: white;
+}
+
+button{
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+button:hover{
+    color: white;
+    transform: scale(1.05)
+}
+
+.form-question{
+    margin: 25px;
+}

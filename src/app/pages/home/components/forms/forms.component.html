@@ -29,3 +29,5 @@
         </ng-container>
       </div>
 </dialog>
+<app-delete *ngIf="modalType === 'delete'" [itemId]="selectedFormId" (deleteConfirmed)="loadForm()"></app-delete>
+<app-edit *ngIf="modalType === 'edit'" [itemId]="selectedFormId" (editConfirmed)="loadForm()"></app-edit>

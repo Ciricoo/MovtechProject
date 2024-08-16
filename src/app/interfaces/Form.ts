@@ -1,5 +1,5 @@
 export interface FormModel {
     id: number;
     name: string;
-    idGrupoFormulario: number;
+    IdFormsGroup: number;
 }

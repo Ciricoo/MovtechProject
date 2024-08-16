@@ -11,6 +11,7 @@ import { FormBuilderComponent } from './pages/home/components/form-builder/form-
 import { HeaderComponent } from './pages/home/components/header/header.component';
 import { FormsComponent } from './pages/home/components/forms/forms.component';
 import { DeleteComponent } from './shared/delete/delete.component';
+import { EditComponent } from './shared/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DeleteComponent } from './shared/delete/delete.component';
     FormBuilderComponent,
     HeaderComponent,
     FormsComponent,
-    DeleteComponent
+    DeleteComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
