@@ -1,14 +1,11 @@
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.base {
-    margin-top: 5%;
-    width: 80%;
-    background-color: #FFF;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+#modalQuestion{
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro exato */
+    width: 70%;
+    height: 70%;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
     border-radius: 5px;
 }
 
@@ -22,16 +19,18 @@ main {
     border-radius: 5px;
 }
 
-button {
-    margin: 5px;
-}
 
 h2 {
-    color: #141E30;
     margin-left: 25px;
+    color: #141E30;
 }
 
-.forms-groups {
+button {
+    margin-right: 25px;
+}
+
+
+.question {
     margin: 40px;
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +46,6 @@ h2 {
         align-items: center;
         justify-content: space-between;
     }
-
 }
 
 .card:hover{
@@ -63,4 +61,3 @@ h2 {
         background-color: #ebebeb;
     }
 }
-

@@ -12,6 +12,7 @@ import { HeaderComponent } from './pages/home/components/header/header.component
 import { FormsComponent } from './pages/home/components/forms/forms.component';
 import { DeleteComponent } from './shared/delete/delete.component';
 import { EditComponent } from './shared/edit/edit.component';
+import { QuestionsComponent } from './pages/home/components/questions/questions.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditComponent } from './shared/edit/edit.component';
     HeaderComponent,
     FormsComponent,
     DeleteComponent,
-    EditComponent
+    EditComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,

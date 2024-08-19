@@ -1,34 +1,31 @@
-<dialog #modal id="modal">
+<dialog #modalQuestion id="modalQuestion">
     <div class="nav-base">
-      <h2>Forms</h2>
+      <h2>Questions</h2>
           <button (click)="closeModal()">Fechar</button>
     </div>
-    <div class="forms">
-        <ng-container *ngFor="let form of forms; let i = index">
+    <div class="question">
+        <ng-container *ngFor="let question of questions; let i = index">
           <div *ngIf="i % 5 === 0" style="width: 100%; display: flex; flex-wrap: wrap;"></div>
           <div class="card border-dark mb-3" style="max-width: 17.5rem;">
             <div class="card-header">
-              {{form.id}}
+              {{question.id}}
               <i class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
               <div *ngIf="activeMenuIndex === i" class="menu">
                 <ul>
-                  <li (click)="editForm(form.id)">
+                  <li>
                     <i class="fas fa-edit"></i> Editar
                   </li>
-                  <li (click)="deleteForm(form.id)">
+                  <li>
                     <i class="fas fa-trash"></i> Excluir
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="card-body" (click)="getQuestionByFormId(form.id)">
-              <h5 class="card-title">{{form.name}}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{{question.text}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
         </ng-container>
       </div>
 </dialog>
-<app-questions *ngIf="modalType === 'question'" [formId]="selectedFormId"></app-questions>
-<app-delete *ngIf="modalType === 'delete'" [itemId]="selectedFormId" (deleteConfirmed)="loadForm()"></app-delete>
-<app-edit *ngIf="modalType === 'edit'" [itemId]="selectedFormId" (editConfirmed)="loadForm()"></app-edit>

@@ -61,31 +61,3 @@ button {
         background-color: #ebebeb;
     }
 }
-
-
-.menu {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    right: 15px;
-    top: 35px;
-  }
-  
-  .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu li {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .menu li:hover {
-    background-color: #f0f0f0;
-  }

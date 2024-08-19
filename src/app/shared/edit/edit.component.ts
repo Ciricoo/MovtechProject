@@ -47,9 +47,6 @@ export class EditComponent {
         this.editConfirmed.emit(this.itemId);
       });
     } else if (this.serviceType == 'form') {
-      console.log(this.fk)
-      console.log(this.itemId)
-      console.log(this.name)
       const updatedForm: FormModel = { id: this.itemId, name: this.name, IdFormsGroup: this.fk}; 
       this.formService.updateForm(this.itemId, updatedForm).subscribe(() => {
         this.editConfirmed.emit();
