@@ -29,35 +29,49 @@ button {
     margin-right: 25px;
 }
 
-
 .question {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     margin: 40px;
+    gap: 4px; 
+}
+
+.card-text{
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem; 
+    gap: 5px;
+    margin-top: 20px;
 }
 
-.card {
-    flex: 1 1 calc(20% - 1rem); /* Ajusta a largura dos cartões para que 5 se ajustem em uma linha */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    .card-header{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.infield{
+    position: relative;
 }
 
-.card:hover{
-    cursor: pointer;
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    
-    .card-header{
-        background-color: #dadada;
-    }
-
-    .card-body{
-        background-color: #ebebeb;
-    }
+input{
+    padding: 5px 8px;
+    background-color: #f3f3f3;
+    border: none;
+    outline: none;
+    border-radius: 5px;
 }
+
+select{
+    background-color: #f3f3f3;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+select:hover{
+    background-color: #dadada;
+}
+label{
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 2px;
+    background: #141E30;
+    transition: 0.3s;
+}
+

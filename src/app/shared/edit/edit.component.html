@@ -7,7 +7,7 @@
             <input id="groupName" placeholder="Name" [(ngModel)]="name" name="name" required />
             <label></label>
         </div>
-        <div class="form-question infield" *ngIf="serviceType === 'form'">
+        <div class="form-question infield" *ngIf="serviceType != 'group' ">
             <input id="fk" placeholder="Fk" [(ngModel)]="fk" name="fk" required />
             <label></label>
           </div>

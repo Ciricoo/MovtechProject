@@ -58,4 +58,29 @@ button:hover {
     background-color: #f0f0f0;
   }
 
+  
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .card-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+}
+
+.card:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  
+  .card-header{
+      background-color: #dadada;
+  }
+
+  .card-body{
+      background-color: #ebebeb;
+  }
+}
+
 

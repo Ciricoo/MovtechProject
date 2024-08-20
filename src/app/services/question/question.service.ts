@@ -12,10 +12,21 @@ export class QuestionService {
   constructor(private http: HttpClient) {}
 
   getQuestionByFormId(formId: number): Observable<QuestionModel[]> {
-    console.log(formId)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<QuestionModel[]>(`${this.apiUrl}Form/${formId}`, { headers });
+  }
+
+  deleteQuestion(questionId: number): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { headers });
+  }
+
+  updateQuestion(questionId: number, updatedQuestion: QuestionModel): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { headers });
   }
 
 }

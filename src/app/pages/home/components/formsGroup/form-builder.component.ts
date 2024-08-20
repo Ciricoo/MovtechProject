@@ -32,14 +32,7 @@ export class FormBuilderComponent implements OnInit {
 
   loadGroups(): void {
     this.userRole = this.loginService.getUserRole();
-    this.formgroupService.getFormGroups().subscribe(
-      (data) => {
-        this.formGroups = data;
-      },
-      (error) => {
-        console.error('Erro ao buscar grupos de formulários:', error);
-      }
-    );
+    this.formgroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
   }
 
   toggleMenu(index: number, event: MouseEvent): void {
@@ -70,20 +63,7 @@ export class FormBuilderComponent implements OnInit {
     }
   });
 }
-
   closeModal() {
     this.modalType = null;
-  }
-
-  editGroup(groupId: number): void {
-    this.openModal('edit', groupId);
-  }
-
-  deleteGroup(groupId: number): void {
-    this.openModal('delete', groupId);
-  }
-
-  getFormsByGroupId(groupId: number): void {
-    this.openModal('forms', groupId); 
   }
 }
