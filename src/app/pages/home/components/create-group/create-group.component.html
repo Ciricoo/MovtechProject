@@ -1,0 +1,44 @@
+<dialog #createGroup id="createGroup">
+    <div class="nav-base">
+        <h2>Create Forms Group</h2>
+        <div class="buttons">
+            <button (click)="submit()">Enviar</button>
+            <button (click)="addForm()">Add Form</button>
+            <button (click)="closeModal()">Fechar</button>
+        </div>
+    </div>
+    <div class="grupo">
+        <div class="infield">
+            <h3>Grupo de formulários</h3>
+            <input type="text" placeholder="Nome do grupo" [(ngModel)]="groupName"/>
+            <label></label>
+        </div>
+        <div *ngFor="let form of forms; let i = index" class="form">
+            <div class="infield">
+                <div class="form-content">
+                    <h3>Formulário {{i + 1 }}</h3>
+                    <button (click)="deleteForm(i)" class="btn-delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <input type="text" placeholder="Nome do formulário" [(ngModel)]="form.name"/>
+                <label></label>
+            </div>
+            <button (click)="addQuestion(i)" class="btn-add">
+                <i class="fas fa-plus-circle"></i>
+            </button>
+            <h3 class="question" *ngIf="form.questions.length > 0">Perguntas</h3>
+            <div *ngFor="let question of form.questions; let j = index" class="question">
+                <div class="question-content">
+                    <div class="infield">
+                        <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text"/>
+                        <label></label>
+                    </div>
+                    <button (click)="deleteQuestion(i, j)" class="btn-delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>

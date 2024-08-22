@@ -3,8 +3,8 @@
     <div class="nav-base">
       <h2>Forms Groups</h2>
       <div class="buttons">
-        <button *ngIf="userRole === 'Administrador'">Criar Grupo</button>
-        <button *ngIf="userRole === 'Administrador'">Criar Formulário</button>
+        <button (click)="openModalCreateGroup()" *ngIf="userRole === 'Administrador'">Criar Grupo</button>
+        <button (click)="openModalCreateForm()" *ngIf="userRole === 'Administrador'">Criar Formulário</button>
         <button *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
       </div>
     </div>
@@ -36,4 +36,6 @@
   <app-forms *ngIf="modalType === 'forms'" [groupId]="selectedGroupId"></app-forms>
   <app-delete *ngIf="modalType === 'delete'" [itemId]="selectedGroupId" (deleteConfirmed)="loadGroups()"></app-delete>
   <app-edit *ngIf="modalType === 'edit'" [itemId]="selectedGroupId" (editConfirmed)="loadGroups()"></app-edit>
+  <app-create-group (createdConfirmed)="loadGroups()"></app-create-group>
+  <app-create-form></app-create-form>
 </main>

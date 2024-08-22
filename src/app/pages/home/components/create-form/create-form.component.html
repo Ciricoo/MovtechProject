@@ -1,0 +1,43 @@
+<dialog #createForm id="createForm">
+    <div class="nav-base">
+        <h2>Create Forms</h2>
+        <div class="buttons">
+            <button (click)="submit()">Enviar</button>
+            <button (click)="closeModal()">Fechar</button>
+        </div>
+    </div>
+    <div class="grupo">
+        <div class="select-group">
+            <h3>Grupo de formulários</h3>
+            <select [(ngModel)]="selectedGroupId" placeholder="Selecione um grupo">
+                <option *ngFor="let group of formGroups" [value]="group.id">
+                    {{group.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="form">
+        <div class="infield">
+            <div class="form-content">
+                <h3>Formulário</h3>
+            </div>
+            <input type="text" placeholder="Nome do formulário" [(ngModel)]="formName" />
+            <label></label>
+        </div>
+        <button (click)="addQuestion()" class="btn-add">
+            <i class="fas fa-plus-circle"></i>
+        </button>
+        <h3 class="question" *ngIf="questions.length > 0">Perguntas</h3>
+        <div *ngFor="let question of questions; let i = index" class="question">
+            <div class="question-content">
+                <div class="infield">
+                    <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text" />
+                    <label></label>
+                </div>
+                <button (click)="deleteQuestion(i)" class="btn-delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</dialog>

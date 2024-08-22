@@ -45,12 +45,12 @@ export class EditComponent {
 
   confirmEdit() {
     if (this.serviceType == 'group') {
-      const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name};
+      const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
       this.formgroupService.updateFormGroup(this.itemId, updatedGroup).subscribe(() => {
         this.editConfirmed.emit(this.itemId);
       });
     } else if (this.serviceType == 'form') {
-      const updatedForm: FormModel = { id: this.itemId, name: this.name, IdFormsGroup: this.fk}; 
+      const updatedForm: FormModel = { id: this.itemId, name: this.name, IdFormsGroup: this.fk, questions: []}; 
       this.formService.updateForm(this.itemId, updatedForm).subscribe(() => {
         this.editConfirmed.emit();
       });

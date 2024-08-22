@@ -5,6 +5,8 @@ import { FormsComponent } from '../forms/forms.component';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
+import { CreateGroupComponent } from '../create-group/create-group.component';
+import { CreateFormComponent } from '../create-form/create-form.component';
 
 @Component({
   selector: 'app-form-builder',
@@ -15,6 +17,8 @@ export class FormBuilderComponent implements OnInit {
   @ViewChild(FormsComponent) formsComponent!: FormsComponent;
   @ViewChild(DeleteComponent) DeleteComponent!: DeleteComponent;
   @ViewChild(EditComponent) editComponent!: EditComponent;
+  @ViewChild(CreateGroupComponent) createGroupComponent!: CreateGroupComponent;
+  @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
   formGroups: FormGroupModel[] = [];
   selectedGroupId!: number;
   userRole: string | null = null;
@@ -63,6 +67,14 @@ export class FormBuilderComponent implements OnInit {
     }
   });
 }
+
+  openModalCreateGroup(){
+    this.createGroupComponent.showModal();
+  }
+
+  openModalCreateForm(){
+    this.createFormComponent.showModal();
+  }
   closeModal() {
     this.modalType = null;
   }
