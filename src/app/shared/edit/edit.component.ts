@@ -24,18 +24,30 @@ export class EditComponent {
   @Input() itemId!: number;
   @Output() editConfirmed = new EventEmitter<number>();
 
-  name: string = ''; 
+  name: string = '';
   fk!: number;
+  forms: FormModel[] = [];
+  formGroups: FormGroupModel[] = [];
 
   constructor(
     private formgroupService: FormgroupService,
     private formService: FormService,
     private questionService: QuestionService
   ) {}
+  loadForms() {
+    this.formService.getForms().subscribe((data) => {this.forms = data;});
+  }
+
+  loadFormGroups() {
+    this.formgroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
+  }
 
   showModal() {
-    if (this.modal) {
-      this.modal.nativeElement.showModal();
+    this.modal.nativeElement.showModal();
+    if (this.serviceType === 'form') {
+      this.loadFormGroups();
+    } else if (this.serviceType === 'question') {
+      this.loadForms();
     }
   }
 
@@ -44,22 +56,21 @@ export class EditComponent {
   }
 
   confirmEdit() {
-    if (this.serviceType == 'group') {
+    if (this.serviceType === 'group') {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
       this.formgroupService.updateFormGroup(this.itemId, updatedGroup).subscribe(() => {
         this.editConfirmed.emit(this.itemId);
       });
-    } else if (this.serviceType == 'form') {
+    } else if (this.serviceType === 'form') {
       const updatedForm: FormModel = { id: this.itemId, name: this.name, IdFormsGroup: this.fk, questions: []}; 
       this.formService.updateForm(this.itemId, updatedForm).subscribe(() => {
         this.editConfirmed.emit();
       });
-    }
-    else if (this.serviceType == 'question') {
+    } else if (this.serviceType === 'question') {
       const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, IdForms: this.fk};
       this.questionService.updateQuestion(this.itemId, updatedQuestion).subscribe(() => {
         this.editConfirmed.emit();
-      })
+      });
     }
     this.closeModal();
   }

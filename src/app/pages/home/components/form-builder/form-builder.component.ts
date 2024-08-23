@@ -7,6 +7,7 @@ import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
 import { CreateGroupComponent } from '../create-group/create-group.component';
 import { CreateFormComponent } from '../create-form/create-form.component';
+import { CreateQuestionComponent } from '../create-question/create-question.component';
 
 @Component({
   selector: 'app-form-builder',
@@ -19,6 +20,7 @@ export class FormBuilderComponent implements OnInit {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(CreateGroupComponent) createGroupComponent!: CreateGroupComponent;
   @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
+  @ViewChild(CreateQuestionComponent) createQuestionComponent!: CreateQuestionComponent;
   formGroups: FormGroupModel[] = [];
   selectedGroupId!: number;
   userRole: string | null = null;
@@ -74,6 +76,10 @@ export class FormBuilderComponent implements OnInit {
 
   openModalCreateForm(){
     this.createFormComponent.showModal();
+  }
+
+  openModalCreateQuestion(){
+    this.createQuestionComponent.showModal();
   }
   closeModal() {
     this.modalType = null;

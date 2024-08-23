@@ -29,4 +29,10 @@ export class QuestionService {
     return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { headers });
   }
 
+  createQuestion(createQuestion: QuestionModel[]): Observable<QuestionModel[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<QuestionModel[]>(`${this.apiUrl}`, createQuestion, { headers });
+  }
+
 }

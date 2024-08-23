@@ -34,4 +34,10 @@ export class FormService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<FormModel>(`${this.apiUrl}`, createForm, { headers });
   }
+
+  getForms(): Observable<FormModel[]>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<FormModel[]>(`${this.apiUrl}`, { headers });
+  }
 }

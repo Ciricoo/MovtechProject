@@ -15,6 +15,7 @@ import { EditComponent } from './shared/edit/edit.component';
 import { QuestionsComponent } from './pages/home/components/questions/questions.component';
 import { CreateGroupComponent } from './pages/home/components/create-group/create-group.component';
 import { CreateFormComponent } from './pages/home/components/create-form/create-form.component';
+import { CreateQuestionComponent } from './pages/home/components/create-question/create-question.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateFormComponent } from './pages/home/components/create-form/create-
     EditComponent,
     QuestionsComponent,
     CreateGroupComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    CreateQuestionComponent
   ],
   imports: [
     BrowserModule,

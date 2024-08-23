@@ -9,17 +9,6 @@
     border-radius: 5px;
 }
 
-.nav-base {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 90px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-
 h2 {
     margin-left: 25px;
     color: #141E30;
@@ -65,14 +54,5 @@ select{
 select:hover{
     background-color: #dadada;
 }
-label{
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 2px;
-    background: #141E30;
-    transition: 0.3s;
-}
+
 

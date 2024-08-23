@@ -5,7 +5,7 @@
       <div class="buttons">
         <button (click)="openModalCreateGroup()" *ngIf="userRole === 'Administrador'">Criar Grupo</button>
         <button (click)="openModalCreateForm()" *ngIf="userRole === 'Administrador'">Criar Formulário</button>
-        <button *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
+        <button (click)="openModalCreateQuestion()" *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
       </div>
     </div>
     <div class="forms-groups">
@@ -38,4 +38,5 @@
   <app-edit *ngIf="modalType === 'edit'" [itemId]="selectedGroupId" (editConfirmed)="loadGroups()"></app-edit>
   <app-create-group (createdConfirmed)="loadGroups()"></app-create-group>
   <app-create-form></app-create-form>
+  <app-create-question></app-create-question>
 </main>
