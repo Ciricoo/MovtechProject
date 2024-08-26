@@ -4,6 +4,7 @@ import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { FormService } from 'src/app/services/form/form.service';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-create-form',
@@ -12,11 +13,13 @@ import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 })
 export class CreateFormComponent {
   @ViewChild('createForm') modal!: ElementRef<HTMLDialogElement>;
+  @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   selectedGroupId: number = 0;
   formGroups: FormGroupModel[] = [];
   forms: FormModel[] = [];
   questions: QuestionModel[] = [];
   formName: string = '';
+  errorMessage: string | null = null;
 
   constructor(private formService: FormService, private formGroupService: FormgroupService) {}
 
@@ -37,13 +40,34 @@ export class CreateFormComponent {
     this.modal.nativeElement.close();
   }
 
+  verificaForm(){
+    this.errorMessage = null;
+
+    if(this.selectedGroupId == 0){
+      this.errorMessage = 'O grupo precisa ser preenchido.';
+      return;
+    }
+    if (!this.formName.trim()) {
+      this.errorMessage = 'O nome do Formulário não pode estar vazio.';
+      return;
+    }
+  
+    for (const question of this.questions) {
+      if (!question.text.trim()) {
+          this.errorMessage = `O conteúdo das perguntas não pode estar vazio.`;
+          return;
+      }
+    }
+  }
+
   submit() {
-    console.log(this.selectedGroupId)
+    this.verificaForm();
     const form: FormModel = {id: 0, name: this.formName, IdFormsGroup: this.selectedGroupId, questions: this.questions};
     this.formService.createForm(form).subscribe( () =>
       {
         this.closeModal();
         this.resetForm();
+        this.alertModalComponent.open('Formulário criado com Sucesso!');
     });
   }
 

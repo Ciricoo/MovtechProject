@@ -8,6 +8,7 @@ import { EditComponent } from 'src/app/shared/edit/edit.component';
 import { CreateGroupComponent } from '../create-group/create-group.component';
 import { CreateFormComponent } from '../create-form/create-form.component';
 import { CreateQuestionComponent } from '../create-question/create-question.component';
+import { SeeAnswersComponent } from '../see-answers/see-answers.component';
 
 @Component({
   selector: 'app-form-builder',
@@ -21,6 +22,8 @@ export class FormBuilderComponent implements OnInit {
   @ViewChild(CreateGroupComponent) createGroupComponent!: CreateGroupComponent;
   @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
   @ViewChild(CreateQuestionComponent) createQuestionComponent!: CreateQuestionComponent;
+  @ViewChild(SeeAnswersComponent) seeAnswersComponent!: SeeAnswersComponent;
+
   formGroups: FormGroupModel[] = [];
   selectedGroupId!: number;
   userRole: string | null = null;
@@ -80,6 +83,10 @@ export class FormBuilderComponent implements OnInit {
 
   openModalCreateQuestion(){
     this.createQuestionComponent.showModal();
+  }
+
+  openModalSeeAnswers(){
+    this.seeAnswersComponent.open();
   }
   closeModal() {
     this.modalType = null;

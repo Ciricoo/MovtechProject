@@ -2,8 +2,8 @@
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%);
-    width: 35%;
-    height: 40%;
+    width: 30%;
+    height: 45%;
     border: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
     border-radius: 5px;
@@ -21,8 +21,6 @@
     text-align: center; 
     margin-top: 15px;
 }
-
-
 .infield{
     position: relative;
     margin: 8px 0px;
@@ -96,7 +94,16 @@ select:hover {
     background-color: #dadada;
 }
 
+h2{
+    margin: 0;
+    margin-top: 15px;
+}
+
 h3{
     font-size: 23px;
     color: #141E30;
+}
+
+.error-message{
+    margin: 0;
 }

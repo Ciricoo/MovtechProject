@@ -8,6 +8,7 @@
         </div>
     </div>
     <div class="grupo">
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
         <div class="infield">
             <h3>Grupo de formulários</h3>
             <input type="text" placeholder="Nome do grupo" [(ngModel)]="groupName"/>
@@ -42,3 +43,4 @@
         </div>
     </div>
 </dialog>
+<app-alert-modal #alertModal></app-alert-modal>

@@ -158,3 +158,39 @@ h3{
 .btn-delete i, .btn-add i {
   font-size: 18px;
 }
+
+.empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+}
+
+.empty-message h3 {
+  color: #333;
+  font-size: 24px;
+}
+
+.empty-message p {
+  color: #555;
+  margin-top: 10px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.error-message.ng-trigger {
+  display: block;
+}

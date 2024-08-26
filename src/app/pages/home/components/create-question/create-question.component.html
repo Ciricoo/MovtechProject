@@ -6,7 +6,7 @@
             <button (click)="closeModal()">Fechar</button>
         </div>
     </div>
-    <div class="grupo">
+    <div class="form">
         <div class="select-group">
             <h3>Selecione um Formulário</h3>
             <select [(ngModel)]="selectedFormId">
@@ -17,6 +17,7 @@
         </div>
     </div>
     <div class="question">
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
         <button (click)="addQuestion()" class="btn-add">
             <i class="fas fa-plus-circle"></i>
         </button>
@@ -34,3 +35,4 @@
         </div>
     </div>
 </dialog>
+<app-alert-modal #alertModal></app-alert-modal>

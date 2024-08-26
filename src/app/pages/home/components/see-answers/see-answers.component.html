@@ -1,0 +1,17 @@
+<dialog #alertModal id="alertModal">
+    <div class="base">
+        <h3>Consultar Respostas</h3>
+        <div class="form-question infield">
+            <h5>Pergunta que deseja ver as respostas</h5>
+            <div class="select-button">
+                <select [(ngModel)]="selectedQuestionId" required>
+                    <option *ngFor="let question of questions" [value]="question.id">
+                        {{ question.text }}
+                    </option>
+                </select>
+                <a href="#"><i class="fas fa-sync-alt"></i></a>
+            </div>
+        </div>
+      <button (click)="close()">Fechar</button>
+    </div>
+  </dialog>

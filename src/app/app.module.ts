@@ -16,6 +16,8 @@ import { QuestionsComponent } from './pages/home/components/questions/questions.
 import { CreateGroupComponent } from './pages/home/components/create-group/create-group.component';
 import { CreateFormComponent } from './pages/home/components/create-form/create-form.component';
 import { CreateQuestionComponent } from './pages/home/components/create-question/create-question.component';
+import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
+import { SeeAnswersComponent } from './pages/home/components/see-answers/see-answers.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CreateQuestionComponent } from './pages/home/components/create-question
     QuestionsComponent,
     CreateGroupComponent,
     CreateFormComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    AlertModalComponent,
+    SeeAnswersComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,10 @@
       <h2>Forms</h2>
           <button (click)="closeModal()">Fechar</button>
     </div>
+    <div *ngIf="forms.length === 0" class="empty-message">
+      <h3>Nenhum formulário encontrado.</h3>
+      <p>Crie um formulário para começar.</p>
+    </div>
     <div class="forms">
         <ng-container *ngFor="let form of forms; let i = index">
           <div class="card border-dark mb-3" style="max-width: 18rem;">

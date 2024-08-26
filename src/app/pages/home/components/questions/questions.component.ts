@@ -10,6 +10,7 @@ import { QuestionModel } from 'src/app/interfaces/Question';
 import { AnswerService } from 'src/app/services/answer/answer.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { QuestionService } from 'src/app/services/question/question.service';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
 
@@ -22,6 +23,7 @@ export class QuestionsComponent {
   @ViewChild('modalQuestion') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(DeleteComponent) deleteComponent!: DeleteComponent;
   @ViewChild(EditComponent) editComponent!: EditComponent;
+  @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Input() formId!: number;
   userRole: string | null = null;
   selectedQuestionId!: number;
@@ -92,6 +94,7 @@ export class QuestionsComponent {
 
   submitAnswers(): void {
     this.answerService.sendAnswer(this.answers).subscribe(() => this.closeModal());
+    this.alertModalComponent.open('Respostas enviadas com sucesso!');
   }
 
 }

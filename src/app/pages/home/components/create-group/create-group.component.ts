@@ -8,6 +8,7 @@ import {
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-create-group',
@@ -16,12 +17,14 @@ import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 })
 export class CreateGroupComponent {
   @ViewChild('createGroup') modal!: ElementRef<HTMLDialogElement>;
+  @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Output() createdConfirmed = new EventEmitter<number>();
 
   constructor(private formGroupService: FormgroupService) {}
 
   groupName: string = '';
   forms: FormModel[] = [];
+  errorMessage: string | null = null;
 
   showModal() {
     this.modal.nativeElement.showModal();
@@ -31,12 +34,43 @@ export class CreateGroupComponent {
     this.modal.nativeElement.close();
   }
 
+  verificaGroup(){
+    this.errorMessage = null;
+
+    if (!this.groupName.trim()) {
+      this.errorMessage = 'O nome do grupo não pode estar vazio.';
+      return;
+    }
+    
+    for (const form of this.forms) {
+      if (!form.name.trim()) {
+        this.errorMessage = `O nome do formulário ${form.id} não pode estar vazio.`;
+        return;
+      }
+
+      for (const question of form.questions) {
+        if (!question.text.trim()) {
+          this.errorMessage = `O conteúdo das perguntas no formulário ${form.id} não pode estar vazio.`;
+          return;
+        }
+      }
+    }
+  }
+
   submit() {
+    this.verificaGroup();
     const formGroup: FormGroupModel = {id: 0,name: this.groupName,forms: this.forms,};
     this.formGroupService.createFormGroup(formGroup).subscribe(() => {
       this.closeModal();
+      this.resetGroup();
       this.createdConfirmed.emit();
+      this.alertModalComponent.open('Grupo de Formulário criado com sucesso!')
     });
+  }
+
+  resetGroup() {
+    this.groupName = '';
+    this.forms = [];
   }
 
   addForm() {
