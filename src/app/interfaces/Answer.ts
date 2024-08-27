@@ -1,7 +1,10 @@
-export interface AnswerModal{
+export interface AnswerModal {
     id: number;
     grade: number;
     description: string;
     idQuestion: number;
     idUser: number;
-}
+    username?: string; 
+    QuestionText?: string;
+  }
+  

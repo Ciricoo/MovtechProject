@@ -3,8 +3,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border: none;
-    width: 35%;
-    height: 30%;
+    width: 45%;
+    min-height: 40%;
+    max-height: 60%;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
     padding: 20px;
@@ -12,48 +13,70 @@
     background-color: white;
   }
   
-.base{
+  .base {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     padding: 20px;
-    height: 100%;
-}
-.mensagem {
-    text-align: center; 
-    margin-top: 15px;
-}
-
-button{
+    gap: 30px;
+  }
+  
+  .answers-list {
+    width: 100%;
+  }
+  
+  .answer {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .answer .pergunta{
+    width: 85%;
+    text-align: left;
+  }
+  .answer .username{
+    width: 25%;
+    text-align: left;
+  }
+  .answer .grade {
+    width: 15%;
+    text-align: left;
+  }
+  .answer .description {
+    width: 65%; 
+    text-align: left;
+  }
+  
+  button {
     width: 20%;
-}
-
-select{
+  }
+  
+  select {
     width: 60%;
     padding: 6px 8px;
     background-color: #f3f3f3;
     border: none;
     outline: none;
     border-radius: 5px;
-}
-
-option{
-    width: 40%;
-}
-
-select:hover{
+  }
+  
+  select:hover {
     background-color: #dadada;
-}
-
-h5{
+  }
+  
+  h5 {
     font-size: 18px;
     color: #141E30;
-}
-
-.fa-sync-alt {
+  }
+  
+  .fa-sync-alt {
     margin-left: 20px;
     color: #141E30;
     font-size: 25px;
     cursor: pointer;
-}
+  }
+  

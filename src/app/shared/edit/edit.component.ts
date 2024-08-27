@@ -60,21 +60,28 @@ export class EditComponent {
     this.errorMessage = null
   }
 
-  verificaEdit(){
+  verificaEdit(): boolean{
+    console.log(this.name)
     this.errorMessage = null;
 
     if (!this.name.trim()) {
       this.errorMessage = 'O nome não pode estar vazio.';
-      return;
+      return false;
     }
+    
     if(this.serviceType != 'group' && !this.fk){
       this.errorMessage = 'Todos os campos precisam sem preenchidos.';
-      return;
+      return false;
     }
+
+    return true;
   }
 
   confirmEdit() {
-    this.verificaEdit();
+
+    if(!this.verificaEdit()){
+      return;
+    }
     
     if (this.serviceType === 'group') {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};

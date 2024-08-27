@@ -14,7 +14,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      name: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -22,7 +22,7 @@ export class LoginComponent {
   ngOnInit(): void {
     if (this.loginService.isTokenExpired()) {
       localStorage.removeItem('token');
-      localStorage.removeItem('username');
+      localStorage.removeItem('name');
       console.log("Itens removidos do localStorage.");
     } else if (localStorage.getItem('token')) {
       this.router.navigate(['/home']);

@@ -39,24 +39,28 @@ export class CreateQuestionComponent {
     this.modal.nativeElement.close();
   }
 
-  verificaQuestions(){
+  verificaQuestions(): boolean{
     this.errorMessage = null;
 
     if(this.selectedFormId == 0){
       this.errorMessage = 'O formulário precisa ser preenchido.';
-      return;
+      return false;
     }
 
     for (const question of this.questions) {
       if (!question.text.trim()) {
           this.errorMessage = `O conteúdo das perguntas não pode estar vazio.`;
-          return;
+          return false;
       }
     }
+
+    return true;
   }
 
   submit() {
-    this.verificaQuestions();
+    if(!this.verificaQuestions()){
+      return;
+    }
     const questions = this.questions.map((question) => ({id: 0,text: question.text,IdForms: this.selectedFormId,}));
     this.questionService.createQuestion(questions).subscribe(() => {
       this.closeModal();

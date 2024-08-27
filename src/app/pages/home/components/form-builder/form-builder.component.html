@@ -46,5 +46,5 @@
   <app-create-group (createdConfirmed)="loadGroups()"></app-create-group>
   <app-create-form></app-create-form>
   <app-create-question></app-create-question>
-  <app-see-answers></app-see-answers>
+  <app-see-answers *ngIf="userRole === 'Administrador'"></app-see-answers>
 </main>

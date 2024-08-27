@@ -40,28 +40,32 @@ export class CreateFormComponent {
     this.modal.nativeElement.close();
   }
 
-  verificaForm(){
+  verificaForm(): boolean{
     this.errorMessage = null;
 
     if(this.selectedGroupId == 0){
       this.errorMessage = 'O grupo precisa ser preenchido.';
-      return;
+      return false;
     }
     if (!this.formName.trim()) {
       this.errorMessage = 'O nome do Formulário não pode estar vazio.';
-      return;
+      return false;
     }
   
     for (const question of this.questions) {
       if (!question.text.trim()) {
           this.errorMessage = `O conteúdo das perguntas não pode estar vazio.`;
-          return;
+          return false;
       }
     }
+
+    return true;
   }
 
   submit() {
-    this.verificaForm();
+    if(!this.verificaForm()){
+      return;
+    }
     const form: FormModel = {id: 0, name: this.formName, IdFormsGroup: this.selectedGroupId, questions: this.questions};
     this.formService.createForm(form).subscribe( () =>
       {

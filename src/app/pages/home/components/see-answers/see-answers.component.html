@@ -2,16 +2,37 @@
     <div class="base">
         <h3>Consultar Respostas</h3>
         <div class="form-question infield">
-            <h5>Pergunta que deseja ver as respostas</h5>
+            <h5 *ngIf="isQuestionMode">Pergunta que deseja ver as respostas</h5>
+            <h5 *ngIf="!isQuestionMode">Usuário que deseja ver as respostas</h5>
             <div class="select-button">
-                <select [(ngModel)]="selectedQuestionId" required>
+                <select [(ngModel)]="selectedQuestionId" (change)="onSelectionChange()" *ngIf="isQuestionMode" required>
                     <option *ngFor="let question of questions" [value]="question.id">
                         {{ question.text }}
                     </option>
                 </select>
-                <a href="#"><i class="fas fa-sync-alt"></i></a>
+                <select [(ngModel)]="selectedUserId" (change)="onSelectionChange()" *ngIf="!isQuestionMode">
+                    <option *ngFor="let user of users" [value]="user.id">
+                        {{ user.name }}
+                    </option>
+                </select>
+                <a (click)="toggleMode()"><i class="fas fa-sync-alt"></i></a>
             </div>
         </div>
-      <button (click)="close()">Fechar</button>
+
+        <div *ngIf="answers.length > 0" class="answers-list">
+            <h5>Respostas:</h5>
+            <div class="answer" *ngFor="let answer of answers">
+                <div *ngIf="isQuestionMode" class="username">Username: {{answer.username}}</div>
+                <div *ngIf="!isQuestionMode" class="pergunta">Pergunta: {{answer.QuestionText}}</div>
+                <div class="grade">Nota: {{ answer.grade }}</div>
+                <div class="description">Descrição: {{ answer.description }}</div>
+            </div>
+        </div>
+
+        <div *ngIf="mensageError">
+            <p>Não existem respostas para a seleção atual.</p>
+        </div>
+
+        <button (click)="close()">Fechar</button>
     </div>
-  </dialog>
+</dialog>

@@ -13,13 +13,13 @@ import { DecodedToken } from 'src/app/interfaces/DecodedToken ';
 export class LoginService {
   private urlLogin: string = 'https://localhost:7193/api/User';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(login: { username: string; password: string }): Observable<LoginResponse> {
+  login(login: { name: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login).pipe(
       tap((response) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('username', login.username);
+        localStorage.setItem('name', login.name);
         const decodedTokenRole: DecodedToken = jwtDecode(response.token);
         localStorage.setItem('role', decodedTokenRole.role)
       })
@@ -33,8 +33,9 @@ export class LoginService {
       this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json' }).subscribe(
         () => {
           localStorage.removeItem('token');
-          localStorage.removeItem('username');
+          localStorage.removeItem('name');
           localStorage.removeItem('role');
+          this.router.navigate(['/login']);
         },
         error => {
           console.error('Erro no logout:', error);
@@ -44,7 +45,7 @@ export class LoginService {
   }
 
   getUsername(): string | null{
-    return localStorage.getItem('username');
+    return localStorage.getItem('name');
   }
 
   getUserRole(): string | null {
