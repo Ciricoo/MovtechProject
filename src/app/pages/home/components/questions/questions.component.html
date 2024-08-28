@@ -18,10 +18,10 @@
           <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
           <div *ngIf="activeMenuIndex === i" class="menu">
             <ul>
-              <li (click)="openModal('edit', question.id)">
+              <li (click)="openModalEdit(question.id)">
                 <i class="fas fa-edit"></i> Editar
               </li>
-              <li (click)="openModal('delete', question.id)">
+              <li (click)="openModalDelete(question.id)">
                 <i class="fas fa-trash"></i> Excluir
               </li>
             </ul>
@@ -43,6 +43,6 @@
     </ng-container>
   </div>
 </dialog>
-<app-delete *ngIf="modalType === 'delete'" [itemId]="selectedQuestionId"(deleteConfirmed)="loadQuestion()"></app-delete>
-<app-edit *ngIf="modalType === 'edit'" [itemId]="selectedQuestionId" (editConfirmed)="loadQuestion()"></app-edit>
+<app-delete [itemId]="selectedQuestionId"(deleteConfirmed)="loadQuestion()"></app-delete>
+<app-edit [itemId]="selectedQuestionId" (editConfirmed)="loadQuestion()"></app-edit>
 <app-alert-modal #alertModal></app-alert-modal>

@@ -15,16 +15,16 @@
               <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
               <div *ngIf="activeMenuIndex === i" class="menu">
                 <ul>
-                  <li (click)="openModal('edit', form.id)">
+                  <li (click)="openModalEdit(form.id)">
                     <i class="fas fa-edit"></i> Editar
                   </li>
-                  <li (click)="openModal('delete', form.id)">
+                  <li (click)="openModalDelete(form.id)">
                     <i class="fas fa-trash"></i> Excluir
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="card-body" (click)="openModal('question', form.id)">
+            <div class="card-body" (click)="openModalQuestion(form.id)">
               <h5 class="card-title">{{form.name}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
@@ -32,6 +32,6 @@
         </ng-container>
       </div>
 </dialog>
-<app-questions *ngIf="modalType === 'question'" [formId]="selectedFormId"></app-questions>
-<app-delete *ngIf="modalType === 'delete'" [itemId]="selectedFormId" (deleteConfirmed)="loadForm()"></app-delete>
-<app-edit *ngIf="modalType === 'edit'" [itemId]="selectedFormId" (editConfirmed)="loadForm()"></app-edit>
+<app-questions [formId]="selectedFormId"></app-questions>
+<app-delete [itemId]="selectedFormId" (deleteConfirmed)="loadForm()"></app-delete>
+<app-edit [itemId]="selectedFormId" (editConfirmed)="loadForm()"></app-edit>

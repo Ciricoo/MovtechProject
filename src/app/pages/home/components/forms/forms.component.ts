@@ -22,41 +22,46 @@ export class FormsComponent {
   activeMenuIndex: number | null = null;
   userRole: string | null = null;
   modalType: 'edit' | 'delete' | 'question' | null = null;
-
+  
   constructor(private formService: FormService, private loginService: LoginService) {}
-
+  
   loadForm(): void {
     this.userRole = this.loginService.getUserRole();
     this.formService.getFormsByGroupId(this.groupId).subscribe((data) => (this.forms = data));
   }
   
-  openModal(type: 'delete' | 'edit' | 'question', formId: number) {
-    this.modalType = type;
-    this.selectedFormId = formId;
-    setTimeout(() => {
-      if ( type == 'question'){
-        this.questionComponent.showModal();
-        this.questionComponent.loadQuestion();
-      }
-      else if (type === 'delete') {
-        this.deleteComponent.itemId = formId;
-        this.deleteComponent.serviceType = 'form';
-        this.deleteComponent.showModal();
-      } else if (type === 'edit') {
-        this.editComponent.itemId = formId;
-        this.editComponent.serviceType = 'form';
-        this.editComponent.showModal();
-      }
-    });
-  }
   showModal(): void {
-    if (this.modal) {
-      this.modal.nativeElement.showModal();
-    }
+    this.modal.nativeElement.showModal();
   }
   
   closeModal(): void {
     this.modal.nativeElement.close();
+  }
+
+  openModalQuestion(formId: number) {
+    this.selectedFormId = formId;
+    setTimeout(() => {
+      this.questionComponent.showModal();
+      this.questionComponent.loadQuestion();
+    });
+  }
+
+  openModalDelete(formId: number) {
+    this.selectedFormId = formId;
+    setTimeout(() => {
+      this.deleteComponent.itemId = formId;
+      this.deleteComponent.serviceType = 'form';
+      this.deleteComponent.showModal();
+    });
+  }
+
+  openModalEdit(formId: number) {
+    this.selectedFormId = formId;
+    setTimeout(() => {
+      this.editComponent.itemId = formId;
+        this.editComponent.serviceType = 'form';
+        this.editComponent.showModal();
+    });
   }
 
   toggleMenu(index: number, event: MouseEvent): void {

@@ -40,23 +40,6 @@ export class QuestionsComponent {
     this.questionService.getQuestionByFormId(this.formId).subscribe((data) => (this.questions = data));
   }
 
-  openModal(type: 'delete' | 'edit', questionId: number) {
-    this.modalType = type;
-    this.selectedQuestionId = questionId;
-    setTimeout(() => {
-      if (type === 'delete') {
-        console.log(questionId);
-        this.deleteComponent.itemId = questionId;
-        this.deleteComponent.serviceType = 'question';
-        this.deleteComponent.showModal();
-      } else if (type === 'edit') {
-        this.editComponent.itemId = questionId;
-        this.editComponent.serviceType = 'question';
-        this.editComponent.showModal();
-      }
-    });
-  }
-
   showModal(): void {
     this.modal.nativeElement.showModal();
   }
@@ -64,6 +47,25 @@ export class QuestionsComponent {
   closeModal(): void {
     this.modal.nativeElement.close();
   }
+
+  openModalDelete(questionId: number) {
+    this.selectedQuestionId = questionId;
+    setTimeout(() => {
+      this.deleteComponent.itemId = questionId;
+      this.deleteComponent.serviceType = 'question';
+      this.deleteComponent.showModal();
+    });
+  }
+
+  openModalEdit(questionId: number) {
+    this.selectedQuestionId = questionId;
+    setTimeout(() => {
+      this.editComponent.itemId = questionId;
+      this.editComponent.serviceType = 'question';
+      this.editComponent.showModal();
+    });
+  }
+
 
   toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();

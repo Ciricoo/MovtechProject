@@ -21,19 +21,15 @@ export class FormBuilderComponent implements OnInit {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(CreateGroupComponent) createGroupComponent!: CreateGroupComponent;
   @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
-  @ViewChild(CreateQuestionComponent) createQuestionComponent!: CreateQuestionComponent;
+  @ViewChild(CreateQuestionComponent)  createQuestionComponent!: CreateQuestionComponent;
   @ViewChild(SeeAnswersComponent) seeAnswersComponent!: SeeAnswersComponent;
 
   formGroups: FormGroupModel[] = [];
   selectedGroupId!: number;
   userRole: string | null = null;
-  modalType: 'forms' | 'delete' | 'edit' | null = null;
   activeMenuIndex: number | null = null;
 
-  constructor(
-    private formgroupService: FormgroupService,
-    private loginService: LoginService
-  ) {}
+  constructor(private formgroupService: FormgroupService,private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.loadGroups();
@@ -41,7 +37,9 @@ export class FormBuilderComponent implements OnInit {
 
   loadGroups(): void {
     this.userRole = this.loginService.getUserRole();
-    this.formgroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
+    this.formgroupService.getFormGroups().subscribe((data) => {
+      this.formGroups = data;
+    });
   }
 
   toggleMenu(index: number, event: MouseEvent): void {
@@ -50,45 +48,49 @@ export class FormBuilderComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent): void {
+  handleClickOutside(): void {
     this.activeMenuIndex = null;
   }
 
-  openModal(type: 'forms' | 'delete' | 'edit', groupId: number) {
-  this.modalType = type;
-  this.selectedGroupId = groupId;
-  setTimeout(() => {
-    if (type === 'forms') {
+  openModalForm(groupId: number) {
+    this.selectedGroupId = groupId;
+    setTimeout(() => {
       this.formsComponent.showModal();
       this.formsComponent.loadForm();
-    } else if (type === 'delete') {
+    });
+  }
+
+  openModalDelete(groupId: number) {
+    this.selectedGroupId = groupId;
+    setTimeout(() => {
       this.DeleteComponent.itemId = groupId;
       this.DeleteComponent.serviceType = 'group';
       this.DeleteComponent.showModal();
-    } else if (type === 'edit') {
+    });
+  }
+
+  openModalEdit(groupId: number) {
+    this.selectedGroupId = groupId;
+    setTimeout(() => {
       this.editComponent.itemId = groupId;
       this.editComponent.serviceType = 'group';
       this.editComponent.showModal();
-    }
-  });
-}
+    });
+  }
 
-  openModalCreateGroup(){
+  openModalCreateGroup() {
     this.createGroupComponent.showModal();
   }
 
-  openModalCreateForm(){
+  openModalCreateForm() {
     this.createFormComponent.showModal();
   }
 
-  openModalCreateQuestion(){
+  openModalCreateQuestion() {
     this.createQuestionComponent.showModal();
   }
 
-  openModalSeeAnswers(){
+  openModalSeeAnswers() {
     this.seeAnswersComponent.open();
-  }
-  closeModal() {
-    this.modalType = null;
   }
 }

@@ -32,6 +32,7 @@ export class CreateGroupComponent {
 
   closeModal() {
     this.modal.nativeElement.close();
+    this.resetGroup();
   }
 
   verificaGroup(): boolean{

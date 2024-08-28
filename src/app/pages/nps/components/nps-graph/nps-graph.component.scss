@@ -1,0 +1,52 @@
+main {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 0;
+  }
+  .nps-chart-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .nps-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .nps-main-chart, .nps-side-chart {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    margin: 10px auto;
+  }
+  
+  .nps-score-container {
+    margin-top: 20px;
+  }
+  
+  .nps-score-title {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .nps-score {
+    font-size: 40px;
+    font-weight: bold;
+    color: #4caf50;
+  }
+  
+  .nps-side-charts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

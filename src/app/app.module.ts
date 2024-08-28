@@ -18,6 +18,9 @@ import { CreateFormComponent } from './pages/home/components/create-form/create-
 import { CreateQuestionComponent } from './pages/home/components/create-question/create-question.component';
 import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
 import { SeeAnswersComponent } from './pages/home/components/see-answers/see-answers.component';
+import { NpsComponent } from './pages/nps/nps.component';
+import { NpsGraphComponent } from './pages/nps/components/nps-graph/nps-graph.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { SeeAnswersComponent } from './pages/home/components/see-answers/see-ans
     CreateFormComponent,
     CreateQuestionComponent,
     AlertModalComponent,
-    SeeAnswersComponent
+    SeeAnswersComponent,
+    NpsComponent,
+    NpsGraphComponent
   ],
   imports: [
     BrowserModule,

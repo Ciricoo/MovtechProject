@@ -30,22 +30,15 @@ export class LoginService {
     const token = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json' }).subscribe(
-        () => {
+      this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json' })
+      .subscribe(() => {
           localStorage.removeItem('token');
           localStorage.removeItem('name');
           localStorage.removeItem('role');
           this.router.navigate(['/login']);
-        },
-        error => {
-          console.error('Erro no logout:', error);
         }
       );
     }
-  }
-
-  getUsername(): string | null{
-    return localStorage.getItem('name');
   }
 
   getUserRole(): string | null {

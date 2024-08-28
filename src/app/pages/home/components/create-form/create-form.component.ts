@@ -38,6 +38,7 @@ export class CreateFormComponent {
 
   closeModal() {
     this.modal.nativeElement.close();
+    this.resetForm();
   }
 
   verificaForm(): boolean{

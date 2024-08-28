@@ -23,7 +23,7 @@ export class LoginComponent {
     if (this.loginService.isTokenExpired()) {
       localStorage.removeItem('token');
       localStorage.removeItem('name');
-      console.log("Itens removidos do localStorage.");
+      localStorage.removeItem('role');
     } else if (localStorage.getItem('token')) {
       this.router.navigate(['/home']);
     }

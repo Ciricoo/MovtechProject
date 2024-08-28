@@ -35,8 +35,8 @@ export class CreateQuestionComponent {
   }
 
   closeModal() {
-    this.questions = [];
     this.modal.nativeElement.close();
+    this.resetForm();
   }
 
   verificaQuestions(): boolean{
@@ -64,9 +64,16 @@ export class CreateQuestionComponent {
     const questions = this.questions.map((question) => ({id: 0,text: question.text,IdForms: this.selectedFormId,}));
     this.questionService.createQuestion(questions).subscribe(() => {
       this.closeModal();
+      this.resetForm();
       this.alertModalComponent.open('Pergunta criada com sucesso!');
     })
   }
+
+  resetForm() {
+    this.selectedFormId = 0;
+    this.questions = [];
+  }
+
   
   addQuestion() {
     this.questions.push({
