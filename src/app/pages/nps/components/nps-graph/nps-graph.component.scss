@@ -1,52 +1,98 @@
+/* styles.css */
 main {
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
-    margin: 0;
-  }
-  .nps-chart-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-    text-align: center;
-  }
-  
-  .nps-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .nps-main-chart, .nps-side-chart {
-    width: 100%;
-    max-width: 180px;
-    height: auto;
-    margin: 10px auto;
-  }
-  
-  .nps-score-container {
-    margin-top: 20px;
-  }
-  
-  .nps-score-title {
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .nps-score {
-    font-size: 40px;
-    font-weight: bold;
-    color: #4caf50;
-  }
-  
-  .nps-side-charts {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  background-color: #f4f4f4;
+}
+
+.nps-speedometer {
+  text-align: center;
+}
+.speedometer{
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #f7b748 0% 11%, 
+    #1adc79 14% 20%, 
+    #16b463 23% 25%, 
+    #f4f4f4 25% 75%,
+    #fc5757 75% 99%, 
+    #f7b748 100% 3%, 
+   );
+
+  position: relative;
+}
+
+.needle{
+  position: absolute;
+  width: 540px;
+  height: 540px;
+  padding: 150px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  translate: -50% -50%;
+  background-color: #f4f4f4
+}
+
+
+.nps-needle-container {
+  position: absolute;
+  top: -10%;
+  left: 41%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+#nps-score {
+  font-size: 30px;
+  font-weight: bold;
+  display: block;
+  margin-top: 20%;
+}
+
+.nps-speedometer-labels {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 51%;
+}
+
+.npssn-passive {
+  position: absolute;
+  top: 10px;
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+.nps-speedometer-number {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+// RESPOSTA NÃO É ENVIADA QUANDO SELECIONADA "0"!!!!!!!!!
+
+.needle-img {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 200%;
+  height: 115%; 
+  top: 50%;
+  left: 195%;
+  transition: transform 0.5s ease; 
+}
+
+span{
+  font-size: 18px;
+  font-weight: 500;
+}

@@ -1,20 +1,19 @@
+
 <main>
-    <div class="nps-chart-container">
-        <div class="nps-title">Net Promoter Score (NPS)</div>
-      
-        <!-- Gráfico Principal -->
-        <canvas id="mainChart" class="nps-main-chart"></canvas>
-      
-        <div class="nps-score-container">
-          <div class="nps-score-title">NPS Score</div>
-          <div class="nps-score">+30</div>
-        </div>
-      
-        <div class="nps-side-charts">
-          <!-- Gráficos Laterais -->
-          <canvas id="leftChart" class="nps-side-chart"></canvas>
-          <canvas id="rightChart" class="nps-side-chart"></canvas>
-        </div>
+  <div class="nps-speedometer">
+    <div class="speedometer">
+      <div class="needle">
+      <b class="nps-speedometer-number npssn-passive">0</b>
+      <div class="nps-needle-container">
+        <img src="assets/needle.png" alt="Ponteiro" class="needle-img">
       </div>
-      
+      <strong id="nps-score">{{ npsScore }}</strong>
+      <span>NPS</span>
+    </div>
+    <div class="nps-speedometer-labels">
+      <b class="nps-speedometer-number npssn-negative">-100</b>
+      <b class="nps-speedometer-number npssn-positive">100</b>
+    </div>
+  </div>
+</div>
 </main>
