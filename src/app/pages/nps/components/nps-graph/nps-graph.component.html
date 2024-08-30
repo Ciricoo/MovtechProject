@@ -1,14 +1,30 @@
 
 <main>
   <div class="nps-speedometer">
+  </div>
+  <div class="nps-segments">
+    <div class="segment detractors">
+      <span>Detratores</span>
+      <strong>{{ detractors }}%</strong>
+    </div>
+    <div class="segment passives">
+      <span>Passivos</span>
+      <strong>{{ passives }}%</strong>
+    </div>
+    <div class="segment promoters">
+      <span>Promotores</span>
+      <strong>{{ promoters }}%</strong>
+    </div>
+  </div>
+  <div class="nps-speedometer">
     <div class="speedometer">
       <div class="needle">
       <b class="nps-speedometer-number npssn-passive">0</b>
+        <strong id="nps-score">{{ npsScore }}</strong>
+        <span>NPS</span>
       <div class="nps-needle-container">
-        <img src="assets/needle.png" alt="Ponteiro" class="needle-img">
+        <img src="assets/pointer.png" alt="Ponteiro" class="pointer-img">
       </div>
-      <strong id="nps-score">{{ npsScore }}</strong>
-      <span>NPS</span>
     </div>
     <div class="nps-speedometer-labels">
       <b class="nps-speedometer-number npssn-negative">-100</b>
@@ -17,3 +33,4 @@
   </div>
 </div>
 </main>
+

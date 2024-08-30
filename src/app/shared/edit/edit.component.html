@@ -6,7 +6,7 @@
         <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
         <div class="infield">
             <h3>Novo nome</h3>
-            <input id="groupName" placeholder="Name" [(ngModel)]="name" name="name" required />
+            <input id="groupName" (keyup.enter)="confirmEdit()" placeholder="Name" [(ngModel)]="name" name="name" required />
             <label></label>
         </div>
         <div class="form-question infield" *ngIf="serviceType != 'group' ">

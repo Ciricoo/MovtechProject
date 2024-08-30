@@ -31,6 +31,7 @@
           <h5 class="card-title">{{question.text}}</h5>
           <div class="card-text">
             <select (change)="onInputChange(question.id, 'grade', $event)" required>
+              <option [value]="null" disabled selected></option>
               <option *ngFor="let grade of grades" [value]="grade">{{ grade }}</option>
             </select>
             <div class="infield">

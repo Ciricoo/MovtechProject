@@ -3,7 +3,9 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  flex-direction: column;
+  margin-top: 3%;
+  gap: 50px;
   background-color: #f4f4f4;
 }
 
@@ -53,11 +55,21 @@ main {
 }
 
 #nps-score {
+  position: relative;
+  z-index: 999;
   font-size: 30px;
   font-weight: bold;
   display: block;
-  margin-top: 20%;
+  margin-top: -60px;
 }
+
+span{
+  position: relative;
+  z-index: 999;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 
 .nps-speedometer-labels {
   display: flex;
@@ -79,20 +91,73 @@ main {
   font-weight: bold;
 }
 
-// RESPOSTA NÃO É ENVIADA QUANDO SELECIONADA "0"!!!!!!!!!
-
-.needle-img {
+.pointer-img {
   display: flex;
   justify-content: center;
   position: absolute;
-  width: 200%;
-  height: 115%; 
-  top: 50%;
-  left: 195%;
+  width: 120px;
+  top: 60%;
+  left: 1%;
+  transform-origin: bottom center; 
   transition: transform 0.5s ease; 
 }
 
-span{
-  font-size: 18px;
-  font-weight: 500;
+#nps-score.positive {
+  color: #1adc79;
+  animation: pulse 1s infinite;
+}
+
+#nps-score.negative {
+  color: #fc5757;
+  animation: shake 0.7s infinite;
+}
+
+#nps-score.neutral{
+  color: #f7b748;
+  animation: none;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.nps-segments {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.segment {
+  flex: 1;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+}
+
+.segment.detractors {
+  color: #fc5757;
+}
+
+.segment.passives {
+  color: #f7b748;
+}
+
+.segment.promoters {
+  color: #1adc79;
+}
+
+.segment strong {
+  display: block;
+  font-size: 24px;
+  margin-top: 5px;
 }

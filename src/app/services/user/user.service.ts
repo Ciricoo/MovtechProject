@@ -19,4 +19,20 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { headers });
   }
+
+  
+  getPromoters(): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<number>(`${this.apiUrl}promoters`, { headers });
+  }
+
+  getPassives(): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<number>(`${this.apiUrl}passives`, { headers });
+  }
+
+  getDetractors(): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<number>(`${this.apiUrl}detractors`, { headers });
+  }
 }
