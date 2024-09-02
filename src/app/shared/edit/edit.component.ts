@@ -32,11 +32,7 @@ export class EditComponent {
   formGroups: FormGroupModel[] = [];
   errorMessage: string | null = null;
 
-  constructor(
-    private formgroupService: FormgroupService,
-    private formService: FormService,
-    private questionService: QuestionService
-  ) {}
+  constructor( private formgroupService: FormgroupService,private formService: FormService,private questionService: QuestionService) {}
 
   loadForms() {
     this.formService.getForms().subscribe((data) => {this.forms = data;});

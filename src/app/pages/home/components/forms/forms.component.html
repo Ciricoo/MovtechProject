@@ -11,7 +11,7 @@
         <ng-container *ngFor="let form of forms; let i = index">
           <div class="card border-dark mb-3" style="max-width: 18rem;">
             <div class="card-header">
-              {{form.id}}
+              <a *ngIf="userRole === 'Administrador'">{{form.id}}</a>
               <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
               <div *ngIf="activeMenuIndex === i" class="menu">
                 <ul>

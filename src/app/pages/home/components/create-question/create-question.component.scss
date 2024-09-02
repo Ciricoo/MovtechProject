@@ -45,20 +45,6 @@ h3{
 .question{
     margin-top: 20px;
     margin-left: 35px;
-
-    input{
-        padding: 10px 13px;
-        width: 60%;
-    }
-
-    label{
-        transform: translateX(-50%);
-        width: 350px;
-    }
-
-    h3{
-        font-size: 20px;
-    }
 }
 
 .all-questions{
@@ -71,11 +57,11 @@ h3{
     margin-top: -10px;
 
     .infield {
-        width: 350px;
+        width: 750px;
     }
 
     input{
-        width: 350px;
+        width: 750px;
     }
 
     .btn-delete{

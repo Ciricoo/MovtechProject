@@ -1,10 +1,9 @@
-/* styles.css */
 main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3%;
+  margin-top: 2%;
   gap: 50px;
   background-color: #f4f4f4;
 }
@@ -51,7 +50,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
 }
 
 #nps-score {
@@ -70,7 +68,6 @@ span{
   font-weight: 500;
 }
 
-
 .nps-speedometer-labels {
   display: flex;
   justify-content: space-between;
@@ -82,13 +79,11 @@ span{
 .npssn-passive {
   position: absolute;
   top: 10px;
-  left: 50%; 
   transform: translateX(-50%); 
 }
 
 .nps-speedometer-number {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 15px;
 }
 
 .pointer-img {
@@ -138,10 +133,7 @@ span{
 }
 
 .segment {
-  flex: 1;
   padding: 15px;
-  border-radius: 8px;
-  background-color: #f4f4f4;
 }
 
 .segment.detractors {
@@ -158,6 +150,6 @@ span{
 
 .segment strong {
   display: block;
-  font-size: 24px;
+  font-size: 25px;
   margin-top: 5px;
 }

@@ -10,29 +10,27 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+  }
+
   getUserById(idUser: number): Observable<{ id: number, name: string }> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<{ id: number, name: string }>(`${this.apiUrl}${idUser}`, { headers });
+    return this.http.get<{ id: number, name: string }>(`${this.apiUrl}${idUser}`, { headers: this.getAuthHeaders() });
   }
 
   getUsers(): Observable<{ id: number, name: string }[]>{
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { headers });
+    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { headers: this.getAuthHeaders() });
   }
 
-  
   getPromoters(): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<number>(`${this.apiUrl}promoters`, { headers });
+    return this.http.get<number>(`${this.apiUrl}promoters`, { headers: this.getAuthHeaders() });
   }
 
   getPassives(): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<number>(`${this.apiUrl}passives`, { headers });
+    return this.http.get<number>(`${this.apiUrl}passives`, { headers: this.getAuthHeaders() });
   }
 
   getDetractors(): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<number>(`${this.apiUrl}detractors`, { headers });
+    return this.http.get<number>(`${this.apiUrl}detractors`, { headers: this.getAuthHeaders() });
   }
 }

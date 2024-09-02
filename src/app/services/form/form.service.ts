@@ -11,28 +11,27 @@ export class FormService {
 
   constructor(private http: HttpClient) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+  }
+
   getFormsByGroupId(groupId: number): Observable<FormModel[]> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<FormModel[]>(`${this.apiUrl}Group/${groupId}`, { headers });
+    return this.http.get<FormModel[]>(`${this.apiUrl}Group/${groupId}`, { headers:this.getAuthHeaders() });
   }
 
   deleteForm(formId: number): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.delete<boolean>(`${this.apiUrl}${formId}`, { headers });
+    return this.http.delete<boolean>(`${this.apiUrl}${formId}`, { headers:this.getAuthHeaders() });
   }
 
   updateForm(formId: number, updatedForm: FormModel): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.put<boolean>(`${this.apiUrl}${formId}`, updatedForm, { headers });
+    return this.http.put<boolean>(`${this.apiUrl}${formId}`, updatedForm, { headers:this.getAuthHeaders() });
   }
   
   createForm(createForm: FormModel): Observable<FormModel> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<FormModel>(`${this.apiUrl}`, createForm, { headers });
+    return this.http.post<FormModel>(`${this.apiUrl}`, createForm, { headers:this.getAuthHeaders() });
   }
 
   getForms(): Observable<FormModel[]>{
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<FormModel[]>(`${this.apiUrl}`, { headers });
+    return this.http.get<FormModel[]>(`${this.apiUrl}`, { headers:this.getAuthHeaders() });
   }
 }

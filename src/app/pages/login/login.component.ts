@@ -12,18 +12,16 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
+  constructor(private fb: FormBuilder,private loginService: LoginService,private router: Router) {
     this.loginForm = this.fb.group({
       name: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     if (this.loginService.isTokenExpired()) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('name');
-      localStorage.removeItem('role');
+      this.loginService.clearLocalStorage();
     } else if (localStorage.getItem('token')) {
       this.router.navigate(['/home']);
     }
@@ -34,19 +32,16 @@ export class LoginComponent {
       this.errorMessage = 'Todos os campos são obrigatórios.';
       return;
     }
-
     const loginData = this.loginForm.value;
     this.loginService.login(loginData).subscribe(
-      (response) => {
+      () => {
         this.router.navigate(['/home']);
-        console.log('Login successful:', response);
-        this.errorMessage = null; 
+        this.errorMessage = null;
       },
       (error) => {
         if (error.status === 500) {
           this.errorMessage = 'Credenciais inválidas.';
-        } 
-        console.error('Login failed:', error);
+        }
       }
     );
   }

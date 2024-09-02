@@ -25,6 +25,7 @@ export class QuestionsComponent {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Input() formId!: number;
+  
   userRole: string | null = null;
   selectedQuestionId!: number;
   questions: QuestionModel[] = [];
@@ -73,21 +74,20 @@ export class QuestionsComponent {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent): void {
+  handleClickOutside(): void {
     this.activeMenuIndex = null;
   }
 
   onInputChange(questionId: number, field: keyof AnswerModal, event: Event): void {
-    const target = event.target as HTMLInputElement | HTMLSelectElement | null;
+    const target = event.target as HTMLInputElement | HTMLSelectElement
     if (target === null) return;
   
-    const value = target.value;
     const answer = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: 0,description: '',idQuestion: questionId,idUser: 0,};
   
     if (field === 'grade') {
-      answer.grade = value !== null ? Number(value) : 0;
+      answer.grade = Number(target.value);
     } else {
-      answer.description = value;
+      answer.description = target.value;
     }
   
     this.answers = [...this.answers.filter(a => a.idQuestion !== questionId), answer];

@@ -32,11 +32,11 @@ export class FormBuilderComponent implements OnInit {
   constructor(private formgroupService: FormgroupService,private loginService: LoginService) {}
 
   ngOnInit(): void {
+    this.userRole = this.loginService.getUserRole();
     this.loadGroups();
   }
 
   loadGroups(): void {
-    this.userRole = this.loginService.getUserRole();
     this.formgroupService.getFormGroups().subscribe((data) => {
       this.formGroups = data;
     });

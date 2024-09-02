@@ -26,23 +26,23 @@ export class LoginService {
     );
   }
 
+  clearLocalStorage(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('role');
+  }
+
   logout(): void {
     const token = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json' })
       .subscribe(() => {
-          localStorage.removeItem('token');
-          localStorage.removeItem('name');
-          localStorage.removeItem('role');
+          this.clearLocalStorage();
           this.router.navigate(['/login']);
         }
       );
     }
-  }
-
-  getUserRole(): string | null {
-    return localStorage.getItem('role');
   }
 
   isTokenExpired(): boolean {
@@ -50,14 +50,17 @@ export class LoginService {
     if (!token) {
       return true;
     }
-
     const decodedToken: DecodedToken = jwtDecode(token);
     const currentTime = Math.floor(new Date().getTime() / 1000);
-
+    
     if(decodedToken.exp < currentTime){
       this.logout();
       return true;
     }
     return false;
+  }
+
+  getUserRole(): string | null {
+    return localStorage.getItem('role');
   }
 }

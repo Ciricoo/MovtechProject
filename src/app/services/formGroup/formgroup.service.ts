@@ -11,24 +11,24 @@ export class FormgroupService {
   private apiUrl = 'https://localhost:7193/api/FormGroup/';
   
   constructor(private http: HttpClient) {}
+
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+  }
   
   getFormGroups(): Observable<FormGroupModel[]> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<FormGroupModel[]>(this.apiUrl, { headers });
+    return this.http.get<FormGroupModel[]>(this.apiUrl, { headers: this.getAuthHeaders() });
   }
 
   deleteFormGroup(groupId: number): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.delete<boolean>(`${this.apiUrl}${groupId}`, { headers });
+    return this.http.delete<boolean>(`${this.apiUrl}${groupId}`, { headers: this.getAuthHeaders() });
   }
 
   updateFormGroup(groupId: number, updatedGroup: FormGroupModel): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.put<boolean>(`${this.apiUrl}${groupId}`, updatedGroup, { headers });
+    return this.http.put<boolean>(`${this.apiUrl}${groupId}`, updatedGroup, { headers: this.getAuthHeaders() });
   }
 
   createFormGroup(createGroup: FormGroupModel): Observable<FormGroupModel> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<FormGroupModel>(`${this.apiUrl}`, createGroup, { headers });
+    return this.http.post<FormGroupModel>(`${this.apiUrl}`, createGroup, { headers: this.getAuthHeaders() });
   }
 }

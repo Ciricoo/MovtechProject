@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { NpsService } from 'src/app/services/nps/nps.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./nps-graph.component.scss']
 })
 export class NpsGraphComponent implements OnInit {
+  @ViewChild('pointer') pointer!: ElementRef<HTMLDialogElement>;
+  @ViewChild('nps') nps!: ElementRef<HTMLDialogElement>;
   npsScore!: number;
   detractors!: string;
   passives!: string;
@@ -21,7 +23,7 @@ export class NpsGraphComponent implements OnInit {
       this.npsScore = score;
       this.updateNeedlePosition(score);
       this.updateScoreStyle(score);
-      this.calculateSegments()
+      this.calculateNps()
     });
   }
 
@@ -31,13 +33,12 @@ export class NpsGraphComponent implements OnInit {
     
     const angle = ((score - minScore) / (maxScore - minScore)) * 180 - 90; 
 
-    const needleImg = document.querySelector('.pointer-img') as HTMLElement;
-      needleImg.style.transform = `rotate(${angle}deg)`; 
+    const needleImg = this.pointer.nativeElement;
+    needleImg.style.transform = `rotate(${angle}deg)`; 
   }
 
   updateScoreStyle(score: number): void {
-    const npsScoreElement = document.getElementById('nps-score');
-    if(npsScoreElement){
+    const npsScoreElement = this.nps.nativeElement;
       npsScoreElement.classList.remove('positive', 'negative', 'neutral');
       if (score >= 50) {
         npsScoreElement.classList.add('positive');
@@ -46,10 +47,9 @@ export class NpsGraphComponent implements OnInit {
       } else {
         npsScoreElement.classList.add('neutral');
       }
-    }
   }
 
-  calculateSegments(): void {
+  calculateNps(): void {
     forkJoin({
       promoters: this.userService.getPromoters(),
       passives: this.userService.getPassives(),

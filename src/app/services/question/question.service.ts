@@ -11,34 +11,32 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+  }
+
   getQuestionByFormId(formId: number): Observable<QuestionModel[]> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<QuestionModel[]>(`${this.apiUrl}Form/${formId}`, { headers });
+    return this.http.get<QuestionModel[]>(`${this.apiUrl}Form/${formId}`, { headers: this.getAuthHeaders() });
   }
 
   deleteQuestion(questionId: number): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { headers });
+    return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { headers: this.getAuthHeaders() });
   }
 
   updateQuestion(questionId: number, updatedQuestion: QuestionModel): Observable<boolean> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { headers });
+    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { headers: this.getAuthHeaders() });
   }
 
   createQuestion(createQuestion: QuestionModel[]): Observable<QuestionModel[]> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<QuestionModel[]>(`${this.apiUrl}`, createQuestion, { headers });
+    return this.http.post<QuestionModel[]>(`${this.apiUrl}`, createQuestion, { headers: this.getAuthHeaders() });
   }
 
   getQuestion(): Observable<QuestionModel[]>{
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<QuestionModel[]>(`${this.apiUrl}`, {headers});
+    return this.http.get<QuestionModel[]>(`${this.apiUrl}`, {headers: this.getAuthHeaders()});
   }
 
   getQuestionById(questionId: number): Observable<QuestionModel>{
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.http.get<QuestionModel>(`${this.apiUrl}${questionId}`, {headers});
+    return this.http.get<QuestionModel>(`${this.apiUrl}${questionId}`, {headers: this.getAuthHeaders()});
   }
 
 }

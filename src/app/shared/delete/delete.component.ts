@@ -17,9 +17,7 @@ export class DeleteComponent {
   constructor(private formgroupService: FormgroupService, private formService: FormService, private questionService: QuestionService) {}
   
   showModal() {
-    if (this.modal) {
       this.modal.nativeElement.showModal();
-    }
   }
   
   closeModal() {
