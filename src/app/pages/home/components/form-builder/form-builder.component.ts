@@ -25,7 +25,6 @@ export class FormBuilderComponent implements OnInit {
   @ViewChild(SeeAnswersComponent) seeAnswersComponent!: SeeAnswersComponent;
 
   formGroups: FormGroupModel[] = [];
-  selectedGroupId!: number;
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
 
@@ -37,9 +36,10 @@ export class FormBuilderComponent implements OnInit {
   }
 
   loadGroups(): void {
-    this.formgroupService.getFormGroups().subscribe((data) => {
-      this.formGroups = data;
-    });
+      this.formgroupService.getFormGroups().subscribe((data) => {
+        this.formGroups = data;
+      });
+    
   }
 
   toggleMenu(index: number, event: MouseEvent): void {
@@ -53,7 +53,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   openModalForm(groupId: number) {
-    this.selectedGroupId = groupId;
+    this.formsComponent.groupId = groupId;
     setTimeout(() => {
       this.formsComponent.showModal();
       this.formsComponent.loadForm();
@@ -61,21 +61,15 @@ export class FormBuilderComponent implements OnInit {
   }
 
   openModalDelete(groupId: number) {
-    this.selectedGroupId = groupId;
-    setTimeout(() => {
       this.DeleteComponent.itemId = groupId;
       this.DeleteComponent.serviceType = 'group';
       this.DeleteComponent.showModal();
-    });
   }
 
   openModalEdit(groupId: number) {
-    this.selectedGroupId = groupId;
-    setTimeout(() => {
-      this.editComponent.itemId = groupId;
-      this.editComponent.serviceType = 'group';
-      this.editComponent.showModal();
-    });
+    this.editComponent.itemId = groupId;
+    this.editComponent.serviceType = 'group';
+    this.editComponent.showModal();
   }
 
   openModalCreateGroup() {

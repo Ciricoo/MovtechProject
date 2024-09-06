@@ -23,7 +23,7 @@
             <h5>Respostas:</h5>
             <div class="answer" *ngFor="let answer of answers">
                 <div *ngIf="isQuestionMode" class="username">Username: {{answer.username}}</div>
-                <div *ngIf="!isQuestionMode" class="pergunta">Pergunta: {{answer.QuestionText}}</div>
+                <div *ngIf="!isQuestionMode" class="pergunta">Pergunta: {{answer.questionText}}</div>
                 <div class="grade">Nota: {{ answer.grade }}</div>
                 <div class="description">Descrição: {{ answer.description }}</div>
             </div>

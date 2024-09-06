@@ -16,22 +16,22 @@ export class FormService {
   }
 
   getFormsByGroupId(groupId: number): Observable<FormModel[]> {
-    return this.http.get<FormModel[]>(`${this.apiUrl}Group/${groupId}`, { headers:this.getAuthHeaders() });
+    return this.http.get<FormModel[]>(`${this.apiUrl}Group/${groupId}`, { headers:this.getAuthHeaders(), withCredentials: true});
   }
 
   deleteForm(formId: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.apiUrl}${formId}`, { headers:this.getAuthHeaders() });
+    return this.http.delete<boolean>(`${this.apiUrl}${formId}`, { headers:this.getAuthHeaders(), withCredentials: true });
   }
 
   updateForm(formId: number, updatedForm: FormModel): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}${formId}`, updatedForm, { headers:this.getAuthHeaders() });
+    return this.http.put<boolean>(`${this.apiUrl}${formId}`, updatedForm, { headers:this.getAuthHeaders(), withCredentials: true });
   }
   
   createForm(createForm: FormModel): Observable<FormModel> {
-    return this.http.post<FormModel>(`${this.apiUrl}`, createForm, { headers:this.getAuthHeaders() });
+    return this.http.post<FormModel>(`${this.apiUrl}`, createForm, { headers:this.getAuthHeaders(), withCredentials: true });
   }
 
   getForms(): Observable<FormModel[]>{
-    return this.http.get<FormModel[]>(`${this.apiUrl}`, { headers:this.getAuthHeaders() });
+    return this.http.get<FormModel[]>(`${this.apiUrl}`, { headers:this.getAuthHeaders(), withCredentials: true });
   }
 }

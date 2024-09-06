@@ -13,17 +13,13 @@ import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.comp
 export class CreateQuestionComponent {
   @ViewChild('createQuestion') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
+  
   selectedFormId: number = 0;
   forms: FormModel[] = [];
   questions: QuestionModel[] = [];
   errorMessage: string | null = null;
 
   constructor(private formService: FormService, private questionService: QuestionService) {}
-
-
-  ngOnInit(): void {
-    this.loadForms();
-  }
 
   loadForms() {
     this.formService.getForms().subscribe((data) => {this.forms = data;});
@@ -32,6 +28,7 @@ export class CreateQuestionComponent {
   showModal() {
     this.modal.nativeElement.showModal();
     this.addQuestion();
+    this.loadForms();
   }
 
   closeModal() {

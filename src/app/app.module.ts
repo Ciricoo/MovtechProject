@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -19,6 +19,7 @@ import { AlertModalComponent } from './shared/alert-modal/alert-modal.component'
 import { SeeAnswersComponent } from './pages/home/components/see-answers/see-answers.component';
 import { NpsComponent } from './pages/nps/nps.component';
 import { NpsGraphComponent } from './pages/nps/components/nps-graph/nps-graph.component';
+import { TokenInterceptor } from './services/login/token/token.interceptor';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { NpsGraphComponent } from './pages/nps/components/nps-graph/nps-graph.co
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

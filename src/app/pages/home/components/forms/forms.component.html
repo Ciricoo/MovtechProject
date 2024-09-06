@@ -32,6 +32,6 @@
         </ng-container>
       </div>
 </dialog>
-<app-questions [formId]="selectedFormId"></app-questions>
-<app-delete [itemId]="selectedFormId" (deleteConfirmed)="loadForm()"></app-delete>
-<app-edit [itemId]="selectedFormId" (editConfirmed)="loadForm()"></app-edit>
+<app-questions></app-questions>
+<app-delete (deleteConfirmed)="loadForm()"></app-delete>
+<app-edit (editConfirmed)="loadForm()"></app-edit>

@@ -44,6 +44,6 @@
     </ng-container>
   </div>
 </dialog>
-<app-delete [itemId]="selectedQuestionId"(deleteConfirmed)="loadQuestion()"></app-delete>
-<app-edit [itemId]="selectedQuestionId" (editConfirmed)="loadQuestion()"></app-edit>
+<app-delete (deleteConfirmed)="loadQuestion()"></app-delete>
+<app-edit (editConfirmed)="loadQuestion()"></app-edit>
 <app-alert-modal #alertModal></app-alert-modal>

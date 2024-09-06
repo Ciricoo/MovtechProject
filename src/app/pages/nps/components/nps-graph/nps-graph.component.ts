@@ -50,12 +50,9 @@ export class NpsGraphComponent implements OnInit {
   }
 
   calculateNps(): void {
-    forkJoin({
-      promoters: this.userService.getPromoters(),
-      passives: this.userService.getPassives(),
-      detractors: this.userService.getDetractors()
-    }).subscribe({
-      next: ({ promoters, passives, detractors }) => {
+    this.userService.npsList().subscribe({
+      next: ( npslist: number[] ) => {
+       const [promoters, passives, detractors] = npslist
       const totalResponses = promoters + passives + detractors;
       this.promoters = ((promoters / totalResponses) * 100).toFixed(2);
       this.passives = ((passives / totalResponses) * 100).toFixed(2);

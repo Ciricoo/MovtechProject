@@ -15,22 +15,15 @@ export class UserService {
   }
 
   getUserById(idUser: number): Observable<{ id: number, name: string }> {
-    return this.http.get<{ id: number, name: string }>(`${this.apiUrl}${idUser}`, { headers: this.getAuthHeaders() });
+    return this.http.get<{ id: number, name: string }>(`${this.apiUrl}${idUser}`, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 
   getUsers(): Observable<{ id: number, name: string }[]>{
-    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { headers: this.getAuthHeaders() });
+    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 
-  getPromoters(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}promoters`, { headers: this.getAuthHeaders() });
+  npsList(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.apiUrl}Npslist`, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 
-  getPassives(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}passives`, { headers: this.getAuthHeaders() });
-  }
-
-  getDetractors(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}detractors`, { headers: this.getAuthHeaders() });
-  }
 }

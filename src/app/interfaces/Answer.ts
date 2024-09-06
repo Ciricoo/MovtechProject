@@ -5,6 +5,6 @@ export interface AnswerModal {
     idQuestion: number;
     idUser: number;
     username?: string; 
-    QuestionText?: string;
+    questionText?: string;
   }
   

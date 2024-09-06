@@ -23,17 +23,13 @@ export class CreateFormComponent {
 
   constructor(private formService: FormService, private formGroupService: FormgroupService) {}
 
-
-  ngOnInit(): void {
-    this.loadFormGroups();
-  }
-
   loadFormGroups() {
     this.formGroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
   }
 
   showModal() {
     this.modal.nativeElement.showModal();
+    this.loadFormGroups();
   }
 
   closeModal() {

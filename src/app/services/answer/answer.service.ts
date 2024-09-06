@@ -17,14 +17,28 @@ export class AnswerService {
   }
 
   sendAnswer(answers: AnswerModal[]): Observable<boolean>{
-    return this.http.post<boolean>(`${this.apiUrl}`, answers, { headers: this.getAuthHeaders() });
+    return this.http.post<boolean>(`${this.apiUrl}`, answers, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 
   getAnswersByQuestionId(questionId: number): Observable<AnswerModal[]>{
-    return this.http.get<AnswerModal[]>(`${this.apiUrl}QuestionId/${questionId}`, { headers: this.getAuthHeaders() });
+    return this.http.get<AnswerModal[]>(`${this.apiUrl}QuestionId/${questionId}`, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 
   getAnswersByUserId(userId: number): Observable<AnswerModal[]>{
-    return this.http.get<AnswerModal[]>(`${this.apiUrl}UserId/${userId}`, { headers: this.getAuthHeaders() });
+    return this.http.get<AnswerModal[]>(`${this.apiUrl}UserId/${userId}`, { headers: this.getAuthHeaders(), withCredentials: true });
+  }
+
+  getAnswersWithDetails(questionId?: number, userId?: number): Observable<AnswerModal[]> {
+    let url = `${this.apiUrl}AnswersWithDetails`;
+  
+    const params = new URLSearchParams();
+    if (questionId != null) {
+      params.append('questionId', questionId.toString());
+    }
+    if (userId != null) {
+      params.append('userId', userId.toString());
+    }
+  
+    return this.http.get<AnswerModal[]>(url, { headers: this.getAuthHeaders(), withCredentials: true });
   }
 }

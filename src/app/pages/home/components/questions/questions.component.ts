@@ -27,7 +27,6 @@ export class QuestionsComponent {
   @Input() formId!: number;
   
   userRole: string | null = null;
-  selectedQuestionId!: number;
   questions: QuestionModel[] = [];
   activeMenuIndex: number | null = null;
   modalType: 'edit' | 'delete' | null = null;
@@ -50,21 +49,15 @@ export class QuestionsComponent {
   }
 
   openModalDelete(questionId: number) {
-    this.selectedQuestionId = questionId;
-    setTimeout(() => {
       this.deleteComponent.itemId = questionId;
       this.deleteComponent.serviceType = 'question';
       this.deleteComponent.showModal();
-    });
   }
 
   openModalEdit(questionId: number) {
-    this.selectedQuestionId = questionId;
-    setTimeout(() => {
       this.editComponent.itemId = questionId;
       this.editComponent.serviceType = 'question';
       this.editComponent.showModal();
-    });
   }
 
 

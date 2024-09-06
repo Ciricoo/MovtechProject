@@ -19,12 +19,12 @@ export class CreateGroupComponent {
   @ViewChild('createGroup') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Output() createdConfirmed = new EventEmitter<number>();
-
-  constructor(private formGroupService: FormgroupService) {}
-
+  
   groupName: string = '';
   forms: FormModel[] = [];
   errorMessage: string | null = null;
+
+  constructor(private formGroupService: FormgroupService) {}
 
   showModal() {
     this.modal.nativeElement.showModal();
