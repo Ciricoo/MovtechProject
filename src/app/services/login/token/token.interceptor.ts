@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse} from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import { catchError, Observable, tap } from 'rxjs';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService,private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
@@ -29,7 +30,13 @@ export class TokenInterceptor implements HttpInterceptor {
             this.loginService.saveToken(newToken);
           }
         }
+      }),catchError((error: HttpErrorResponse) => {
+        if(error.status == 401){
+          this.loginService.clearLocalStorage();
+          this.router.navigate(['/login'])
+        }
+        throw error;
       })
-    );
+    )
   }
 }

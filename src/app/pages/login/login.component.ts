@@ -21,6 +21,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     if (this.loginService.isTokenExpired()) {
+      this.loginService.logout();
       this.loginService.clearLocalStorage();
     } else if (localStorage.getItem('token')) {
       this.router.navigate(['/home']);

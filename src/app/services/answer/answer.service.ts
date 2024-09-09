@@ -29,16 +29,15 @@ export class AnswerService {
   }
 
   getAnswersWithDetails(questionId?: number, userId?: number): Observable<AnswerModal[]> {
-    let url = `${this.apiUrl}AnswersWithDetails`;
+    let params: any = {};
   
-    const params = new URLSearchParams();
-    if (questionId != null) {
-      params.append('questionId', questionId.toString());
+    if (questionId !== undefined) {
+      params['questionId'] = questionId;
     }
-    if (userId != null) {
-      params.append('userId', userId.toString());
+    if (userId !== undefined) {
+      params['userId'] = userId;
     }
   
-    return this.http.get<AnswerModal[]>(url, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.get<AnswerModal[]>(`${this.apiUrl}AnswersWithDetails`, {headers: this.getAuthHeaders(), withCredentials: true , params });
   }
 }

@@ -41,27 +41,37 @@ export class SeeAnswersComponent{
   
   onSelectionChange(): void {
     if (this.isQuestionMode && this.selectedQuestionId) {
-      this.loadAnswers(this.selectedQuestionId);
+      this.loadAnswersByQuestion(this.selectedQuestionId);
     } else if (!this.isQuestionMode && this.selectedUserId) {
-      this.loadAnswers(this.selectedUserId);
+      this.loadAnswersByUser(this.selectedUserId);
     }
   }
   
-  
-  loadAnswers(questionId?: number, userId?: number): void {
+  loadAnswersByQuestion(questionId: number): void {
     this.mensageError = false;
-    this.answerService.getAnswersWithDetails(questionId, userId)
+    this.answerService.getAnswersWithDetails(questionId, undefined)
       .subscribe((data) => {
         this.answers = data;
-        console.log(this.answers)
         if (this.answers.length === 0) {
           this.mensageError = true;
         }
       });
   }
-
+  
+  loadAnswersByUser(userId: number): void {
+    this.mensageError = false;
+    this.answerService.getAnswersWithDetails(undefined, userId)
+      .subscribe((data) => {
+        this.answers = data;
+        if (this.answers.length === 0) {
+          this.mensageError = true;
+        }
+      });
+    }  
+  
   open(): void {
     this.modal.nativeElement.showModal();
+    this.mensageError = false
     this.loadQuestions();
     this.loadUsers();
     
