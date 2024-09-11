@@ -60,7 +60,7 @@ export class FormsComponent {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent): void {
+  handleClickOutside(): void {
     this.activeMenuIndex = null;
   }
 }

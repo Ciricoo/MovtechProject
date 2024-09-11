@@ -11,32 +11,28 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {}
 
-  private getAuthHeaders(): HttpHeaders {
-    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-  }
-
   getQuestionByFormId(formId: number): Observable<QuestionModel[]> {
-    return this.http.get<QuestionModel[]>(`${this.apiUrl}Form/${formId}`, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.get<QuestionModel[]>(`${this.apiUrl}Form/${formId}`, { withCredentials: true });
   }
 
   deleteQuestion(questionId: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { withCredentials: true });
   }
 
   updateQuestion(questionId: number, updatedQuestion: QuestionModel): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { withCredentials: true });
   }
 
   createQuestion(createQuestion: QuestionModel[]): Observable<QuestionModel[]> {
-    return this.http.post<QuestionModel[]>(`${this.apiUrl}`, createQuestion, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.post<QuestionModel[]>(`${this.apiUrl}`, createQuestion, { withCredentials: true });
   }
 
   getQuestion(): Observable<QuestionModel[]>{
-    return this.http.get<QuestionModel[]>(`${this.apiUrl}`, {headers: this.getAuthHeaders(), withCredentials: true});
+    return this.http.get<QuestionModel[]>(`${this.apiUrl}`, { withCredentials: true});
   }
 
   getQuestionById(questionId: number): Observable<QuestionModel>{
-    return this.http.get<QuestionModel>(`${this.apiUrl}${questionId}`, {headers: this.getAuthHeaders(), withCredentials: true});
+    return this.http.get<QuestionModel>(`${this.apiUrl}${questionId}`, { withCredentials: true});
   }
 
 }

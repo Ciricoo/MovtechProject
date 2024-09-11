@@ -117,11 +117,19 @@ label{
   height: 90px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
 }
 
 h3{
   font-size: 25px;
   color: #141E30;
+}
+
+h2{
+  margin-bottom: 0;
 }
 
 .btn-delete, .btn-add {

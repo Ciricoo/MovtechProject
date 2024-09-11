@@ -72,14 +72,14 @@ export class QuestionsComponent {
   }
 
   onInputChange(questionId: number, field: keyof AnswerModal, event: Event): void {
-    const target = event.target as HTMLInputElement | HTMLSelectElement
+    const target = event.target as HTMLInputElement | HTMLSelectElement;
     if (target === null) return;
   
-    const answer = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: 0,description: '',idQuestion: questionId,idUser: 0,};
-  
+    const answer = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: null, description: '',idQuestion: questionId,idUser: 0,};
+
     if (field === 'grade') {
-      answer.grade = Number(target.value);
-    } else {
+      answer.grade = target.value !== '' ? Number(target.value) : null; 
+    } else if (field === 'description'){
       answer.description = target.value;
     }
   
@@ -87,12 +87,17 @@ export class QuestionsComponent {
   }
 
   submitAnswers(): void {
-    if(this.answers.length){
-      this.answerService.sendAnswer(this.answers).subscribe(() => this.closeModal());
-      this.alertModalComponent.open('Respostas enviadas com sucesso!');
-    }else {
-      this.alertModalComponent.open('Nenhuma resposta para enviar!');
+    const filteredAnswers = this.answers.filter(answer => answer.grade !== null);
+  
+    if (filteredAnswers.length == 0 || this.answers.length == 0) {
+      this.alertModalComponent.open('Por favor, selecione uma nota antes de enviar as respostas!');
+      return;
     }
+  
+    this.answerService.sendAnswer(filteredAnswers).subscribe(() => {
+      this.closeModal();
+     this.alertModalComponent.open('Respostas enviadas com sucesso!');
+      this.answers = [];
+    });
   }
-
 }

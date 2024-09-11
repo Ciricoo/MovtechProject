@@ -1,6 +1,6 @@
 <dialog #createQuestion id="createQuestion">
     <div class="nav-base">
-        <h2>Create questions</h2>
+        <h2>Criação de Perguntas</h2>
         <div class="buttons">
             <button (click)="submit()">Enviar</button>
             <button (click)="closeModal()">Fechar</button>
@@ -9,11 +9,14 @@
     <div class="form">
         <div class="select-group">
             <h3>Selecione um Formulário</h3>
+            <div class="infield">
             <select [(ngModel)]="selectedFormId">
                 <option *ngFor="let form of forms" [value]="form.id">
                     {{form.name}}
                 </option>
             </select>
+            <label></label>
+        </div>
         </div>
     </div>
     <div class="question">
@@ -35,4 +38,4 @@
         </div>
     </div>
 </dialog>
-<app-alert-modal #alertModal></app-alert-modal>
+<app-alert-modal></app-alert-modal>

@@ -12,6 +12,19 @@
     text-align: center;
     background-color: white;
   }
+
+  .select-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+  }
+
+  label{
+    left: 47.1%;
+    width: 60%;
+  }
   
   .base {
     display: flex;

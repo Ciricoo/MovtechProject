@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { catchError, Observable, tap } from 'rxjs';
-import { LoginService } from '../login.service';
+import { LoginService } from '../login/login.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private loginService: LoginService,private router: Router) {}
+  constructor(private loginService: LoginService,private router: Router, private alertService: AlertService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
@@ -33,6 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }),catchError((error: HttpErrorResponse) => {
         if(error.status == 401){
           this.loginService.clearLocalStorage();
+          this.alertService.showMessage('Sua sessão expirou. Faça login novamente.');
           this.router.navigate(['/login'])
         }
         throw error;

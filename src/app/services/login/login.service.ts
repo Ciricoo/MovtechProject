@@ -37,8 +37,7 @@ export class LoginService {
   logout(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      this.http.post<string>(`${this.urlLogin}/logout`, {}, { headers, responseType: 'text' as 'json', withCredentials: true })
+      this.http.post<string>(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
       .subscribe(() => {
           this.clearLocalStorage();
           this.router.navigate(['/login']);

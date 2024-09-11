@@ -12,20 +12,9 @@ export class AnswerService {
   
   constructor(private http: HttpClient) {}
 
-  private getAuthHeaders(): HttpHeaders {
-    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-  }
 
   sendAnswer(answers: AnswerModal[]): Observable<boolean>{
-    return this.http.post<boolean>(`${this.apiUrl}`, answers, { headers: this.getAuthHeaders(), withCredentials: true });
-  }
-
-  getAnswersByQuestionId(questionId: number): Observable<AnswerModal[]>{
-    return this.http.get<AnswerModal[]>(`${this.apiUrl}QuestionId/${questionId}`, { headers: this.getAuthHeaders(), withCredentials: true });
-  }
-
-  getAnswersByUserId(userId: number): Observable<AnswerModal[]>{
-    return this.http.get<AnswerModal[]>(`${this.apiUrl}UserId/${userId}`, { headers: this.getAuthHeaders(), withCredentials: true });
+    return this.http.post<boolean>(`${this.apiUrl}`, answers, {withCredentials: true });
   }
 
   getAnswersWithDetails(questionId?: number, userId?: number): Observable<AnswerModal[]> {
@@ -38,6 +27,6 @@ export class AnswerService {
       params['userId'] = userId;
     }
   
-    return this.http.get<AnswerModal[]>(`${this.apiUrl}AnswersWithDetails`, {headers: this.getAuthHeaders(), withCredentials: true , params });
+    return this.http.get<AnswerModal[]>(`${this.apiUrl}AnswersWithDetails`, {withCredentials: true , params });
   }
 }

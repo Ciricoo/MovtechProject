@@ -9,6 +9,18 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
     border-radius: 5px;
 }
+.select-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+h3{
+    margin: 0;
+}
+
 button {
     margin-right: 25px;
 }

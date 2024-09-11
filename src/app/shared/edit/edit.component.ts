@@ -54,6 +54,7 @@ export class EditComponent {
   closeModal() {
     this.modal.nativeElement.close();
     this.errorMessage = null
+    this.name = ''
   }
 
   verificaEdit(): boolean{
@@ -95,7 +96,7 @@ export class EditComponent {
       const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, IdForms: this.fk};
       this.questionService.updateQuestion(this.itemId, updatedQuestion).subscribe(() => {
         this.editConfirmed.emit();
-        this.alertModalComponent.open('Pergunta editado com sucesso!')
+      this.alertModalComponent.open('Pergunta editado com sucesso!')
       });
     }
     this.closeModal();

@@ -1,6 +1,6 @@
 <dialog #modalQuestion id="modalQuestion">
   <div class="nav-base">
-    <h2>Questions</h2>
+    <h2>Perguntas</h2>
     <div class="buttons">
       <button (click)="submitAnswers()">Enviar</button>
       <button (click)="closeModal()">Fechar</button>
@@ -46,4 +46,4 @@
 </dialog>
 <app-delete (deleteConfirmed)="loadQuestion()"></app-delete>
 <app-edit (editConfirmed)="loadQuestion()"></app-edit>
-<app-alert-modal #alertModal></app-alert-modal>
+<app-alert-modal></app-alert-modal>

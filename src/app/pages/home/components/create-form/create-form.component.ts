@@ -68,7 +68,7 @@ export class CreateFormComponent {
       {
         this.closeModal();
         this.resetForm();
-        this.alertModalComponent.open('Formulário criado com Sucesso!');
+       this.alertModalComponent.open('Formulário criado com Sucesso!');
     });
   }
 

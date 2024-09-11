@@ -10,6 +10,18 @@
     border-radius: 5px;
 }
 
+.select-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+h3{
+    margin: 0;
+}
+
 h2 {
     margin-left: 25px;
     color: #141E30;

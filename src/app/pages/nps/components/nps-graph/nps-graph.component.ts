@@ -39,20 +39,20 @@ export class NpsGraphComponent implements OnInit {
 
   updateScoreStyle(score: number): void {
     const npsScoreElement = this.nps.nativeElement;
-      npsScoreElement.classList.remove('positive', 'negative', 'neutral');
+      npsScoreElement.classList.remove('positive', 'negative', 'passive');
       if (score >= 50) {
         npsScoreElement.classList.add('positive');
       } else if (score < 0) {
         npsScoreElement.classList.add('negative');
       } else {
-        npsScoreElement.classList.add('neutral');
+        npsScoreElement.classList.add('passive');
       }
   }
 
   calculateNps(): void {
     this.userService.npsList().subscribe({
       next: ( npslist: number[] ) => {
-       const [promoters, passives, detractors] = npslist
+      const [promoters, passives, detractors] = npslist
       const totalResponses = promoters + passives + detractors;
       this.promoters = ((promoters / totalResponses) * 100).toFixed(2);
       this.passives = ((passives / totalResponses) * 100).toFixed(2);

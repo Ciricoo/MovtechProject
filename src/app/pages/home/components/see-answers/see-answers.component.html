@@ -5,6 +5,7 @@
             <h5 *ngIf="isQuestionMode">Pergunta que deseja ver as respostas</h5>
             <h5 *ngIf="!isQuestionMode">Usuário que deseja ver as respostas</h5>
             <div class="select-button">
+                <div class="infield">
                 <select [(ngModel)]="selectedQuestionId" (change)="onSelectionChange()" *ngIf="isQuestionMode" required>
                     <option *ngFor="let question of questions" [value]="question.id">
                         {{ question.text }}
@@ -15,7 +16,9 @@
                         {{ user.name }}
                     </option>
                 </select>
+                <label for=""></label>
                 <a (click)="toggleMode()"><i class="fas fa-sync-alt"></i></a>
+            </div>
             </div>
         </div>
 
