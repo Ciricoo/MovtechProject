@@ -68,6 +68,15 @@ span{
   font-weight: 500;
 }
 
+.npsTitle{
+  font-size: 32px;
+  font-weight: 600;
+  left: calc(50% - 28px);
+  line-height: 36px;
+  position: absolute;
+  color: #bbb;
+}
+
 .nps-speedometer-labels {
   display: flex;
   justify-content: space-between;

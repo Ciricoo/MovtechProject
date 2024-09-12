@@ -74,7 +74,6 @@ export class SeeAnswersComponent{
     this.mensageError = false
     this.loadQuestions();
     this.loadUsers();
-    
   }
 
   close(): void {

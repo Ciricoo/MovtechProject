@@ -27,16 +27,16 @@ export class DeleteComponent {
   confirmDelete(){
     if(this.serviceType == 'group'){
       this.formgroupService.deleteFormGroup(this.itemId).subscribe(() => {
-        this.deleteConfirmed.emit(this.itemId);
+        this.deleteConfirmed.emit();
       });
     } else if( this.serviceType == 'form'){
       this.formService.deleteForm(this.itemId).subscribe(() => {
-        this.deleteConfirmed.emit(this.itemId);
+        this.deleteConfirmed.emit();
       });
     }
     else if( this.serviceType == 'question'){
       this.questionService.deleteQuestion(this.itemId).subscribe(() => {
-        this.deleteConfirmed.emit(this.itemId);
+        this.deleteConfirmed.emit();
       })
     }
     this.closeModal();

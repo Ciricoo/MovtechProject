@@ -83,7 +83,7 @@ export class EditComponent {
     if (this.serviceType === 'group') {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
       this.formgroupService.updateFormGroup(this.itemId, updatedGroup).subscribe(() => {
-        this.editConfirmed.emit(this.itemId);
+        this.editConfirmed.emit();
         this.alertModalComponent.open('Grupo de Formulário editado com sucesso!')
       });
     } else if (this.serviceType === 'form') {
