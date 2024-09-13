@@ -64,7 +64,7 @@ export class CreateGroupComponent {
     if(!this.verificaGroup()){
       return;
     }
-    const formGroup: FormGroupModel = {id: 0,name: this.groupName,forms: this.forms,};
+    const formGroup: FormGroupModel = {id: 0,name: this.groupName, forms: this.forms,};
     this.formGroupService.createFormGroup(formGroup).subscribe(() => {
       this.closeModal();
       this.resetGroup();

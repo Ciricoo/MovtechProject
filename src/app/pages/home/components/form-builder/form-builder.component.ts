@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { LoginService } from 'src/app/services/login/login.service';
 import { FormsComponent } from '../forms/forms.component';
@@ -39,7 +39,6 @@ export class FormBuilderComponent implements OnInit {
       this.formgroupService.getFormGroups().subscribe((data) => {
         this.formGroups = data;
       });
-    
   }
 
   toggleMenu(index: number, event: MouseEvent): void {
@@ -60,13 +59,17 @@ export class FormBuilderComponent implements OnInit {
     });
   }
 
-  openModalDelete(groupId: number) {
+  openModalDelete(groupId: number, event: MouseEvent) {
+      this.handleClickOutside()
+      event.stopPropagation();
       this.DeleteComponent.itemId = groupId;
       this.DeleteComponent.serviceType = 'group';
       this.DeleteComponent.showModal();
   }
 
-  openModalEdit(groupId: number) {
+  openModalEdit(groupId: number, event: MouseEvent) {
+    this.handleClickOutside()
+    event.stopPropagation();
     this.editComponent.itemId = groupId;
     this.editComponent.serviceType = 'group';
     this.editComponent.showModal();

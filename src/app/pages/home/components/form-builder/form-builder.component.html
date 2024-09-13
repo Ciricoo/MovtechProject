@@ -17,22 +17,22 @@
 
     <div class="forms-groups">
       <ng-container *ngFor="let group of formGroups; let i = index">
-        <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card border-dark mb-3" (click)="openModalForm(group.id)" style="max-width: 18rem;">
           <div  class="card-header">
             <a *ngIf="userRole === 'Administrador'">{{group.id}}</a>
             <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
-            <div *ngIf="activeMenuIndex === i" class="menu">
+            <div *ngIf="activeMenuIndex === i" #menu class="menu">
               <ul>
-                <li (click)="openModalEdit(group.id)">
+                <li (click)="openModalEdit(group.id, $event)">
                   <i class="fas fa-edit"></i> Editar
                 </li>
-                <li (click)="openModalDelete(group.id)">
+                <li (click)="openModalDelete(group.id, $event)">
                   <i class="fas fa-trash"></i> Excluir
                 </li>
               </ul>
             </div>
           </div>
-          <div class="card-body" (click)="openModalForm(group.id)">
+          <div class="card-body">
             <h5 class="card-title">{{group.name}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>

@@ -30,7 +30,7 @@ export class QuestionsComponent {
   questions: QuestionModel[] = [];
   activeMenuIndex: number | null = null;
   modalType: 'edit' | 'delete' | null = null;
-  grades: number[] = Array.from({ length: 11 }, (_, i) => i);
+  grades: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   answers: AnswerModal[] = [];
 
   constructor(private questionService: QuestionService, private loginService: LoginService, private answerService: AnswerService) {}
@@ -83,7 +83,8 @@ export class QuestionsComponent {
       answer.description = target.value;
     }
   
-    this.answers = [...this.answers.filter(a => a.idQuestion !== questionId), answer];
+    this.answers = [...this.answers.filter(a => a.idQuestion !== questionId), answer]; 
+    //atualiza o array removendo a resposta antiga (se houver) e adicionando a nova resposta modificada.
   }
 
   submitAnswers(): void {

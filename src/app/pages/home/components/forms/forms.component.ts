@@ -42,13 +42,17 @@ export class FormsComponent {
     });
   }
 
-  openModalDelete(formId: number) {
+  openModalDelete(formId: number, event: MouseEvent) {
+    this.handleClickOutside()
+    event.stopPropagation();
     this.deleteComponent.itemId = formId;
     this.deleteComponent.serviceType = 'form';
     this.deleteComponent.showModal();
   }
 
-  openModalEdit(formId: number) {
+  openModalEdit(formId: number, event: MouseEvent) {
+    this.handleClickOutside()
+    event.stopPropagation();
     this.editComponent.itemId = formId;
     this.editComponent.serviceType = 'form';
     this.editComponent.showModal();

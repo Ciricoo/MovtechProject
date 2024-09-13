@@ -28,6 +28,11 @@ export class LoginService {
     localStorage.setItem('token', token);
     const decodedTokenRole: DecodedToken = jwtDecode(token);
     localStorage.setItem('role', decodedTokenRole.role);
+    this.getUserRolee(decodedTokenRole.role)
+  }
+
+  getUserRolee(role: string): string{
+    return role;
   }
 
   clearLocalStorage(): void {
@@ -37,7 +42,7 @@ export class LoginService {
   logout(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.http.post<string>(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
+      this.http.post(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
       .subscribe(() => {
           this.clearLocalStorage();
           this.router.navigate(['/login']);
