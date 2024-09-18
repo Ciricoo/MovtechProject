@@ -28,11 +28,13 @@ export class CreateGroupComponent {
 
   showModal() {
     this.modal.nativeElement.showModal();
+    this.addForm()
   }
 
   closeModal() {
     this.modal.nativeElement.close();
     this.resetGroup();
+    this.errorMessage = ''
   }
 
   verificaGroup(): boolean{
@@ -42,6 +44,11 @@ export class CreateGroupComponent {
       this.errorMessage = 'O nome do grupo não pode estar vazio.';
       return false;
     }
+
+    if(this.groupName.length > 150){
+      this.errorMessage = 'O nome do grupo não pode passar de 150 caracteres.';
+      return false;
+    }
     
     for (const form of this.forms) {
       if (!form.name.trim()) {
@@ -49,9 +56,19 @@ export class CreateGroupComponent {
         return false;
       }
 
+      if(form.name.length > 150){
+        this.errorMessage = 'O nome do formulário não pode passar de 150 caracteres.';
+        return false;
+      }
+
       for (const question of form.questions) {
         if (!question.text.trim()) {
           this.errorMessage = `O conteúdo das perguntas no formulário ${form.id} não pode estar vazio.`;
+          return false;
+        }
+
+        if(question.text.length > 150){
+          this.errorMessage = 'O conteúdo das perguntas não pode passar de 150 caracteres.';
           return false;
         }
       }

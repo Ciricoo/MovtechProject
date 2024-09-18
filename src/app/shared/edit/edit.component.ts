@@ -24,6 +24,7 @@ export class EditComponent {
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Input() serviceType!: 'group' | 'form' | 'question';
   @Input() itemId!: number;
+  @Input() oldName!: string;
   @Output() editConfirmed = new EventEmitter<number>();
 
   name: string = '';
@@ -35,11 +36,15 @@ export class EditComponent {
   constructor( private formgroupService: FormgroupService,private formService: FormService,private questionService: QuestionService) {}
 
   loadForms() {
-    this.formService.getForms().subscribe((data) => {this.forms = data;});
+    this.formService.getForms().subscribe((data) => {
+      this.forms = data;
+    });
   }
-
+  
   loadFormGroups() {
-    this.formgroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
+    this.formgroupService.getFormGroups().subscribe((data) => {
+      this.formGroups = data;
+    });
   }
 
   showModal() {
@@ -58,11 +63,15 @@ export class EditComponent {
   }
 
   verificaEdit(): boolean{
-    console.log(this.name)
     this.errorMessage = null;
 
     if (!this.name.trim()) {
       this.errorMessage = 'O nome não pode estar vazio.';
+      return false;
+    }
+
+    if(this.name.length > 150){
+      this.errorMessage = 'O nome não pode passar de 150 caracteres'
       return false;
     }
     
@@ -75,11 +84,9 @@ export class EditComponent {
   }
 
   confirmEdit() {
-
     if(!this.verificaEdit()){
       return;
     }
-    
     if (this.serviceType === 'group') {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
       this.formgroupService.updateFormGroup(this.itemId, updatedGroup).subscribe(() => {

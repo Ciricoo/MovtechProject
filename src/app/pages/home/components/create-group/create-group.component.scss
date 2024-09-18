@@ -1,100 +1,78 @@
 #createGroup {
-    top: 50%; 
-    left: 50%; 
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    min-height: 55%;
-    max-height: 70%;
+    width: 50%;
+    max-height: 80%;
     border: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: white;
+    overflow-y: hidden;
+}
+
+.nav-base {
+    padding: 20px;
 }
 
 h2 {
-    margin-left: 25px;
     color: #141E30;
 }
 
-button {
-    margin-right: 25px;
+.group-info, .form {
+    margin-bottom: 20px;
 }
 
-.grupo{
-    margin-left: 30px;
-    margin-top: 40px;
+.group-info h3 {
+    font-size: 20px;
+    color: #141E30;
 }
 
-.forms{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+label{
+    width: 100%;
 }
 
-.infield{
-    width: 95%;
+input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    margin-top: 8px;
+  }
+
+.questions {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+}
+
+.question input {
+    flex: 1;
+}
+
+.input-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn-delete{
+        margin-left: 25px;
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    label{ 
+        top: 98%;
+        width: 92.5%;
+        transform: translateX(-54%);
+    }
 }
 
 .form{
-    margin-top: 25px;
+    width: 100%;
 }
 
-.form-content{
-    display: flex;
-    justify-content: space-between;
-}
-
-.question{
-    margin-top: 20px;
-    margin-left: 35px;
-
-    input{
-        padding: 10px 13px;
-        width: 60%;
-    }
-
-    label{
-        transform: translateX(-50%);
-        width: 350px;
-    }
-
-    h3{
-        font-size: 20px;
-    }
-}
-
-.question-content{
-    display: flex;
-    align-items: center;
-    margin-top: -10px;
-
-    .infield {
-        width: 350px;
-    }
-
-    input{
-        width: 350px;
-    }
-
-    .btn-delete{
-        margin-left: 10px;
-    }
-}
-
-.error-message{
-    margin-top: -20px;
-    width: 95%;
-}
-
-  .form-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .btn-delete{
-    margin-right: 5px;
-    margin-bottom: 10px; 
-  }
 
 
-  
-  

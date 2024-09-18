@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { LoginService } from 'src/app/services/login/login.service';
 import { NpsService } from 'src/app/services/nps/nps.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -15,10 +16,13 @@ export class NpsGraphComponent implements OnInit {
   detractors!: string;
   passives!: string;
   promoters!: string;
+  role!: string | null;
 
-  constructor(private npsService: NpsService, private userService: UserService) {}
+  constructor(private npsService: NpsService, private userService: UserService, private loginService: LoginService) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.getUserRole()
+    if (this.role === 'Administrador') {
     this.npsService.getNpsScore().subscribe(score => {
       this.npsScore = score;
       this.updateNeedlePosition(score);
@@ -26,11 +30,11 @@ export class NpsGraphComponent implements OnInit {
       this.calculateNps()
     });
   }
+}
 
   updateNeedlePosition(score: number): void {
     const minScore = -100;
     const maxScore = 100;
-    
     const angle = ((score - minScore) / (maxScore - minScore)) * 180 -90; // *180 converte em angulo e -90 porque se não ele ficaria deitado 90 graus, assim ele fica no meio
     //ajusta o valor do score para   // a divisão serve para transformar a pontuação em uma fração                         
     //trabalhar em relação com a escala // ex: score = 100 resultado = 1, score = -100 resultado = 0

@@ -1,41 +1,47 @@
 <dialog #createQuestion id="createQuestion">
-    <div class="nav-base">
-        <h2>Criação de Perguntas</h2>
-        <div class="buttons">
-            <button (click)="submit()">Enviar</button>
-            <button (click)="closeModal()">Fechar</button>
+    <div class="modal-container">
+        <div class="nav-base">
+            <h2>Criação de Perguntas</h2>
+            <button (click)="closeModal()" class="btn-close">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </div>
-    <div class="form">
-        <div class="select-group">
-            <h3>Selecione um Formulário</h3>
-            <div class="infield">
-            <select [(ngModel)]="selectedFormId">
-                <option *ngFor="let form of forms" [value]="form.id">
-                    {{form.name}}
-                </option>
-            </select>
-            <label></label>
-        </div>
-        </div>
-    </div>
-    <div class="question">
-        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-        <button (click)="addQuestion()" class="btn-add">
-            <i class="fas fa-plus-circle"></i>
-        </button>
-        <h3 class="question">Perguntas</h3>
-        <div *ngFor="let question of questions; let i = index" class="all-questions">
-            <div class="question-content">
-                <div class="infield">
-                    <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text" />
-                    <label></label>
+        <div class="modal-body">
+            <div class="form">
+                <div class="select-group">
+                    <h3>Selecione um Formulário</h3>
+                    <div class="infield">
+                        <select [(ngModel)]="selectedFormId">
+                            <option *ngFor="let form of forms" [value]="form.id">
+                                {{form.name}}
+                            </option>
+                        </select>
+                        <label></label>
+                    </div>
                 </div>
-                <button (click)="deleteQuestion(i)" class="btn-delete">
-                    <i class="fas fa-trash"></i>
-                </button>
+            </div>
+            <div class="question">
+                <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+                <div class="formulario">
+                    <h3 class="question">Perguntas</h3>
+                    <div *ngFor="let question of questions; let i = index" class="question">
+                        <div class="question-content">
+                            <div class="infield">
+                                <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text" />
+                                <label></label>
+                            </div>
+                            <button (click)="deleteQuestion(i)" class="btn-delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="submit()" class="btn-submit">Enviar</button>
+        <button (click)="addQuestion()" class="btn-add-form">Adicionar Pergunta</button>
     </div>
 </dialog>
 <app-alert-modal></app-alert-modal>

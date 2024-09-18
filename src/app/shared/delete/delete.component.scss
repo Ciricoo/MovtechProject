@@ -30,11 +30,12 @@
 }
 
 
-.cancelar{
-    background-color: rgb(30, 136, 30);
+.btn-submit{
+    padding: 10px 28px;
 }
 
-.excluir{
+.btn-add-form{
+    padding: 10px 34px;
     background-color: red;
 }
 
@@ -44,5 +45,5 @@ button{
 }
 button:hover{
     color: white;
-    transform: scale(1.05)
+    transform: scale(1.1)
 }

@@ -25,6 +25,7 @@ export class QuestionsComponent {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @Input() formId!: number;
+  @Input() formName!: string;
   
   userRole: string | null = null;
   questions: QuestionModel[] = [];
@@ -54,8 +55,9 @@ export class QuestionsComponent {
       this.deleteComponent.showModal();
   }
 
-  openModalEdit(questionId: number) {
+  openModalEdit(questionId: number, questionName: string) {
       this.editComponent.itemId = questionId;
+      this.editComponent.oldName = questionName
       this.editComponent.serviceType = 'question';
       this.editComponent.showModal();
   }
@@ -88,16 +90,19 @@ export class QuestionsComponent {
   }
 
   submitAnswers(): void {
-    const filteredAnswers = this.answers.filter(answer => answer.grade !== null);
+    const allAnswered = this.questions.every(question => {
+    const answer = this.answers.find(a => a.idQuestion === question.id);
+    return answer !== undefined && answer.grade !== null;
+  });
+
+  if (!allAnswered) {
+    this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
+    return;
+  }
   
-    if (filteredAnswers.length == 0 || this.answers.length == 0) {
-      this.alertModalComponent.open('Por favor, selecione uma nota antes de enviar as respostas!');
-      return;
-    }
-  
-    this.answerService.sendAnswer(filteredAnswers).subscribe(() => {
+    this.answerService.sendAnswer(this.answers).subscribe(() => {
       this.closeModal();
-     this.alertModalComponent.open('Respostas enviadas com sucesso!');
+      this.alertModalComponent.open('Respostas enviadas com sucesso!');
       this.answers = [];
     });
   }

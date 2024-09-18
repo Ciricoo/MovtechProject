@@ -8,7 +8,7 @@ import { NpsComponent } from './pages/nps/nps.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'nps', component: NpsComponent},
+  {path: 'nps', component: NpsComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login'}
 ];
 

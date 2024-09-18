@@ -58,6 +58,15 @@ button:hover {
     background-color: #f0f0f0;
   }
 
+  .botao-menu{
+    width: 25px; 
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+}
+
   
 .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -132,7 +141,7 @@ h2{
   margin-bottom: 0;
 }
 
-.btn-delete, .btn-add {
+.btn-delete, .btn-add-form, .btn-submit {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,6 +154,33 @@ h2{
   margin-right: 0;
 }
 
+.btn-add-form, .btn-submit {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+
+.btn-add-form {
+  background-color: #28a745;
+  margin-right: 20px;
+}
+
+.btn-add-form:hover {
+  background-color: #218838;
+  color: white;
+}
+
+.btn-submit {
+  background-color: #141E30;
+  margin-right: 20px;
+}
+
+.btn-submit:hover {
+  background-color: #0d1a26;
+  color: white;
+}
+
 .btn-delete {
   background-color: #c01717;
 }
@@ -152,16 +188,6 @@ h2{
 .btn-delete:hover {
   color: white;
   background-color: #850e0e;
-}
-
-.btn-add {
-  margin-top: 10px;
-  background-color: #28a745;
-}
-
-.btn-add:hover {
-  color: white;
-  background-color: #218838;
 }
 
 .btn-delete i, .btn-add i {
@@ -202,4 +228,44 @@ h2{
 
 .error-message.ng-trigger {
   display: block;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos em uma coluna */
+  height: 100%; /* Preenche toda a altura do modal */
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: #141E30;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1; 
+  max-height: calc(80vh - 160px); /* Ajusta a altura máxima para não cobrir a nav-base e footer */
+}
+
+.modal-footer{
+  border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.formulario{
+  gap: 25px;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
 }

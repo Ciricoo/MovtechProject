@@ -1,6 +1,6 @@
 <dialog #modal id="modal">
     <div class="nav-base">
-      <h2>Formulários</h2>
+      <h2>Formulários - {{groupName}}</h2>
           <button (click)="closeModal()">Fechar</button>
     </div>
     <div *ngIf="forms.length === 0" class="empty-message">
@@ -9,13 +9,14 @@
     </div>
     <div class="forms">
         <ng-container *ngFor="let form of forms; let i = index">
-          <div class="card border-dark mb-3" (click)="openModalQuestion(form.id)" style="max-width: 18rem;">
+          <div class="card border-dark mb-3" (click)="openModalQuestion(form.id, form.name)" style="max-width: 18rem;">
             <div class="card-header">
               <a *ngIf="userRole === 'Administrador'">{{form.id}}</a>
-              <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
+              <div class="botao-menu" (click)="toggleMenu(i, $event)">
+              <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
               <div *ngIf="activeMenuIndex === i" class="menu">
                 <ul>
-                  <li (click)="openModalEdit(form.id, $event)">
+                  <li (click)="openModalEdit(form.id, form.name, $event)">
                     <i class="fas fa-edit"></i> Editar
                   </li>
                   <li (click)="openModalDelete(form.id, $event)">
@@ -23,6 +24,7 @@
                   </li>
                 </ul>
               </div>
+            </div>
             </div>
             <div class="card-body">
               <h5 class="card-title">{{form.name}}</h5>

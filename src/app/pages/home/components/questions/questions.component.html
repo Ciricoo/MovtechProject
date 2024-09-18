@@ -1,8 +1,8 @@
 <dialog #modalQuestion id="modalQuestion">
   <div class="nav-base">
-    <h2>Perguntas</h2>
+    <h2>Perguntas - {{formName}}</h2>
     <div class="buttons">
-      <button (click)="submitAnswers()">Enviar</button>
+      <button *ngIf="questions.length != 0" (click)="submitAnswers()">Enviar</button>
       <button (click)="closeModal()">Fechar</button>
     </div>
   </div>
@@ -15,10 +15,11 @@
       <div class="card border-dark mb-3" style="max-width: 18rem;">
         <div class="card-header">
           <a *ngIf="userRole === 'Administrador'">{{question.id}}</a>
-          <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v" (click)="toggleMenu(i, $event)"></i>
+          <div class="botao-menu" (click)="toggleMenu(i, $event)">
+          <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
           <div *ngIf="activeMenuIndex === i" class="menu">
             <ul>
-              <li (click)="openModalEdit(question.id)">
+              <li (click)="openModalEdit(question.id, question.text)">
                 <i class="fas fa-edit"></i> Editar
               </li>
               <li (click)="openModalDelete(question.id)">
@@ -26,6 +27,7 @@
               </li>
             </ul>
           </div>
+        </div>
         </div>
         <div class="card-body">
           <h5 class="card-title">{{question.text}}</h5>

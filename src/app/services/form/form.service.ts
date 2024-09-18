@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormModel } from '../../interfaces/Form';
+
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,9 @@ export class FormService {
 
   getForms(): Observable<FormModel[]>{
     return this.http.get<FormModel[]>(`${this.apiUrl}`, {withCredentials: true });
+  }
+
+  getFormById(formId: number): Observable<FormModel>{
+    return this.http.get<FormModel>(`${this.apiUrl}${formId}`, {withCredentials: true });
   }
 }

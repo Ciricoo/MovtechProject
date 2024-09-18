@@ -1,45 +1,55 @@
 <dialog #createGroup id="createGroup">
-    <div class="nav-base">
-        <h2>Criação de Grupo</h2>
-        <div class="buttons">
-            <button (click)="submit()">Enviar</button>
-            <button (click)="addForm()">Add Form</button>
-            <button (click)="closeModal()">Fechar</button>
+    <div class="modal-container">
+        <div class="nav-base">
+            <h2>Criação de Grupo</h2>
+            <button (click)="closeModal()" class="btn-close">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </div>
-    <div class="grupo">
-        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-        <div class="infield">
-            <h3>Grupo de formulários</h3>
-            <input type="text" placeholder="Nome do grupo" [(ngModel)]="groupName"/>
-            <label></label>
-        </div>
-        <div *ngFor="let form of forms; let i = index" class="form">
+        <div class="modal-body">
+            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
             <div class="infield">
-                <div class="form-content">
-                    <h3>Formulário {{i + 1 }}</h3>
-                    <button (click)="deleteForm(i)" class="btn-delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <input type="text" placeholder="Nome do formulário" [(ngModel)]="form.name"/>
+                <h3>Grupo de formulários</h3>
+                <input type="text" placeholder="Nome do grupo" [(ngModel)]="groupName" />
                 <label></label>
             </div>
-            <button (click)="addQuestion(i)" class="btn-add">
-                <i class="fas fa-plus-circle"></i>
-            </button>
-            <h3 class="question" *ngIf="form.questions.length > 0">Perguntas</h3>
-            <div *ngFor="let question of form.questions; let j = index" class="question">
-                <div class="question-content">
+            <div *ngFor="let form of forms; let i = index" class="form">
+                <div class="formulario">
                     <div class="infield">
-                        <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text"/>
-                        <label></label>
+                        <div class="form-content">
+                            <h3>Formulário {{i + 1 }}</h3>
+                        </div>
+                        <div class="input-button">
+                            <input type="text" placeholder="Nome do formulário" [(ngModel)]="form.name" />
+                            <label></label>
+                            <button (click)="deleteForm(i)" class="btn-delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button (click)="deleteQuestion(i, j)" class="btn-delete">
-                        <i class="fas fa-trash"></i>
+                    <button (click)="addQuestion(i)" class="btn-add-form">
+                        <i class="fas fa-plus-circle"></i> Adicionar Pergunta
                     </button>
+                    <div class="questions" *ngIf="form.questions.length > 0">
+                        <h3>Perguntas</h3>
+                        <div *ngFor="let question of form.questions; let j = index" class="question">
+                            <div class="infield">
+                                <div class="input-button">
+                                    <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text" />
+                                    <label></label>
+                                    <button (click)="deleteQuestion(i, j)" class="btn-delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="submit()" class="btn-submit">Enviar</button>
+            <button (click)="addForm()" class="btn-add-form">Adicionar Formulário</button>
         </div>
     </div>
 </dialog>

@@ -1,14 +1,17 @@
 #createQuestion {
-    top: 50%; 
-    left: 50%; 
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 45%;
-    min-height: 55%;
-    max-height: 70%;
+    width: 50%;
+    max-height: 80%;
     border: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: white;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
+
 .select-group{
     display: flex;
     justify-content: center;
@@ -44,42 +47,35 @@ h3{
     width: 95%;
 }
 
-.form{
-    margin-top: 25px;
-    margin-left: 25px;
-}
-
 .form-content{
     display: flex;
     justify-content: space-between;
 }
 
 .question{
-    margin-top: 20px;
-    margin-left: 35px;
-}
-
-.all-questions{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 25px;
 }
 
 .question-content{
     display: flex;
     align-items: center;
-    margin-top: -10px;
+    margin-left: 30px;
 
     .infield {
-        width: 750px;
-    }
-
-    input{
-        width: 750px;
+        width: 90%;
     }
 
     .btn-delete{
-        margin-left: 10px;
+        margin-left: 30px;
+        padding: 10px;
     }
 }
+
+input {
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
 
 select{
     width: 100%;
@@ -99,3 +95,4 @@ select:hover{
     margin-top: -10px;
     width: 95%;
 }
+

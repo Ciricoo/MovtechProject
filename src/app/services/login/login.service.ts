@@ -14,7 +14,7 @@ export class LoginService {
   private urlLogin: string = 'https://localhost:7193/api/User';
 
   constructor(private http: HttpClient, private router: Router) {}
-
+        // criar uma interface para login
   login(login: { name: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login, { withCredentials: true }).pipe(
       tap((response) => {
@@ -26,13 +26,6 @@ export class LoginService {
   
   saveToken(token: string) {
     localStorage.setItem('token', token);
-    const decodedTokenRole: DecodedToken = jwtDecode(token);
-    localStorage.setItem('role', decodedTokenRole.role);
-    this.getUserRolee(decodedTokenRole.role)
-  }
-
-  getUserRolee(role: string): string{
-    return role;
   }
 
   clearLocalStorage(): void {
@@ -66,6 +59,11 @@ export class LoginService {
   }
 
   getUserRole(): string | null {
-    return localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: DecodedToken = jwtDecode(token);
+      return decodedToken.role;
+    }
+    return null;
   }
 }

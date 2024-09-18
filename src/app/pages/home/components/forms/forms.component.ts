@@ -13,6 +13,7 @@ export class FormsComponent {
   @ViewChild(QuestionsComponent) questionComponent!: QuestionsComponent;
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
   @Input() groupId!: number;
+  @Input() groupName!: string;
 
   forms: FormModel[] = [];
   activeMenuIndex: number | null = null;
@@ -34,8 +35,9 @@ export class FormsComponent {
     this.modal.nativeElement.close();
   }
 
-  openModalQuestion(formId: number) {
+  openModalQuestion(formId: number, formName: string) {
     this.questionComponent.formId = formId;
+    this.questionComponent.formName = formName;
     setTimeout(() => {
       this.questionComponent.showModal();
       this.questionComponent.loadQuestion();
@@ -50,10 +52,11 @@ export class FormsComponent {
     this.deleteComponent.showModal();
   }
 
-  openModalEdit(formId: number, event: MouseEvent) {
+  openModalEdit(formId: number, formName: string, event: MouseEvent) {
     this.handleClickOutside()
     event.stopPropagation();
     this.editComponent.itemId = formId;
+    this.editComponent.oldName = formName
     this.editComponent.serviceType = 'form';
     this.editComponent.showModal();
   }

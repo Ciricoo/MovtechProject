@@ -30,6 +30,7 @@ export class CreateFormComponent {
   showModal() {
     this.modal.nativeElement.showModal();
     this.loadFormGroups();
+    this.errorMessage = ''
   }
 
   closeModal() {
@@ -44,8 +45,14 @@ export class CreateFormComponent {
       this.errorMessage = 'O grupo precisa ser preenchido.';
       return false;
     }
+
     if (!this.formName.trim()) {
       this.errorMessage = 'O nome do Formulário não pode estar vazio.';
+      return false;
+    }
+
+    if(this.formName.length > 150){
+      this.errorMessage = 'O nome do Formulário não pode passar de 150 caracteres.';
       return false;
     }
   
@@ -53,6 +60,11 @@ export class CreateFormComponent {
       if (!question.text.trim()) {
           this.errorMessage = `O conteúdo das perguntas não pode estar vazio.`;
           return false;
+      }
+
+      if(question.text.length > 150){
+        this.errorMessage = 'O conteúdo das perguntas não pode passar de 150 caracteres.';
+        return false;
       }
     }
 

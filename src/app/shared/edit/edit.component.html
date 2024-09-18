@@ -1,34 +1,38 @@
 <dialog #edit id="edit">
-  <div class="modal-container">
-    <div class="modal-header">
+  <div class="modal-containerr">
+    <div class="modal-headerr">
       <h2>Editar</h2>
     </div>
     <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
-    <div class="modal-body">
+    <a>Nome antigo: <p>{{oldName}}</p></a>
+    <div class="modal-bodyy">
       <div class="input-group">
         <label>Novo nome</label>
         <input class="teste" (keyup.enter)="confirmEdit()" placeholder="Nome" [(ngModel)]="name" name="name" required />
       </div>
       <div class="select-group" *ngIf="serviceType !== 'group'">
-        <label for="fk">
-          <ng-container *ngIf="serviceType === 'form'">Selecione um Grupo</ng-container>
-          <ng-container *ngIf="serviceType === 'question'">Selecione um Formulário</ng-container>
-        </label>
-        <select *ngIf="serviceType === 'form'" [(ngModel)]="fk" name="fk" id="fk" required>
-          <option *ngFor="let group of formGroups" [value]="group.id">
-            {{ group.name }}
-          </option>
-        </select>
-        <select *ngIf="serviceType === 'question'" [(ngModel)]="fk" name="fk" id="fk" required>
-          <option *ngFor="let form of forms" [value]="form.id">
-            {{ form.name }}
-          </option>
-        </select>
+        <div class="infield">
+          <label for="fk">
+            <ng-container *ngIf="serviceType === 'form'">Selecione um Grupo</ng-container>
+            <ng-container *ngIf="serviceType === 'question'">Selecione um Formulário</ng-container>
+          </label>
+          <select *ngIf="serviceType === 'form'" [(ngModel)]="fk" name="fk" id="fk" required>
+            <option *ngFor="let group of formGroups" [value]="group.id">
+              {{ group.name }}
+            </option>
+          </select>
+          <select *ngIf="serviceType === 'question'" [(ngModel)]="fk" name="fk" id="fk" required>
+            <option *ngFor="let form of forms" [value]="form.id">
+              {{ form.name }}
+            </option>
+          </select>
+          <label></label>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
-      <button class="btn-save" (click)="confirmEdit()">Salvar</button>
+      <button class="btn-submit" (click)="closeModal()">Cancelar</button>
+      <button class="btn-add-form" (click)="confirmEdit()">Salvar</button>
     </div>
   </div>
 </dialog>

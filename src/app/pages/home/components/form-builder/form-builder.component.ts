@@ -4,11 +4,11 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { FormsComponent } from '../forms/forms.component';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
-import { EditComponent } from 'src/app/shared/edit/edit.component';
 import { CreateGroupComponent } from '../create-group/create-group.component';
 import { CreateFormComponent } from '../create-form/create-form.component';
 import { CreateQuestionComponent } from '../create-question/create-question.component';
 import { SeeAnswersComponent } from '../see-answers/see-answers.component';
+import { EditComponent } from 'src/app/shared/edit/edit.component';
 
 @Component({
   selector: 'app-form-builder',
@@ -28,7 +28,10 @@ export class FormBuilderComponent implements OnInit {
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
 
-  constructor(private formgroupService: FormgroupService,private loginService: LoginService) {}
+  constructor(
+    private formgroupService: FormgroupService,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
@@ -51,8 +54,9 @@ export class FormBuilderComponent implements OnInit {
     this.activeMenuIndex = null;
   }
 
-  openModalForm(groupId: number) {
+  openModalForm(groupId: number, groupName: string) {
     this.formsComponent.groupId = groupId;
+    this.formsComponent.groupName = groupName;
     setTimeout(() => {
       this.formsComponent.showModal();
       this.formsComponent.loadForm();
@@ -67,10 +71,11 @@ export class FormBuilderComponent implements OnInit {
       this.DeleteComponent.showModal();
   }
 
-  openModalEdit(groupId: number, event: MouseEvent) {
+  openModalEdit(groupId: number, groupName: string, event: MouseEvent) {
     this.handleClickOutside()
     event.stopPropagation();
     this.editComponent.itemId = groupId;
+    this.editComponent.oldName = groupName
     this.editComponent.serviceType = 'group';
     this.editComponent.showModal();
   }

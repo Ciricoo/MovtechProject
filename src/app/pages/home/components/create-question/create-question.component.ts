@@ -34,6 +34,7 @@ export class CreateQuestionComponent {
   closeModal() {
     this.modal.nativeElement.close();
     this.resetForm();
+    this.errorMessage = '';
   }
 
   verificaQuestions(): boolean{
@@ -48,6 +49,11 @@ export class CreateQuestionComponent {
       if (!question.text.trim()) {
           this.errorMessage = `O conteúdo das perguntas não pode estar vazio.`;
           return false;
+      }
+
+      if(question.text.length > 150){
+        this.errorMessage = 'O conteúdo das perguntas não pode passar de 150 caracteres.';
+        return false;
       }
     }
 

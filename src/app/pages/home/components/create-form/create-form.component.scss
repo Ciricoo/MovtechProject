@@ -3,11 +3,11 @@
     left: 50%; 
     transform: translate(-50%, -50%);
     width: 45%;
-    min-height: 55%;
-    max-height: 70%;
+    max-height: 80%;
     border: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
     border-radius: 5px;
+    overflow-y: hidden;
 }
 
 .select-group{
@@ -18,17 +18,8 @@
     width: 50%;
 }
 
-h3{
-    margin: 0;
-}
-
-h2 {
-    margin-left: 25px;
-    color: #141E30;
-}
-
-button {
-    margin-right: 25px;
+.nav-base {
+    padding: 20px;
 }
 
 .grupo{
@@ -42,51 +33,9 @@ button {
     width: 95%;
 }
 
-.form{
-    margin-top: 25px;
-    margin-left: 25px;
-}
-
 .form-content{
     display: flex;
     justify-content: space-between;
-}
-
-.question{
-    margin-top: 20px;
-    margin-left: 35px;
-
-    input{
-        padding: 10px 13px;
-        width: 60%;
-    }
-
-    label{
-        transform: translateX(-50%);
-        width: 350px;
-    }
-
-    h3{
-        font-size: 20px;
-    }
-}
-
-.question-content{
-    display: flex;
-    align-items: center;
-    margin-top: -10px;
-
-    .infield {
-        width: 350px;
-    }
-
-    input{
-        width: 350px;
-    }
-
-    .btn-delete{
-        margin-left: 10px;
-    }
 }
 
 select{
@@ -105,4 +54,38 @@ select:hover{
 .error-message{
     margin-top: -10px;
     width: 95%;
+}
+
+.group-info h3 {
+    font-size: 20px;
+    color: #141E30;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    margin-top: 8px;
+  }
+
+.questions {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.input-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn-delete{
+        margin-left: 25px;
+        margin-top: 15px;
+        padding: 12px;
+    }
+
+    label{ 
+        top: 95%;
+        width: 91.3%;
+        transform: translateX(-54.8%);
+    }
 }
