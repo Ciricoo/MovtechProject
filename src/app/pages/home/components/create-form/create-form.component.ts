@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { QuestionModel } from 'src/app/interfaces/Question';
@@ -14,6 +14,8 @@ import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.comp
 export class CreateFormComponent {
   @ViewChild('createForm') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
+  @Output() createdConfirmed = new EventEmitter<number>();
+  @Input() currentGroupId!: number;
   selectedGroupId: number = 0;
   formGroups: FormGroupModel[] = [];
   forms: FormModel[] = [];
@@ -29,6 +31,7 @@ export class CreateFormComponent {
 
   showModal() {
     this.modal.nativeElement.showModal();
+    this.selectedGroupId = this.currentGroupId;
     this.loadFormGroups();
     this.errorMessage = ''
   }
@@ -80,6 +83,7 @@ export class CreateFormComponent {
       {
         this.closeModal();
         this.resetForm();
+        this.createdConfirmed.emit();
        this.alertModalComponent.open('Formulário criado com Sucesso!');
     });
   }

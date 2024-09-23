@@ -5,13 +5,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { FormBuilderComponent } from './pages/home/components/form-builder/form-builder.component';
+import { FormBuilderComponent } from './pages/home/form-builder.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FormsComponent } from './pages/home/components/forms/forms.component';
+import { FormsModalComponent } from './pages/home/components/forms-modal/forms-modalcomponent';
 import { DeleteComponent } from './shared/delete/delete.component';
 import { EditComponent } from './shared/edit/edit.component';
-import { QuestionsComponent } from './pages/home/components/questions/questions.component';
+import { QuestionsModalComponent } from './pages/home/components/questions-modal/questions-modal.component';
 import { CreateGroupComponent } from './pages/home/components/create-group/create-group.component';
 import { CreateFormComponent } from './pages/home/components/create-form/create-form.component';
 import { CreateQuestionComponent } from './pages/home/components/create-question/create-question.component';
@@ -20,26 +19,30 @@ import { SeeAnswersComponent } from './pages/home/components/see-answers/see-ans
 import { NpsComponent } from './pages/nps/nps.component';
 import { NpsGraphComponent } from './pages/nps/components/nps-graph/nps-graph.component';
 import { TokenInterceptor } from './services/token/token.interceptor';
-
+import { FormsComponent } from './pages/forms/forms.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     FormBuilderComponent,
     HeaderComponent,
-    FormsComponent,
+    FormsModalComponent,
     DeleteComponent,
     EditComponent,
-    QuestionsComponent,
+    QuestionsModalComponent,
     CreateGroupComponent,
     CreateFormComponent,
     CreateQuestionComponent,
     AlertModalComponent,
     SeeAnswersComponent,
     NpsComponent,
-    NpsGraphComponent
+    NpsGraphComponent,
+    FormsComponent,
+    QuestionsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

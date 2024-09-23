@@ -1,21 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">
-        <img src="assets/logo.png" width="170px">
-    </a>
-      <form class="form-inline my-2 my-lg-0">
-        <div *ngIf="userRole == 'Administrador'" class="user-icon ">
-          <a *ngIf="!IsNps" (click)="Nps()" ><i class="fas fa-poll"></i></a>
-          <p *ngIf="!IsNps" class="username nps">Nps</p>
-          <a *ngIf="IsNps" (click)="Home()" ><i class="fas fa-home"></i></a>
-          <p *ngIf="IsNps"class="username nps">Home</p>
-        </div>
-        
-        <div class="user-icon">
-          <i class="fas fa-user"></i>
-          <p class="username">{{ username }}</p>
-        </div>
-        <a (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
-      </form>
-  </nav>
-
-
+  <a class="navbar-brand">
+    <img src="assets/logo.png" width="170px">
+  </a>
+  <div class="icons">
+    <div class="forms-icons">
+      <div *ngIf="!IsForms" class="forms user-icon">
+        <i (click)="Forms()" class="fas fa-file-alt"></i>
+        <p class="username">Formulários</p>
+      </div>
+      <div *ngIf="IsForms" class="forms user-icon">
+        <a (click)="Home()"><i class="fas fa-home"></i></a>
+        <p class="username nps">Home</p>
+      </div>
+      <div *ngIf="!IsQuestion" class="user-icon perguntas">
+        <i (click)="Questions()" class="fas fa-comment-dots"></i>
+        <p class="username">Perguntas</p>
+      </div>
+      <div *ngIf="IsQuestion" class="user-icon perguntas">
+        <a (click)="Home()"><i class="fas fa-home"></i></a>
+        <p class="username nps">Home</p>
+      </div>
+    </div>
+    
+    <form class="form-inline my-2 my-lg-0">
+      <div *ngIf="userRole == 'Administrador'" class="user-icon">
+        <a *ngIf="!IsNps" (click)="Nps()"><i class="fas fa-poll"></i></a>
+        <p *ngIf="!IsNps" class="username nps">Nps</p>
+        <a *ngIf="IsNps" (click)="Home()"><i class="fas fa-home"></i></a>
+        <p *ngIf="IsNps" class="username nps">Home</p>
+      </div>
+      
+      <div class="user-icon">
+        <i class="fas fa-user"></i>
+        <p class="username">{{ username }}</p>
+      </div>
+      
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
+    </form>
+  </div>
+</nav>

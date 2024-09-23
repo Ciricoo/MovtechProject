@@ -25,6 +25,8 @@ export class EditComponent {
   @Input() serviceType!: 'group' | 'form' | 'question';
   @Input() itemId!: number;
   @Input() oldName!: string;
+  @Input() currentGroupId!: number; // Grupo selecionado
+  @Input() currentFormId!: number;  // Formulário selecionado
   @Output() editConfirmed = new EventEmitter<number>();
 
   name: string = '';
@@ -51,7 +53,9 @@ export class EditComponent {
     this.modal.nativeElement.showModal();
     if (this.serviceType === 'form') {
       this.loadFormGroups();
+      this.fk = this.currentGroupId;
     } else if (this.serviceType === 'question') {
+      this.fk = this.currentFormId;
       this.loadForms();
     }
   }

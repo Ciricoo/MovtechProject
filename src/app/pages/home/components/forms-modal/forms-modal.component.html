@@ -1,0 +1,44 @@
+<dialog #modal id="modal">
+  <div class="nav-base">
+    <h2>Formulários - {{groupName}}</h2>
+    <div class="buttons">
+      <button (click)="openModalCreateForm()" *ngIf="userRole === 'Administrador'">Criar Formulário</button>
+      <button (click)="closeModal()">Fechar</button>
+    </div>
+  </div>
+  <div *ngIf="forms.length === 0" class="empty-message">
+    <h3>Nenhum formulário encontrado.</h3>
+    <p>Crie um formulário para começar.</p>
+  </div>
+  <div class="forms">
+    <ng-container *ngFor="let form of forms; let i = index">
+      <div class="card border-dark mb-3" (click)="openModalQuestion(form.id, form.name)" style="max-width: 18rem;">
+        <div class="card-header">
+          <a *ngIf="userRole === 'Administrador'">{{form.id}}</a>
+          <div class="botao-menu" (click)="toggleMenu(i, $event)">
+            <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
+            <div *ngIf="activeMenuIndex === i" class="menu">
+              <ul>
+                <li (click)="openModalEdit(form.id, form.name, $event)">
+                  <i class="fas fa-edit"></i> Editar
+                </li>
+                <li (click)="openModalDelete(form.id, $event)">
+                  <i class="fas fa-trash"></i> Excluir
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{form.name}}</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</dialog>
+<app-questions-modal></app-questions-modal>
+<app-delete (deleteConfirmed)="loadForm()"></app-delete>
+<app-edit (editConfirmed)="loadForm()"></app-edit>
+<app-create-form (createdConfirmed)="loadForm()"></app-create-form>

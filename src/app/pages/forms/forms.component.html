@@ -1,0 +1,51 @@
+<app-header [IsNps]="false" [IsForms]="true"></app-header>
+<app-search (searchEvent)="filterForms($event)"></app-search>
+<main>
+  <div class="base">
+    <div class="nav-base">
+      <h2>Formulários</h2>
+      <div class="buttons">
+        <button (click)="openModalCreateForm()" *ngIf="userRole === 'Administrador'">Criar Formulário</button>
+        <button (click)="openModalSeeAnswers()" *ngIf="userRole === 'Administrador'">Consultar Respostas</button>
+      </div>
+    </div>
+
+    <div *ngIf="forms.length === 0" class="empty-message">
+      <h3>Nenhum grupo de formulários encontrado.</h3>
+      <p>Crie um grupo de formulário para começar.</p>
+    </div>
+
+    <div class="forms-groups">
+        <ng-container *ngFor="let form of filteredForms; let i = index">
+            <div class="card border-dark mb-3" (click)="openModalQuestion(form.id, form.name)" style="max-width: 18rem;">
+              <div class="card-header">
+                <a *ngIf="userRole === 'Administrador'">{{form.id}}</a>
+                <div class="botao-menu" (click)="toggleMenu(i, $event)">
+                  <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
+                  <div *ngIf="activeMenuIndex === i" class="menu">
+                    <ul>
+                      <li (click)="openModalEdit(form.id, form.name, $event)">
+                        <i class="fas fa-edit"></i> Editar
+                      </li>
+                      <li (click)="openModalDelete(form.id, $event)">
+                        <i class="fas fa-trash"></i> Excluir
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{form.name}}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                  content.</p>
+              </div>
+            </div>
+          </ng-container>
+    </div>
+  </div>
+</main>
+<app-questions-modal></app-questions-modal>
+<app-delete (deleteConfirmed)="loadForms()"></app-delete>
+<app-edit (editConfirmed)="loadForms()"></app-edit>
+<app-create-form (createdConfirmed)="loadForms()"></app-create-form>
+<app-see-answers *ngIf="userRole === 'Administrador'"></app-see-answers>

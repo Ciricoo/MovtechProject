@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { LoginService } from 'src/app/services/login/login.service';
-import { FormsComponent } from '../forms/forms.component';
+import { FormsModalComponent } from './components/forms-modal/forms-modalcomponent';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
-import { CreateGroupComponent } from '../create-group/create-group.component';
-import { CreateFormComponent } from '../create-form/create-form.component';
-import { CreateQuestionComponent } from '../create-question/create-question.component';
-import { SeeAnswersComponent } from '../see-answers/see-answers.component';
+import { CreateGroupComponent } from './components/create-group/create-group.component';
+import { SeeAnswersComponent } from './components/see-answers/see-answers.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
+
 
 @Component({
   selector: 'app-form-builder',
@@ -16,15 +15,14 @@ import { EditComponent } from 'src/app/shared/edit/edit.component';
   styleUrls: ['./form-builder.component.scss'],
 })
 export class FormBuilderComponent implements OnInit {
-  @ViewChild(FormsComponent) formsComponent!: FormsComponent;
+  @ViewChild(FormsModalComponent) formsComponent!: FormsModalComponent;
   @ViewChild(DeleteComponent) DeleteComponent!: DeleteComponent;
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(CreateGroupComponent) createGroupComponent!: CreateGroupComponent;
-  @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
-  @ViewChild(CreateQuestionComponent)  createQuestionComponent!: CreateQuestionComponent;
   @ViewChild(SeeAnswersComponent) seeAnswersComponent!: SeeAnswersComponent;
 
   formGroups: FormGroupModel[] = [];
+  filteredGroups: FormGroupModel[] = [];
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
 
@@ -41,7 +39,18 @@ export class FormBuilderComponent implements OnInit {
   loadGroups(): void {
       this.formgroupService.getFormGroups().subscribe((data) => {
         this.formGroups = data;
+        this.filteredGroups = data;
       });
+  }
+
+  filterGroups(search:string): void{
+    if(search.trim()){
+      this.filteredGroups = this.formGroups.filter(group =>
+        group.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }else {
+      this.filteredGroups = [...this.formGroups]; 
+    }
   }
 
   toggleMenu(index: number, event: MouseEvent): void {
@@ -83,15 +92,7 @@ export class FormBuilderComponent implements OnInit {
   openModalCreateGroup() {
     this.createGroupComponent.showModal();
   }
-
-  openModalCreateForm() {
-    this.createFormComponent.showModal();
-  }
-
-  openModalCreateQuestion() {
-    this.createQuestionComponent.showModal();
-  }
-
+  
   openModalSeeAnswers() {
     this.seeAnswersComponent.open();
   }

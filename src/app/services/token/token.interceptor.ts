@@ -26,7 +26,6 @@ export class TokenInterceptor implements HttpInterceptor {
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           const newToken = event.headers.get('Authorization')?.replace('Bearer ', '');
-          console.log('Novo token recebido:', newToken);
           if (newToken) {
             this.loginService.saveToken(newToken);
           }

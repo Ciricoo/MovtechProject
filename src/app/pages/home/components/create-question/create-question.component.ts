@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormModel } from 'src/app/interfaces/Form';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { FormService } from 'src/app/services/form/form.service';
@@ -13,6 +13,8 @@ import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.comp
 export class CreateQuestionComponent {
   @ViewChild('createQuestion') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
+  @Output() createdConfirmed = new EventEmitter<number>();
+  @Input() currentFormId!: number;
   
   selectedFormId: number = 0;
   forms: FormModel[] = [];
@@ -27,6 +29,7 @@ export class CreateQuestionComponent {
 
   showModal() {
     this.modal.nativeElement.showModal();
+    this.selectedFormId = this.currentFormId;
     this.addQuestion();
     this.loadForms();
   }
@@ -68,6 +71,7 @@ export class CreateQuestionComponent {
     this.questionService.createQuestion(questions).subscribe(() => {
       this.closeModal();
       this.resetForm();
+      this.createdConfirmed.emit()
       this.alertModalComponent.open('Pergunta criada com sucesso!');
     })
   }

@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { LoginResponse } from 'src/app/interfaces/LoginResponse';
 import { DecodedToken } from 'src/app/interfaces/DecodedToken ';
+import { Login } from 'src/app/interfaces/Login';
 
 
 @Injectable({
@@ -14,8 +15,7 @@ export class LoginService {
   private urlLogin: string = 'https://localhost:7193/api/User';
 
   constructor(private http: HttpClient, private router: Router) {}
-        // criar uma interface para login
-  login(login: { name: string; password: string }): Observable<LoginResponse> {
+  login(login: Login): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login, { withCredentials: true }).pipe(
       tap((response) => {
         this.saveToken(response.token);

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -9,9 +9,12 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @Output() searchGroup: EventEmitter<string> = new EventEmitter<string>();
   username: string | null = null;
   userRole: string | null = null;
   @Input() IsNps: boolean = false;
+  @Input() IsForms: boolean = false;
+  @Input() IsQuestion: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router){}
 
@@ -31,4 +34,21 @@ export class HeaderComponent {
   Nps(){
     this.router.navigate(['/nps']);
   }
+
+  Forms(){
+    this.router.navigate(['/forms'])
+  }
+
+  Questions(){
+    this.router.navigate(['/questions'])
+  }
+
+  // onSearchChange(event: Event){
+  //   const input = event?.target as HTMLInputElement;
+  //   if(input){
+  //     const value = input.value.trim();
+  //     this.searchGroup.emit(value);
+  //   }
+ //}
 }
+

@@ -10,13 +10,25 @@
     align-items: center;
 }
 
-.fa-sign-out-alt {
-    margin-right: 50px;
-    color: #141E30;
-    font-size: 35px;
-    cursor: pointer;
+.form-inline{
+    margin-right: 45px;
+    gap: 35px;
 }
 
+.botao-nps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+}
+i{
+    font-size: 35px;
+}
+.fa-sign-out-alt {
+    cursor: pointer;
+    color: #141E30;
+    font-size: 35px;
+}
 
 img {
     margin-top: 5px;
@@ -27,7 +39,6 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 25px;
     margin-top: 25px;
 }
 
@@ -47,6 +58,33 @@ img {
     margin: 0;
 }
 
-.fa-poll, .fa-home{
+.fa-poll, .fa-home, .fa-folder, .fa-file-alt, .fa-comment-dots{
     cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.forms-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form.form-inline {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.perguntas{
+    margin-left: 20px;
+}
+
+.forms{
+    margin-right: -15px;
+    margin-top: auto;
 }

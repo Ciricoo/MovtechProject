@@ -2,6 +2,7 @@
   <div class="nav-base">
     <h2>Perguntas - {{formName}}</h2>
     <div class="buttons">
+      <button (click)="openModalCreateQuestion()" *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
       <button *ngIf="questions.length != 0" (click)="submitAnswers()">Enviar</button>
       <button (click)="closeModal()">Fechar</button>
     </div>
@@ -49,3 +50,4 @@
 <app-delete (deleteConfirmed)="loadQuestion()"></app-delete>
 <app-edit (editConfirmed)="loadQuestion()"></app-edit>
 <app-alert-modal></app-alert-modal>
+<app-create-question (createdConfirmed)="loadQuestion()"></app-create-question>

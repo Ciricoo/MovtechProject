@@ -19,11 +19,11 @@ export class AlertModalComponent implements AfterViewInit {
         this.open(message);
     });
   }
-
   open(message: string): void {
     this.message = message;
     this.modal.nativeElement.showModal();
-  }
+}
+
 
   close(): void {
     this.modal.nativeElement.close();

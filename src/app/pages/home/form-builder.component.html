@@ -1,11 +1,11 @@
+ <app-header [IsNps]="false" [IsForms]="false" [IsQuestion]="false"></app-header>
+ <app-search (searchEvent)="filterGroups($event)"></app-search>
 <main>
   <div class="base">
     <div class="nav-base">
       <h2>Grupo de Formulários</h2>
       <div class="buttons">
         <button (click)="openModalCreateGroup()" *ngIf="userRole === 'Administrador'">Criar Grupo</button>
-        <button (click)="openModalCreateForm()" *ngIf="userRole === 'Administrador'">Criar Formulário</button>
-        <button (click)="openModalCreateQuestion()" *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
         <button (click)="openModalSeeAnswers()" *ngIf="userRole === 'Administrador'">Consultar Respostas</button>
       </div>
     </div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="forms-groups">
-      <ng-container *ngFor="let group of formGroups; let i = index">
+      <ng-container *ngFor="let group of filteredGroups; let i = index">
         <div class="card border-dark mb-3" (click)="openModalForm(group.id, group.name)" style="max-width: 18rem;">
           <div class="card-header">
             <a *ngIf="userRole === 'Administrador'">{{group.id}}</a>
@@ -44,10 +44,8 @@
     </div>
   </div>
 </main>
-<app-forms></app-forms>
+<app-forms-modal></app-forms-modal>
 <app-delete (deleteConfirmed)="loadGroups()"></app-delete>
 <app-edit (editConfirmed)="loadGroups()"></app-edit>
 <app-create-group (createdConfirmed)="loadGroups()"></app-create-group>
-<app-create-form></app-create-form>
-<app-create-question></app-create-question>
 <app-see-answers *ngIf="userRole === 'Administrador'"></app-see-answers>

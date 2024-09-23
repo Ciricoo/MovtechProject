@@ -59,12 +59,13 @@ button:hover {
   }
 
   .botao-menu{
-    width: 25px; 
-    height: 20px;
+    padding: 5px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 15px;
+    position: relative;
+    left: 12px;
+    cursor: pointer;
 }
 
   
