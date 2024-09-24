@@ -1,12 +1,12 @@
- <app-header [IsNps]="false" [IsForms]="false" [IsQuestion]="false"></app-header>
- <app-search (searchEvent)="filterGroups($event)"></app-search>
+<app-header [IsNps]="false" [IsForms]="false" [IsQuestion]="false"></app-header>
+<app-search (searchEvent)="filterGroups($event)"></app-search>
 <main>
   <div class="base">
     <div class="nav-base">
       <h2>Grupo de Formulários</h2>
       <div class="buttons">
-        <button (click)="openModalCreateGroup()" *ngIf="userRole === 'Administrador'">Criar Grupo</button>
-        <button (click)="openModalSeeAnswers()" *ngIf="userRole === 'Administrador'">Consultar Respostas</button>
+        <button (click)="openModalCreateGroup()" *ngIf="canShow()">Criar Grupo</button>
+        <button (click)="openModalSeeAnswers()" *ngIf="canShow()">Consultar Respostas</button>
       </div>
     </div>
 
@@ -15,32 +15,36 @@
       <p>Crie um grupo de formulário para começar.</p>
     </div>
 
-    <div class="forms-groups">
-      <ng-container *ngFor="let group of filteredGroups; let i = index">
-        <div class="card border-dark mb-3" (click)="openModalForm(group.id, group.name)" style="max-width: 18rem;">
-          <div class="card-header">
-            <a *ngIf="userRole === 'Administrador'">{{group.id}}</a>
-            <div class="botao-menu" (click)="toggleMenu(i, $event)">
-              <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
-              <div *ngIf="activeMenuIndex === i" #menu class="menu">
-                <ul>
-                  <li (click)="openModalEdit(group.id, group.name, $event)">
-                    <i class="fas fa-edit"></i> Editar
-                  </li>
-                  <li (click)="openModalDelete(group.id, $event)">
-                    <i class="fas fa-trash"></i> Excluir
-                  </li>
-                </ul>
+    <div class="modal-content">
+      <div class="forms-groups">
+        <ng-container *ngFor="let group of filteredGroups; let i = index">
+          <div class="card border-dark mb-3" (click)="openModalForm(group.id, group.name)" style="max-width: 18rem;">
+            <div class="card-header">
+              <a *ngIf="canShow()">{{group.id}}</a>
+              <div class="botao-menu" (click)="toggleMenu(i, $event)">
+                <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
+                <div *ngIf="activeMenuIndex === i" #menu class="menu">
+                  <ul>
+                    <li (click)="openModalEdit(group.id, group.name, $event)">
+                      <i class="fas fa-edit"></i> Editar
+                    </li>
+                    <li (click)="openModalDelete(group.id, $event)">
+                      <i class="fas fa-trash"></i> Excluir
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
+            <div class="card-body">
+              <h5 class="card-title">{{group.name}}</h5>
+              <p class="card-text">Aqui estão todos os grupos de formulários para facilitar a coleta de feedback dos seus usuários.</p>
+              <!-- <p class="card-text"><i class="fas fa-file-alt"></i> 5 Formulários ativos <br>
+              <i class="fas fa-user"></i> Última edição por João Silva <br>
+              <i class="fas fa-calendar-alt"></i> Modificado em 20/09/2024</p>-->
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{group.name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
 </main>
@@ -48,4 +52,4 @@
 <app-delete (deleteConfirmed)="loadGroups()"></app-delete>
 <app-edit (editConfirmed)="loadGroups()"></app-edit>
 <app-create-group (createdConfirmed)="loadGroups()"></app-create-group>
-<app-see-answers *ngIf="userRole === 'Administrador'"></app-see-answers>
+<app-see-answers *ngIf="canShow()"></app-see-answers>

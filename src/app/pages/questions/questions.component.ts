@@ -48,6 +48,13 @@ export class QuestionsComponent {
     });
   }
 
+  canShow(): boolean{
+    if(this.userRole != 'Administrador'){
+      return false
+    }
+    return true
+  }
+
   filterQuestions(search: string): void{
     if(search.trim()){
       this.filteredQuestions = this.questions.filter(question =>

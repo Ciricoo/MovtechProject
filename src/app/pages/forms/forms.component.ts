@@ -25,9 +25,7 @@ export class FormsComponent {
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
 
-  constructor(
-    private formService: FormService,private loginService: LoginService
-  ) {}
+  constructor(private formService: FormService,private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
@@ -39,6 +37,13 @@ export class FormsComponent {
         this.forms = data;
         this.filteredForms = data;
       });
+  }
+
+  canShow(): boolean{
+    if(this.userRole != 'Administrador'){
+      return false
+    }
+    return true
   }
 
   filterForms(search:string): void{

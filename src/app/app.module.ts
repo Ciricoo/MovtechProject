@@ -18,7 +18,7 @@ import { AlertModalComponent } from './shared/alert-modal/alert-modal.component'
 import { SeeAnswersComponent } from './pages/home/components/see-answers/see-answers.component';
 import { NpsComponent } from './pages/nps/nps.component';
 import { NpsGraphComponent } from './pages/nps/components/nps-graph/nps-graph.component';
-import { TokenInterceptor } from './services/token/token.interceptor';
+import { TokenInterceptor } from './auth/token.interceptor';
 import { FormsComponent } from './pages/forms/forms.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { SearchComponent } from './shared/search/search.component';

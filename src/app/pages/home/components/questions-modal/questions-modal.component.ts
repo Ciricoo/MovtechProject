@@ -37,6 +37,13 @@ export class QuestionsModalComponent {
     this.questionService.getQuestionByFormId(this.formId).subscribe((data) => (this.questions = data));
   }
 
+  canShow(): boolean{
+    if(this.userRole != 'Administrador'){
+      return false
+    }
+    return true
+  }
+
   showModal(): void {
     this.modal.nativeElement.showModal();
   }

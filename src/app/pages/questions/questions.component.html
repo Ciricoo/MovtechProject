@@ -5,8 +5,8 @@
     <div class="nav-base">
       <h2>Perguntas</h2>
       <div class="buttons">
-        <button (click)="openModalCreateQuestion()" *ngIf="userRole === 'Administrador'">Criar Perguntas</button>
-        <button (click)="openModalSeeAnswers()" *ngIf="userRole === 'Administrador'">Consultar Respostas</button>
+        <button (click)="openModalCreateQuestion()" *ngIf="canShow()">Criar Perguntas</button>
+        <button (click)="openModalSeeAnswers()" *ngIf="canShow()">Consultar Respostas</button>
       </div>
     </div>
 
@@ -15,13 +15,14 @@
       <p>Crie um grupo de formulário para começar.</p>
     </div>
 
-    <div class="forms-groups">
+    <div class="modal-content">
+      <div class="forms-groups">
         <ng-container *ngFor="let question of filteredQuestions; let i = index">
-            <div class="card border-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">
-                <a *ngIf="userRole === 'Administrador'">{{question.id}}</a>
-                <div class="botao-menu" (click)="toggleMenu(i, $event)">
-                <i *ngIf="userRole === 'Administrador'" class="fas fa-ellipsis-v"></i>
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+              <a *ngIf="canShow()">{{question.id}}</a>
+              <div class="botao-menu" (click)="toggleMenu(i, $event)">
+                <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
                 <div *ngIf="activeMenuIndex === i" class="menu">
                   <ul>
                     <li (click)="openModalEdit(question.id, question.text)">
@@ -33,22 +34,14 @@
                   </ul>
                 </div>
               </div>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">{{question.text}}</h5>
-                <div class="card-text">
-                  <select (change)="onInputChange(question.id, 'grade', $event)" required>
-                    <option [value]="null" disabled selected></option>
-                    <option *ngFor="let grade of grades" [value]="grade">{{ grade }}</option>
-                  </select>
-                  <div class="infield">
-                    <input (input)="onInputChange(question.id, 'description', $event)"  type="text" placeholder="Descrição (opcional)" />
-                    <label></label>
-                  </div>
-                </div>
-              </div>
             </div>
-          </ng-container>
+            <div class="card-body">
+              <h5 class="card-title">{{question.text}}</h5>
+              <p class="card-text">Aqui estão todas as perguntas para uma boa coleta de feedback.</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </main>
@@ -56,5 +49,5 @@
 <app-delete (deleteConfirmed)="loadQuestion()"></app-delete>
 <app-edit (editConfirmed)="loadQuestion()"></app-edit>
 <app-create-question (createdConfirmed)="loadQuestion()"></app-create-question>
-<app-see-answers *ngIf="userRole === 'Administrador'"></app-see-answers>
+<app-see-answers *ngIf="canShow()"></app-see-answers>
 <app-alert-modal></app-alert-modal>

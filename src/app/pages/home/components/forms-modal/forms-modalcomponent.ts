@@ -4,6 +4,8 @@ import {
   Input,
   ViewChild,
   HostListener,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormService } from 'src/app/services/form/form.service';
@@ -26,6 +28,7 @@ export class FormsModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
   @Input() groupId!: number;
   @Input() groupName!: string;
+  @Output() formsLoaded = new EventEmitter<number>();
 
   forms: FormModel[] = [];
   activeMenuIndex: number | null = null;
@@ -39,19 +42,26 @@ export class FormsModalComponent {
 
   loadForm(): void {
     this.userRole = this.loginService.getUserRole();
-    this.formService
-      .getFormsByGroupId(this.groupId)
+    this.formService.getFormsByGroupId(this.groupId)
       .subscribe((data) => (this.forms = data));
   }
 
+  canShow(): boolean{
+    if(this.userRole != 'Administrador'){
+      return false
+    }
+    return true
+  }
+
+  
   showModal(): void {
     this.modal.nativeElement.showModal();
   }
-
+  
   closeModal(): void {
     this.modal.nativeElement.close();
   }
-
+  
   openModalQuestion(formId: number, formName: string) {
     this.questionComponent.formId = formId;
     this.questionComponent.formName = formName;
@@ -60,7 +70,7 @@ export class FormsModalComponent {
       this.questionComponent.loadQuestion();
     });
   }
-
+  
   openModalDelete(formId: number, event: MouseEvent) {
     this.handleClickOutside();
     event.stopPropagation();
@@ -68,7 +78,7 @@ export class FormsModalComponent {
     this.deleteComponent.serviceType = 'form';
     this.deleteComponent.showModal();
   }
-
+  
   openModalEdit(formId: number, formName: string, event: MouseEvent) {
     this.handleClickOutside();
     event.stopPropagation();
@@ -78,17 +88,17 @@ export class FormsModalComponent {
     this.editComponent.currentGroupId = this.groupId;
     this.editComponent.showModal();
   }
-
+  
   openModalCreateForm() {
     this.createFormComponent.currentGroupId = this.groupId;
     this.createFormComponent.showModal();
   }
-
+  
   toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
   }
-
+  
   @HostListener('document:click', ['$event'])
   handleClickOutside(): void {
     this.activeMenuIndex = null;

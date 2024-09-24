@@ -23,6 +23,13 @@ export class HeaderComponent {
     this.username = localStorage.getItem('name');
   }
 
+  canShow(): boolean{
+    if(this.userRole != 'Administrador'){
+      return false
+    }
+    return true
+  }
+
   logout(){
     this.loginService.logout();
   }
@@ -42,13 +49,5 @@ export class HeaderComponent {
   Questions(){
     this.router.navigate(['/questions'])
   }
-
-  // onSearchChange(event: Event){
-  //   const input = event?.target as HTMLInputElement;
-  //   if(input){
-  //     const value = input.value.trim();
-  //     this.searchGroup.emit(value);
-  //   }
- //}
 }
 

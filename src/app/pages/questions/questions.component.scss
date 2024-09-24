@@ -35,39 +35,13 @@ button {
     gap: 4px; 
 }
 
-.card-text{
-    display: flex;
-    gap: 5px;
-    margin-top: 20px;
-}
-
-.infield{
-    position: relative;
-    margin: 0;
-}
-
-input{
-    padding: 5px 8px;
-    background-color: #f3f3f3;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-}
-
-select{
-    cursor: pointer;
-    background-color: #f3f3f3;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-}
-
-select:hover{
-    background-color: #dadada;
-}
-
 .card{
     cursor: auto;
+}
+
+.modal-content {
+    max-height: 60vh;
+    overflow-y: auto; 
 }
 
 

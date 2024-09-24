@@ -23,7 +23,7 @@
     </div>
     
     <form class="form-inline my-2 my-lg-0">
-      <div *ngIf="userRole == 'Administrador'" class="user-icon">
+      <div *ngIf="canShow()" class="user-icon">
         <a *ngIf="!IsNps" (click)="Nps()"><i class="fas fa-poll"></i></a>
         <p *ngIf="!IsNps" class="username nps">Nps</p>
         <a *ngIf="IsNps" (click)="Home()"><i class="fas fa-home"></i></a>
