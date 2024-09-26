@@ -8,10 +8,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SearchComponent {
   @Output() searchEvent = new EventEmitter<string>();
 
-  onSearchChange(event: Event){
+  onSearchChange(event: Event): void{
     const input = event.target as HTMLInputElement;
     if(input){
-      const value = input.value.trim();
+      const value: string = input.value.trim();
       this.searchEvent.emit(value);
     }
   }

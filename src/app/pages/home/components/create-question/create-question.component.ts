@@ -23,18 +23,18 @@ export class CreateQuestionComponent {
 
   constructor(private formService: FormService, private questionService: QuestionService) {}
 
-  loadForms() {
+  loadForms(): void {
     this.formService.getForms().subscribe((data) => {this.forms = data;});
   }
 
-  showModal() {
+  showModal(): void {
     this.modal.nativeElement.showModal();
     this.selectedFormId = this.currentFormId;
     this.addQuestion();
     this.loadForms();
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modal.nativeElement.close();
     this.resetForm();
     this.errorMessage = '';
@@ -43,7 +43,7 @@ export class CreateQuestionComponent {
   verificaQuestions(): boolean{
     this.errorMessage = null;
 
-    if(this.selectedFormId == 0){
+    if(this.selectedFormId == 0 || this.selectedFormId == undefined){
       this.errorMessage = 'O formulário precisa ser preenchido.';
       return false;
     }
@@ -63,11 +63,11 @@ export class CreateQuestionComponent {
     return true;
   }
 
-  submit() {
+  submit(): void {
     if(!this.verificaQuestions()){
       return;
     }
-    const questions = this.questions.map((question) => ({id: 0,text: question.text,IdForms: this.selectedFormId,}));
+    const questions: QuestionModel[] = this.questions.map((question) => ({id: 0,text: question.text,IdForms: this.selectedFormId,}));
     this.questionService.createQuestion(questions).subscribe(() => {
       this.closeModal();
       this.resetForm();
@@ -76,13 +76,13 @@ export class CreateQuestionComponent {
     })
   }
 
-  resetForm() {
+  resetForm(): void {
     this.selectedFormId = 0;
     this.questions = [];
   }
 
   
-  addQuestion() {
+  addQuestion(): void {
     this.questions.push({
       id: this.questions.length + 1,
       text: '',
@@ -90,7 +90,7 @@ export class CreateQuestionComponent {
     });
   }
 
-  deleteQuestion(index: number) {
+  deleteQuestion(index: number): void {
     this.questions.splice(index, 1);
   }
 }

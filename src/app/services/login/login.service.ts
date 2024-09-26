@@ -15,6 +15,7 @@ export class LoginService {
   private urlLogin: string = 'https://localhost:7193/api/User';
 
   constructor(private http: HttpClient, private router: Router) {}
+
   login(login: Login): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlLogin}/login`, login, { withCredentials: true }).pipe(
       tap((response) => {
@@ -24,16 +25,16 @@ export class LoginService {
     );
   }
   
-  saveToken(token: string) {
+  saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
   clearLocalStorage(): void {
-    localStorage.clear()
+    localStorage.clear();
   }
 
   logout(): void {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       this.http.post(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
       .subscribe(() => {
@@ -45,12 +46,12 @@ export class LoginService {
   }
 
   isTokenExpired(): boolean {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (!token) {
       return true;
     }
     const decodedToken: DecodedToken = jwtDecode(token);
-    const currentTime = Math.floor(new Date().getTime() / 1000);
+    const currentTime: number = Math.floor(new Date().getTime() / 1000);
     
     if(decodedToken.exp < currentTime){
       return true;
@@ -59,7 +60,7 @@ export class LoginService {
   }
 
   getUserRole(): string | null {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       const decodedToken: DecodedToken = jwtDecode(token);
       return decodedToken.role;

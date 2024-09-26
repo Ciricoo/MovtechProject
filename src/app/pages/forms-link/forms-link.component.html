@@ -1,0 +1,48 @@
+<app-header [IsNps]="false" [IsForms]="false" [IsQuestion]="true"></app-header>
+<main>
+    <div class="base">
+        <div class="nav-base">
+            <h2>Perguntas</h2>
+            <div class="buttons">
+                <button *ngIf="questions.length != 0" (click)="submitAnswers()">Enviar</button>
+            </div>
+        </div>
+
+        <div *ngIf="questions.length === 0" class="empty-message">
+            <h3>Nenhum grupo de formulários encontrado.</h3>
+            <p>Crie um grupo de formulário para começar.</p>
+        </div>
+
+        <div class="modal-content">
+            <div class="forms-groups">
+                <ng-container *ngFor="let question of questions; let i = index">
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <a *ngIf="canShow()">{{question.id}}</a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{question.text}}</h5>
+                            <div class="card-text">
+                                <select (change)="onInputChange(question.id, 'grade', $event)" required>
+                                    <option [value]="null" disabled selected></option>
+                                    <option *ngFor="let grade of grades" [value]="grade">{{ grade }}</option>
+                                </select>
+                                <div class="infield">
+                                    <input (input)="onInputChange(question.id, 'description', $event)" type="text"
+                                        placeholder="Descrição (opcional)" />
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</main>
+<app-forms-modal></app-forms-modal>
+<app-delete (deleteConfirmed)="loadQuestions()"></app-delete>
+<app-edit (editConfirmed)="loadQuestions()"></app-edit>
+<app-create-question (createdConfirmed)="loadQuestions()"></app-create-question>
+<app-see-answers *ngIf="canShow()"></app-see-answers>
+<app-alert-modal></app-alert-modal>

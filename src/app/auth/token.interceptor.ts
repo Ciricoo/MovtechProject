@@ -11,7 +11,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private loginService: LoginService,private router: Router, private alertService: AlertService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
     let clonedRequest = req;
     if (token) {
@@ -25,7 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(clonedRequest).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          const newToken = event.headers.get('Authorization')?.replace('Bearer ', '');
+          const newToken: string | undefined = event.headers.get('Authorization')?.replace('Bearer ', '');
           if (newToken) {
             this.loginService.saveToken(newToken);
           }

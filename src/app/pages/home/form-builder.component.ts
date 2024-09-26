@@ -71,7 +71,7 @@ export class FormBuilderComponent implements OnInit {
     this.activeMenuIndex = null;
   }
 
-  openModalForm(groupId: number, groupName: string) {
+  openModalForm(groupId: number, groupName: string): void {
     this.formsComponent.groupId = groupId;
     this.formsComponent.groupName = groupName;
     setTimeout(() => {
@@ -80,7 +80,7 @@ export class FormBuilderComponent implements OnInit {
     });
   }
 
-  openModalDelete(groupId: number, event: MouseEvent) {
+  openModalDelete(groupId: number, event: MouseEvent): void {
       this.handleClickOutside()
       event.stopPropagation();
       this.DeleteComponent.itemId = groupId;
@@ -88,7 +88,7 @@ export class FormBuilderComponent implements OnInit {
       this.DeleteComponent.showModal();
   }
 
-  openModalEdit(groupId: number, groupName: string, event: MouseEvent) {
+  openModalEdit(groupId: number, groupName: string, event: MouseEvent): void {
     this.handleClickOutside()
     event.stopPropagation();
     this.editComponent.itemId = groupId;
@@ -97,11 +97,11 @@ export class FormBuilderComponent implements OnInit {
     this.editComponent.showModal();
   }
 
-  openModalCreateGroup() {
+  openModalCreateGroup(): void {
     this.createGroupComponent.showModal();
   }
   
-  openModalSeeAnswers() {
+  openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
 }

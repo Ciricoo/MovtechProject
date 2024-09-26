@@ -37,19 +37,19 @@ export class EditComponent {
 
   constructor( private formgroupService: FormgroupService,private formService: FormService,private questionService: QuestionService) {}
 
-  loadForms() {
+  loadForms(): void {
     this.formService.getForms().subscribe((data) => {
       this.forms = data;
     });
   }
   
-  loadFormGroups() {
+  loadFormGroups(): void {
     this.formgroupService.getFormGroups().subscribe((data) => {
       this.formGroups = data;
     });
   }
 
-  showModal() {
+  showModal(): void {
     this.modal.nativeElement.showModal();
     if (this.serviceType === 'form') {
       this.loadFormGroups();
@@ -60,7 +60,7 @@ export class EditComponent {
     }
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modal.nativeElement.close();
     this.errorMessage = null
     this.name = ''
@@ -87,7 +87,7 @@ export class EditComponent {
     return true;
   }
 
-  confirmEdit() {
+  confirmEdit(): void {
     if(!this.verificaEdit()){
       return;
     }

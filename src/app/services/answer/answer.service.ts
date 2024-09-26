@@ -8,17 +8,16 @@ import { QuestionModel } from 'src/app/interfaces/Question';
   providedIn: 'root'
 })
 export class AnswerService {
-  private apiUrl = 'https://localhost:7193/api/Answer/';
+  private apiUrl: string = 'https://localhost:7193/api/Answer/';
   
   constructor(private http: HttpClient) {}
-
 
   sendAnswer(answers: AnswerModal[]): Observable<boolean>{
     return this.http.post<boolean>(`${this.apiUrl}`, answers, {withCredentials: true });
   }
 
   getAnswersWithDetails(questionId?: number, userId?: number): Observable<AnswerModal[]> {
-    let params: any = {};
+    let params: { [key: string]: number } = {};
   
     if (questionId !== undefined) {
       params['questionId'] = questionId;

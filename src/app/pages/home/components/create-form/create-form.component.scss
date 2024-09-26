@@ -5,7 +5,7 @@
     width: 45%;
     max-height: 80%;
     border: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 5px 15px;
     border-radius: 5px;
     overflow-y: hidden;
 }
@@ -88,4 +88,9 @@ input {
         width: 91.3%;
         transform: translateX(-54.8%);
     }
+}
+
+.error-message{
+    width: 100%;
+    margin: 0;
 }

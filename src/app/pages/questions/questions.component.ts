@@ -65,13 +65,13 @@ export class QuestionsComponent {
     }
   }
 
-  openModalDelete(questionId: number) {
+  openModalDelete(questionId: number): void {
       this.deleteComponent.itemId = questionId;
       this.deleteComponent.serviceType = 'question';
       this.deleteComponent.showModal();
   }
 
-  openModalEdit(questionId: number, questionName: string) {
+  openModalEdit(questionId: number, questionName: string): void {
       this.editComponent.itemId = questionId;
       this.editComponent.oldName = questionName
       this.editComponent.serviceType = 'question';
@@ -87,11 +87,11 @@ export class QuestionsComponent {
     this.activeMenuIndex = null;
   }
 
-  openModalCreateQuestion() {
+  openModalCreateQuestion(): void {
     this.createQuestionComponent.showModal();
   }
   
-  openModalSeeAnswers() {
+  openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
 
@@ -99,7 +99,7 @@ export class QuestionsComponent {
     const target = event.target as HTMLInputElement | HTMLSelectElement;
     if (target === null) return;
   
-    const answer = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: null, description: '',idQuestion: questionId,idUser: 0,};
+    const answer: AnswerModal = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: null, description: '',idQuestion: questionId,idUser: 0,};
 
     if (field === 'grade') {
       answer.grade = target.value !== '' ? Number(target.value) : null; 
@@ -112,8 +112,8 @@ export class QuestionsComponent {
   }
 
   submitAnswers(): void {
-    const allAnswered = this.questions.every(question => {
-    const answer = this.answers.find(a => a.idQuestion === question.id);
+    const allAnswered: boolean = this.questions.every(question => {
+    const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
     return answer !== undefined && answer.grade !== null;
   });
 

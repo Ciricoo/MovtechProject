@@ -16,15 +16,15 @@ export class DeleteComponent {
   
   constructor(private formgroupService: FormgroupService, private formService: FormService, private questionService: QuestionService) {}
   
-  showModal() {
+  showModal(): void {
       this.modal.nativeElement.showModal();
   }
   
-  closeModal() {
+  closeModal(): void {
     this.modal.nativeElement.close();
   }
 
-  confirmDelete(){
+  confirmDelete(): void{
     if(this.serviceType == 'group'){
       this.formgroupService.deleteFormGroup(this.itemId).subscribe(() => {
         this.deleteConfirmed.emit();

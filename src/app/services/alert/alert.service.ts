@@ -1,6 +1,5 @@
-// alert.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, Subject, take } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

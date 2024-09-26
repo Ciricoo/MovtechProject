@@ -25,18 +25,19 @@ export class CreateFormComponent {
 
   constructor(private formService: FormService, private formGroupService: FormgroupService) {}
 
-  loadFormGroups() {
+  loadFormGroups(): void {
     this.formGroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
   }
 
-  showModal() {
+  showModal(): void {
     this.modal.nativeElement.showModal();
     this.selectedGroupId = this.currentGroupId;
+    console.log(this.selectedGroupId)
     this.loadFormGroups();
     this.errorMessage = ''
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modal.nativeElement.close();
     this.resetForm();
   }
@@ -44,7 +45,7 @@ export class CreateFormComponent {
   verificaForm(): boolean{
     this.errorMessage = null;
 
-    if(this.selectedGroupId == 0){
+    if(this.selectedGroupId == 0 || this.selectedGroupId == undefined){
       this.errorMessage = 'O grupo precisa ser preenchido.';
       return false;
     }
@@ -74,7 +75,7 @@ export class CreateFormComponent {
     return true;
   }
 
-  submit() {
+  submit(): void {
     if(!this.verificaForm()){
       return;
     }
@@ -88,17 +89,17 @@ export class CreateFormComponent {
     });
   }
 
-  resetForm() {
+  resetForm(): void {
     this.formName = '';
     this.selectedGroupId = 0;
     this.questions = [];
   }
 
-  deleteForm(index: number) {
+  deleteForm(index: number): void {
     this.forms.splice(index, 1);
   }
 
-  addQuestion() {
+  addQuestion(): void {
     this.questions.push({
       id: this.questions.length + 1,
       text: '',
@@ -106,7 +107,7 @@ export class CreateFormComponent {
     });
   }
 
-  deleteQuestion(index: number) {
+  deleteQuestion(index: number): void {
     this.questions.splice(index, 1);
   }
 }

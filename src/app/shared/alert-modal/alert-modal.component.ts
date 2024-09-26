@@ -1,5 +1,6 @@
 // alert-modal.component.ts
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert/alert.service';
 
 
@@ -11,8 +12,9 @@ import { AlertService } from 'src/app/services/alert/alert.service';
 export class AlertModalComponent implements AfterViewInit {
   @ViewChild('alertModal') modal!: ElementRef<HTMLDialogElement>;
   message: string = '';
+  @Input() goToHome!: boolean;
 
-  constructor(private alertService: AlertService) {}
+  constructor(private alertService: AlertService, private router: Router) {}
 
   ngAfterViewInit(): void {
     this.alertService.message$.subscribe(message => {
@@ -23,9 +25,10 @@ export class AlertModalComponent implements AfterViewInit {
     this.message = message;
     this.modal.nativeElement.showModal();
 }
-
-
   close(): void {
     this.modal.nativeElement.close();
+    if(this.goToHome == true){
+      this.router.navigate(['/home']);
+    }
   }
 }

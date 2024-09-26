@@ -26,12 +26,12 @@ export class CreateGroupComponent {
 
   constructor(private formGroupService: FormgroupService) {}
 
-  showModal() {
+  showModal(): void {
     this.modal.nativeElement.showModal();
     this.addForm()
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modal.nativeElement.close();
     this.resetGroup();
     this.errorMessage = ''
@@ -77,7 +77,7 @@ export class CreateGroupComponent {
     return true;
   }
 
-  submit() {
+  submit(): void {
     if(!this.verificaGroup()){
       return;
     }
@@ -90,12 +90,12 @@ export class CreateGroupComponent {
     });
   }
 
-  resetGroup() {
+  resetGroup(): void {
     this.groupName = '';
     this.forms = [];
   }
 
-  addForm() {
+  addForm(): void {
     this.forms.push({
       id: this.forms.length + 1,
       name: '',
@@ -104,12 +104,12 @@ export class CreateGroupComponent {
     });
   }
 
-  deleteForm(index: number) {
+  deleteForm(index: number): void {
     this.forms.splice(index, 1);
   }
 
-  addQuestion(formIndex: number) {
-    const form = this.forms[formIndex];
+  addQuestion(formIndex: number): void {
+    const form: FormModel = this.forms[formIndex];
     form.questions.push({
       id: form.questions.length + 1,
       text: '',
@@ -117,8 +117,8 @@ export class CreateGroupComponent {
     });
   }
 
-  deleteQuestion(formIndex: number, questionIndex: number) {
-    const form = this.forms[formIndex];
+  deleteQuestion(formIndex: number, questionIndex: number): void {
+    const form: FormModel = this.forms[formIndex];
     form.questions.splice(questionIndex, 1);
   }
 }

@@ -7,6 +7,7 @@
             </button>
         </div>
         <div class="modal-body">
+            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
             <div class="grupo">
                 <div class="select-group">
                     <h3>Selecione um Grupo</h3>
@@ -20,7 +21,6 @@
                     </div>
                 </div>
             </div>
-            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
             <div class="formulario">
                 <div class="infield">
                     <div class="form-content">

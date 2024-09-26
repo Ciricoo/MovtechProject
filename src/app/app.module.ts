@@ -22,6 +22,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { FormsComponent } from './pages/forms/forms.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { SearchComponent } from './shared/search/search.component';
+import { FormsLinkComponent } from './pages/forms-link/forms-link.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchComponent } from './shared/search/search.component';
     NpsGraphComponent,
     FormsComponent,
     QuestionsComponent,
-    SearchComponent
+    SearchComponent,
+    FormsLinkComponent
   ],
   imports: [
     BrowserModule,

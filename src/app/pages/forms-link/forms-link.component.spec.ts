@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { QuestionsModalComponent } from './questions-modal.component';
 
-describe('QuestionsComponent', () => {
-  let component: QuestionsModalComponent;
-  let fixture: ComponentFixture<QuestionsModalComponent>;
+import { FormsLinkComponent } from './forms-link.component';
+
+describe('FormsLinkComponent', () => {
+  let component: FormsLinkComponent;
+  let fixture: ComponentFixture<FormsLinkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuestionsModalComponent ]
+      declarations: [ FormsLinkComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(QuestionsModalComponent);
+    fixture = TestBed.createComponent(FormsLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

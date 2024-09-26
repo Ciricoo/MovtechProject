@@ -3,7 +3,7 @@
     <h2>Formulários - {{groupName}}</h2>
     <div class="buttons">
       <button (click)="openModalCreateForm()" *ngIf="canShow()">Criar Formulário</button>
-      <button (click)="closeModal()">Fechar</button>
+      <button class="fechar" (click)="closeModal()">Fechar</button>
     </div>
   </div>
   <div *ngIf="forms.length === 0" class="empty-message">

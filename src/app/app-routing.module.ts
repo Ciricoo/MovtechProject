@@ -6,6 +6,7 @@ import { NpsComponent } from './pages/nps/nps.component';
 import { FormBuilderComponent } from './pages/home/form-builder.component';
 import { FormsComponent } from './pages/forms/forms.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
+import { FormsLinkComponent } from './pages/forms-link/forms-link.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'nps', component: NpsComponent, canActivate: [AuthGuard]},
   {path: 'forms', component: FormsComponent, canActivate: [AuthGuard]},
   {path: 'questions', component: QuestionsComponent, canActivate: [AuthGuard]},
+  {path: 'formulario/:id', component: FormsLinkComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login'}
 ];
 

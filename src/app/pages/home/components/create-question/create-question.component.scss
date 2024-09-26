@@ -5,7 +5,7 @@
     width: 50%;
     max-height: 80%;
     border: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 5px 15px;
     border-radius: 8px;
     background-color: white;
     overflow-y: hidden;
@@ -91,8 +91,5 @@ select:hover{
     background-color: #dadada;
 }
 
-.error-message{
-    margin-top: -10px;
-    width: 95%;
-}
+
 

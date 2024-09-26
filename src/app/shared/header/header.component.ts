@@ -30,23 +30,23 @@ export class HeaderComponent {
     return true
   }
 
-  logout(){
+  logout(): void {
     this.loginService.logout();
   }
 
-  Home(){
+  Home(): void {
     this.router.navigate(['/home']);
   }
 
-  Nps(){
+  Nps(): void {
     this.router.navigate(['/nps']);
   }
 
-  Forms(){
+  Forms(): void {
     this.router.navigate(['/forms'])
   }
 
-  Questions(){
+  Questions(): void {
     this.router.navigate(['/questions'])
   }
 }

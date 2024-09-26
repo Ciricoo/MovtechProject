@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormgroupService {
-  private apiUrl = 'https://localhost:7193/api/FormGroup/';
+  private apiUrl: string = 'https://localhost:7193/api/FormGroup/';
   
   constructor(private http: HttpClient) {}
   

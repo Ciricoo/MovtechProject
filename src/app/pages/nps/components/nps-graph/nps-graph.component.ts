@@ -33,18 +33,18 @@ export class NpsGraphComponent implements OnInit {
 }
 
   updateNeedlePosition(score: number): void {
-    const minScore = -100;
-    const maxScore = 100;
-    const angle = ((score - minScore) / (maxScore - minScore)) * 180 -90; // *180 converte em angulo e -90 porque se não ele ficaria deitado 90 graus, assim ele fica no meio
+    const minScore: number = -100;
+    const maxScore: number = 100;
+    const angle: number = ((score - minScore) / (maxScore - minScore)) * 180 -90; // *180 converte em angulo e -90 porque se não ele ficaria deitado 90 graus, assim ele fica no meio
     //ajusta o valor do score para   // a divisão serve para transformar a pontuação em uma fração                         
     //trabalhar em relação com a escala // ex: score = 100 resultado = 1, score = -100 resultado = 0
     //ex: score = 100 resultado = 200
-    const needleImg = this.pointer.nativeElement;
+    const needleImg: HTMLDialogElement = this.pointer.nativeElement;
     needleImg.style.transform = `rotate(${angle}deg)`; 
   }
 
   updateScoreStyle(score: number): void {
-    const npsScoreElement = this.nps.nativeElement;
+    const npsScoreElement: HTMLDialogElement = this.nps.nativeElement;
       npsScoreElement.classList.remove('positive', 'negative', 'passive');
       if (score >= 50) {
         npsScoreElement.classList.add('positive');
@@ -59,7 +59,7 @@ export class NpsGraphComponent implements OnInit {
     this.userService.npsList().subscribe({
       next: ( npslist: number[] ) => {
       const [promoters, passives, detractors] = npslist
-      const totalResponses = promoters + passives + detractors;
+      const totalResponses: number = promoters + passives + detractors;
       this.promoters = ((promoters / totalResponses) * 100).toFixed(2);
       this.passives = ((passives / totalResponses) * 100).toFixed(2);
       this.detractors = ((detractors / totalResponses) * 100).toFixed(2);

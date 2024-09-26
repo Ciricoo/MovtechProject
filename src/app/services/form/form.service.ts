@@ -8,7 +8,7 @@ import { FormModel } from '../../interfaces/Form';
   providedIn: 'root',
 })
 export class FormService {
-  private apiUrl = 'https://localhost:7193/api/Form/';
+  private apiUrl: string = 'https://localhost:7193/api/Form/';
 
   constructor(private http: HttpClient) {}
 

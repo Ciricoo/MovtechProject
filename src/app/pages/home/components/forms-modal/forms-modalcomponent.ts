@@ -62,7 +62,7 @@ export class FormsModalComponent {
     this.modal.nativeElement.close();
   }
   
-  openModalQuestion(formId: number, formName: string) {
+  openModalQuestion(formId: number, formName: string): void {
     this.questionComponent.formId = formId;
     this.questionComponent.formName = formName;
     setTimeout(() => {
@@ -71,7 +71,7 @@ export class FormsModalComponent {
     });
   }
   
-  openModalDelete(formId: number, event: MouseEvent) {
+  openModalDelete(formId: number, event: MouseEvent): void {
     this.handleClickOutside();
     event.stopPropagation();
     this.deleteComponent.itemId = formId;
@@ -79,7 +79,7 @@ export class FormsModalComponent {
     this.deleteComponent.showModal();
   }
   
-  openModalEdit(formId: number, formName: string, event: MouseEvent) {
+  openModalEdit(formId: number, formName: string, event: MouseEvent): void {
     this.handleClickOutside();
     event.stopPropagation();
     this.editComponent.itemId = formId;
@@ -89,7 +89,7 @@ export class FormsModalComponent {
     this.editComponent.showModal();
   }
   
-  openModalCreateForm() {
+  openModalCreateForm(): void {
     this.createFormComponent.currentGroupId = this.groupId;
     this.createFormComponent.showModal();
   }

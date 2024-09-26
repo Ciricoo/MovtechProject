@@ -7,6 +7,7 @@ import { FormModel } from 'src/app/interfaces/Form';
 import { FormService } from 'src/app/services/form/form.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { QuestionsModalComponent } from '../home/components/questions-modal/questions-modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forms',
@@ -24,8 +25,9 @@ export class FormsComponent {
   filteredForms: FormModel[] = [];
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
+  formId!: number;
 
-  constructor(private formService: FormService,private loginService: LoginService) {}
+  constructor(private formService: FormService,private loginService: LoginService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
@@ -66,7 +68,7 @@ export class FormsComponent {
     this.activeMenuIndex = null;
   }
 
-  openModalQuestion(formId: number, formName: string) {
+  openModalQuestion(formId: number, formName: string): void {
     this.questionComponent.formId = formId;
     this.questionComponent.formName = formName;
     setTimeout(() => {
@@ -75,7 +77,7 @@ export class FormsComponent {
     });
   }
 
-  openModalDelete(formId: number, event: MouseEvent) {
+  openModalDelete(formId: number, event: MouseEvent): void {
     this.handleClickOutside();
     event.stopPropagation();
     this.deleteComponent.itemId = formId;
@@ -83,7 +85,7 @@ export class FormsComponent {
     this.deleteComponent.showModal();
   }
 
-  openModalEdit(formId: number, formName: string, event: MouseEvent) {
+  openModalEdit(formId: number, formName: string, event: MouseEvent): void {
     this.handleClickOutside();
     event.stopPropagation();
     this.editComponent.itemId = formId;
@@ -91,11 +93,11 @@ export class FormsComponent {
     this.editComponent.serviceType = 'form';
     this.editComponent.showModal();
   }
-  openModalCreateForm() {
+  openModalCreateForm(): void {
     this.createFormComponent.showModal();
   }
   
-  openModalSeeAnswers() {
+  openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
 }

@@ -7,7 +7,7 @@ import { QuestionModel } from 'src/app/interfaces/Question';
   providedIn: 'root'
 })
 export class QuestionService {
-  private apiUrl = 'https://localhost:7193/api/Question/'
+  private apiUrl: string = 'https://localhost:7193/api/Question/'
 
   constructor(private http: HttpClient) {}
 
