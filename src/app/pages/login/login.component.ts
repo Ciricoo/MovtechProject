@@ -33,7 +33,6 @@ export class LoginComponent {
     if(localStorage.getItem('token')){
       this.router.navigate(['/home']);
     }
-
   }
 
   onSubmit(): void {

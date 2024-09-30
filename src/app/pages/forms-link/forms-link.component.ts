@@ -9,6 +9,7 @@ import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
 import { CreateQuestionComponent } from '../home/components/create-question/create-question.component';
 import { AnswerModal } from 'src/app/interfaces/Answer';
+import { FormService } from 'src/app/services/form/form.service';
 
 @Component({
   selector: 'app-forms-link',
@@ -21,7 +22,7 @@ export class FormsLinkComponent {
     private loginService: LoginService,
     private answerService: AnswerService,
     private route: ActivatedRoute,
-    private router: Router
+    private formsService: FormService
   ) {}
 
   @ViewChild('modalQuestion') modal!: ElementRef<HTMLDialogElement>;
@@ -31,7 +32,6 @@ export class FormsLinkComponent {
   @ViewChild(CreateQuestionComponent)
   createQuestionComponent!: CreateQuestionComponent;
   @Input() formId!: number;
-  @Input() formName!: string;
 
   userRole: string | null = null;
   questions: QuestionModel[] = [];
@@ -39,18 +39,26 @@ export class FormsLinkComponent {
   modalType: 'edit' | 'delete' | null = null;
   grades: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   answers: AnswerModal[] = [];
+  nameForm!: string;
 
   ngOnInit(): void {
+    this.userRole = this.loginService.getUserRole();
     this.route.params.subscribe((params) => {
-      this.formId = +params['id'];
+      this.formId = params['id'];
       this.loadQuestions();
+      this.loadNameForm();
     });
   }
 
   loadQuestions(): void {
-    this.userRole = this.loginService.getUserRole();
     this.questionService.getQuestionByFormId(this.formId)
       .subscribe((data) => (this.questions = data));
+  }
+
+  loadNameForm(): void {
+    this.formsService.getFormById(this.formId)
+      .subscribe((data) => (this.nameForm = data.name))
+      console.log(this.nameForm);
   }
 
   canShow(): boolean {

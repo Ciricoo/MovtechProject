@@ -7,7 +7,6 @@ import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { CreateGroupComponent } from './components/create-group/create-group.component';
 import { SeeAnswersComponent } from './components/see-answers/see-answers.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
-import { group } from '@angular/animations';
 
 
 @Component({
@@ -92,7 +91,7 @@ export class FormBuilderComponent implements OnInit {
     this.handleClickOutside()
     event.stopPropagation();
     this.editComponent.itemId = groupId;
-    this.editComponent.oldName = groupName
+    this.editComponent.oldName = groupName;
     this.editComponent.serviceType = 'group';
     this.editComponent.showModal();
   }

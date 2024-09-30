@@ -44,7 +44,10 @@ h3{
 }
 
 .infield{
-    width: 95%;
+    width: 90%;
+}
+.infield.first{
+    width: 88%;
 }
 
 .form-content{
@@ -62,13 +65,9 @@ h3{
     align-items: center;
     margin-left: 30px;
 
-    .infield {
-        width: 90%;
-    }
-
     .btn-delete{
         margin-left: 30px;
-        padding: 10px;
+        padding: 13px;
     }
 }
 

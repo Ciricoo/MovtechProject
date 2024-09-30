@@ -26,11 +26,11 @@
                     <h3 class="question">Perguntas</h3>
                     <div *ngFor="let question of questions; let i = index" class="question">
                         <div class="question-content">
-                            <div class="infield">
+                            <div class="infield"  [class.first]="i === 0">
                                 <input type="text" placeholder="Conteúdo da pergunta" [(ngModel)]="question.text" />
                                 <label></label>
                             </div>
-                            <button (click)="deleteQuestion(i)" class="btn-delete">
+                            <button *ngIf="i != 0" (click)="deleteQuestion(i)" class="btn-delete">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>

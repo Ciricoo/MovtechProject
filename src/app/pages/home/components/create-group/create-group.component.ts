@@ -86,7 +86,7 @@ export class CreateGroupComponent {
       this.closeModal();
       this.resetGroup();
       this.createdConfirmed.emit();
-      this.alertModalComponent.open('Grupo de Formulário criado com sucesso!')
+      this.alertModalComponent.open('Grupo de Formulário criado com sucesso!');
     });
   }
 

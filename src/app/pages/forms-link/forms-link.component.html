@@ -1,8 +1,8 @@
-<app-header [IsNps]="false" [IsForms]="false" [IsQuestion]="true"></app-header>
+<app-header [IsQuestion]="true"></app-header>
 <main>
     <div class="base">
         <div class="nav-base">
-            <h2>Perguntas</h2>
+            <h2>Perguntas - {{ nameForm }}</h2>
             <div class="buttons">
                 <button *ngIf="questions.length != 0" (click)="submitAnswers()">Enviar</button>
             </div>
