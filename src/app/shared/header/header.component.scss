@@ -42,10 +42,6 @@ img {
     margin-top: 25px;
 }
 
-.user-icon i {
-    font-size: 35px;
-    color: #141E30;
-}
 
 .username {
     margin: 0;
@@ -58,8 +54,24 @@ img {
     margin: 0;
 }
 
-.fa-poll, .fa-home, .fa-folder, .fa-file-alt, .fa-comment-dots{
+.fas{
     cursor: pointer;
+}
+
+.fa-user{
+    font-size: 35px;
+    color: #141E30;
+    cursor: auto;
+}
+
+.fas:hover{
+    transition: transform 0.5s ease;
+    transform: scale(1.1);
+}
+
+.fa-user:hover{
+    transition: 0;
+    transform: scale(1);
 }
 
 .icons {

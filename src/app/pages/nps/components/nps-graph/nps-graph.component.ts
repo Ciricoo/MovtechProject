@@ -35,8 +35,7 @@ export class NpsGraphComponent implements OnInit {
   updateNeedlePosition(score: number): void {
     const minScore: number = -100;
     const maxScore: number = 100;
-                            
-    const angle: number = ((score - minScore) / (maxScore - minScore)) * 180 -90;
+   const angle: number = ((score - minScore) / (maxScore - minScore)) * 180 -90;
     //ajusta o valor do score para   // a divisão serve para transformar a pontuação em uma fração                         
     //trabalhar em relação com a escala // ex: score = 100 resultado = 1, score = -100 resultado = 0
     //ex: score = 100 resultado = 200

@@ -77,6 +77,7 @@ export class QuestionsComponent {
       this.editComponent.serviceType = 'question';
       this.editComponent.showModal();
   }
+  
   toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
@@ -94,38 +95,4 @@ export class QuestionsComponent {
   openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
-
-  onInputChange(questionId: number, field: keyof AnswerModal, event: Event): void {
-    const target = event.target as HTMLInputElement | HTMLSelectElement;
-    if (target === null) return;
-  
-    const answer: AnswerModal = this.answers.find(a => a.idQuestion === questionId) || {id: 0,grade: null, description: '',idQuestion: questionId,idUser: 0,};
-
-    if (field === 'grade') {
-      answer.grade = target.value !== '' ? Number(target.value) : null; 
-    } else if (field === 'description'){
-      answer.description = target.value;
-    }
-  
-    this.answers = [...this.answers.filter(a => a.idQuestion !== questionId), answer]; 
-    //atualiza o array removendo a resposta antiga (se houver) e adicionando a nova resposta modificada.
-  }
-
-  submitAnswers(): void {
-    const allAnswered: boolean = this.questions.every(question => {
-    const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
-    return answer !== undefined && answer.grade !== null;
-  });
-
-  if (!allAnswered) {
-    this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
-    return;
-  }
-  
-    this.answerService.sendAnswer(this.answers).subscribe(() => {
-      this.alertModalComponent.open('Respostas enviadas com sucesso!');
-      this.answers = [];
-    });
-  }
-
 }

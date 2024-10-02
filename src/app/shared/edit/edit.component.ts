@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import {Component,ElementRef,EventEmitter,Input,Output,ViewChild,} from '@angular/core';
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormGroupModel } from 'src/app/interfaces/FormGroup';
 import { QuestionModel } from 'src/app/interfaces/Question';
@@ -25,8 +18,8 @@ export class EditComponent {
   @Input() serviceType!: 'group' | 'form' | 'question';
   @Input() itemId!: number;
   @Input() oldName!: string;
-  @Input() currentGroupId!: number; // Grupo selecionado
-  @Input() currentFormId!: number;  // Formulário selecionado
+  @Input() currentGroupId!: number; 
+  @Input() currentFormId!: number; 
   @Output() editConfirmed = new EventEmitter<number>();
 
   name: string = '';

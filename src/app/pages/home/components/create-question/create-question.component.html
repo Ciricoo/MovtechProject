@@ -7,6 +7,7 @@
             </button>
         </div>
         <div class="modal-body">
+            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
             <div class="form">
                 <div class="select-group">
                     <h3>Selecione um Formulário</h3>
@@ -21,7 +22,6 @@
                 </div>
             </div>
             <div class="question">
-                <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
                 <div class="formulario">
                     <h3 class="question">Perguntas</h3>
                     <div *ngFor="let question of questions; let i = index" class="question">

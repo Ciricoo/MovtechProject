@@ -27,8 +27,7 @@ export class AlertModalComponent implements AfterViewInit {
 }
   close(): void {
     this.modal.nativeElement.close();
-    if(this.goToHome == true){
+    if(this.goToHome == true)
       this.router.navigate(['/home']);
-    }
   }
 }

@@ -99,15 +99,19 @@ export class QuestionsModalComponent {
   }
 
   submitAnswers(): void {
-    const allAnswered: boolean = this.questions.every(question => {
-    const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
-    return answer !== undefined && answer.grade !== null;
-  });
+    for(const question of this.questions){
+      const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
 
-  if (!allAnswered) {
-    this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
-    return;
-  }
+      if(answer?.description && answer.description.length > 150){
+        this.alertModalComponent.open("Limite de caracteres na descrição excedido!");
+        return;
+      }
+
+      if(!answer || answer.grade == null){
+        this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
+        return;
+      }
+    };
 
     this.answerService.sendAnswer(this.answers).subscribe(() => {
       this.closeModal();
@@ -115,4 +119,5 @@ export class QuestionsModalComponent {
       this.answers = [];
     });
   }
+
 }

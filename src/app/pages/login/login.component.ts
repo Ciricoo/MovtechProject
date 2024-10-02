@@ -26,6 +26,7 @@ export class LoginComponent {
       this.loginService.logout();
       this.loginService.clearLocalStorage();
     }
+    
     this.route.queryParams.subscribe(params => {
       this.returnUrl = params['returnUrl'] || '/home';
     });
