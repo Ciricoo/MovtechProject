@@ -11,9 +11,9 @@ import { FormModel } from 'src/app/interfaces/Form';
 import { FormService } from 'src/app/services/form/form.service';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
-import { QuestionsModalComponent } from '../questions-modal/questions-modal.component';
+import { QuestionsModalComponent } from '../../../../shared/questions-modal/questions-modal.component';
 import { LoginService } from 'src/app/services/login/login.service';
-import { CreateFormComponent } from '../create-form/create-form.component';
+import { CreateFormComponent } from '../../../../shared/create-form/create-form.component';
 
 @Component({
   selector: 'app-forms-modal',

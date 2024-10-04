@@ -12,8 +12,8 @@ main {
   text-align: center;
 }
 .speedometer{
-  width: 600px;
-  height: 600px;
+  width: 63vh;
+  height: 63vh;
   border-radius: 50%;
   background: conic-gradient(
     #f7b748 0% 11%, 
@@ -29,8 +29,8 @@ main {
 
 .needle{
   position: absolute;
-  width: 540px;
-  height: 540px;
+  width: 57vh;
+  height: 57vh;
   padding: 150px;
   left: 50%;
   top: 50%;

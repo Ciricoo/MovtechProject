@@ -10,7 +10,7 @@
       </div>
       <div *ngIf="IsForms" class="forms user-icon">
         <a (click)="Home()"><i class="fas fa-home"></i></a>
-        <p class="username nps">Home</p>
+        <p class="username nps">Tela Inicial</p>
       </div>
       <div *ngIf="!IsQuestion" class="user-icon perguntas">
         <i (click)="Questions()" class="fas fa-comment-dots"></i>
@@ -18,7 +18,7 @@
       </div>
       <div *ngIf="IsQuestion" class="user-icon perguntas">
         <a (click)="Home()"><i class="fas fa-home"></i></a>
-        <p class="username nps">Home</p>
+        <p class="username nps">Tela Inicial</p>
       </div>
     </div>
     
@@ -27,7 +27,7 @@
         <a *ngIf="!IsNps" (click)="Nps()"><i class="fas fa-poll"></i></a>
         <p *ngIf="!IsNps" class="username nps">Nps</p>
         <a *ngIf="IsNps" (click)="Home()"><i class="fas fa-home"></i></a>
-        <p *ngIf="IsNps" class="username nps">Home</p>
+        <p *ngIf="IsNps" class="username nps">Tela Inicial</p>
       </div>
       
       <div class="user-icon">

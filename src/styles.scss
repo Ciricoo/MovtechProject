@@ -78,6 +78,16 @@ button:hover {
       justify-content: space-between;
       min-height: 40px;
   }
+
+  .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-text{
+    margin: 0;
+  }
 }
 
 .card:hover{

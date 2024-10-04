@@ -2,15 +2,15 @@
 <main>
     <div class="base">
         <div class="nav-base">
-            <h2>Perguntas - {{ nameForm }}</h2>
+            <h2>Perguntas - <i *ngIf="nameForm == undefined">Formulário não encontrado!</i> {{ nameForm }}</h2>
             <div class="buttons">
                 <button *ngIf="questions.length != 0" (click)="submitAnswers()">Enviar</button>
             </div>
         </div>
 
         <div *ngIf="questions.length === 0" class="empty-message">
-            <h3>Nenhum grupo de formulários encontrado.</h3>
-            <p>Crie um grupo de formulário para começar.</p>
+            <h3>Nenhuma pergunta encontrada nesse formulário.</h3>
+            <p>Crie um formulário ou perguntas para responder.</p>
         </div>
 
         <div class="modal-content">

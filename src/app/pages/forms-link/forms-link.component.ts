@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { AnswerService } from 'src/app/services/answer/answer.service';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
-import { CreateQuestionComponent } from '../home/components/create-question/create-question.component';
+import { CreateQuestionComponent } from '../../shared/create-question/create-question.component';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { FormService } from 'src/app/services/form/form.service';
 
@@ -31,7 +31,7 @@ export class FormsLinkComponent {
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @ViewChild(CreateQuestionComponent)
   createQuestionComponent!: CreateQuestionComponent;
-  @Input() formId!: number;
+  formId!: number;
 
   userRole: string | null = null;
   questions: QuestionModel[] = [];
@@ -42,12 +42,12 @@ export class FormsLinkComponent {
   nameForm!: string;
 
   ngOnInit(): void {
-    this.userRole = this.loginService.getUserRole();
-    this.route.params.subscribe((params) => {
-      this.formId = params['id'];
-      this.loadQuestions();
-      this.loadNameForm();
-    });
+      this.userRole = this.loginService.getUserRole();
+      this.route.params.subscribe((params) => {
+        this.formId = params['id'];
+        this.loadQuestions();
+        this.loadNameForm();
+      });
   }
 
   loadQuestions(): void {

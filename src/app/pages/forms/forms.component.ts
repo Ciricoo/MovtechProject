@@ -1,12 +1,12 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
-import { CreateFormComponent } from '../home/components/create-form/create-form.component';
-import { SeeAnswersComponent } from '../home/components/see-answers/see-answers.component';
+import { CreateFormComponent } from '../../shared/create-form/create-form.component';
+import { SeeAnswersComponent } from '../../shared/see-answers/see-answers.component';
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormService } from 'src/app/services/form/form.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { QuestionsModalComponent } from '../home/components/questions-modal/questions-modal.component';
+import { QuestionsModalComponent } from '../../shared/questions-modal/questions-modal.component';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

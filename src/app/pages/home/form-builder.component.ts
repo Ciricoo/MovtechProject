@@ -5,7 +5,7 @@ import { FormsModalComponent } from './components/forms-modal/forms-modalcompone
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { CreateGroupComponent } from './components/create-group/create-group.component';
-import { SeeAnswersComponent } from './components/see-answers/see-answers.component';
+import { SeeAnswersComponent } from '../../shared/see-answers/see-answers.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
 
 

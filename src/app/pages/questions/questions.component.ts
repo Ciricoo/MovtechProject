@@ -1,8 +1,8 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
-import { CreateQuestionComponent } from '../home/components/create-question/create-question.component';
-import { SeeAnswersComponent } from '../home/components/see-answers/see-answers.component';
+import { CreateQuestionComponent } from '../../shared/create-question/create-question.component';
+import { SeeAnswersComponent } from '../../shared/see-answers/see-answers.component';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { QuestionService } from 'src/app/services/question/question.service';

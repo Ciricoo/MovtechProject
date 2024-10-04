@@ -26,7 +26,7 @@ export class CreateFormComponent {
   constructor(private formService: FormService, private formGroupService: FormgroupService) {}
 
   loadFormGroups(): void {
-    this.formGroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});
+    this.formGroupService.getFormGroups().subscribe((data) => {this.formGroups = data;});   
   }
 
   showModal(): void {
