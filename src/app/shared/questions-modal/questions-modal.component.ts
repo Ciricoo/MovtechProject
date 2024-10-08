@@ -82,6 +82,7 @@ export class QuestionsModalComponent {
     this.createQuestionComponent.currentFormId = this.formId;
     this.createQuestionComponent.showModal();
   }
+  
   onInputChange(questionId: number, field: keyof AnswerModal, event: Event): void {
     const target = event.target as HTMLInputElement | HTMLSelectElement;
     if (target === null) return;

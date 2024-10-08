@@ -91,13 +91,13 @@ export class EditComponent {
         this.alertModalComponent.open('Grupo de Formulário editado com sucesso!')
       });
     } else if (this.serviceType === 'form') {
-      const updatedForm: FormModel = { id: this.itemId, name: this.name, IdFormsGroup: this.fk, questions: []}; 
+      const updatedForm: FormModel = { id: this.itemId, name: this.name, idFormsGroup: this.fk, questions: []}; 
       this.formService.updateForm(this.itemId, updatedForm).subscribe(() => {
         this.editConfirmed.emit();
         this.alertModalComponent.open('Formulário editado com sucesso!')
       });
     } else if (this.serviceType === 'question') {
-      const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, IdForms: this.fk};
+      const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, idForms: this.fk};
       this.questionService.updateQuestion(this.itemId, updatedQuestion).subscribe(() => {
         this.editConfirmed.emit();
       this.alertModalComponent.open('Pergunta editado com sucesso!')

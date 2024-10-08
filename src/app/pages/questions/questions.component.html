@@ -25,7 +25,7 @@
                 <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
                 <div *ngIf="activeMenuIndex === i" class="menu">
                   <ul>
-                    <li (click)="openModalEdit(question.id, question.text)">
+                    <li (click)="openModalEdit(question.id, question.text, question.idForms)">
                       <i class="fas fa-edit"></i> Editar
                     </li>
                     <li (click)="openModalDelete(question.id)">
@@ -37,7 +37,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{question.text}}</h5>
-              <p class="card-text">Aqui estão todas as perguntas para uma boa coleta de feedback.</p>
+              <p class="card-text">Esta pergunta pertence ao Formulário: <b>{{question.formName}}</b> para uma boa coleta de feedback.</p>
             </div>
           </div>
         </ng-container>

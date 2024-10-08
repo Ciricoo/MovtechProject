@@ -25,7 +25,7 @@
                 <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
                 <div *ngIf="activeMenuIndex === i" class="menu">
                   <ul>
-                    <li (click)="openModalEdit(form.id, form.name, $event)">
+                    <li (click)="openModalEdit(form.id, form.name, form.idFormsGroup, $event)">
                       <i class="fas fa-edit"></i> Editar
                     </li>
                     <li (click)="openModalDelete(form.id, $event)">
@@ -37,7 +37,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{form.name}}</h5>
-              <p class="card-text">Aqui estão todos os formulários para facilitar e ter uma boa coleta de feedback dos seus usuários</p>
+              <p class="card-text">Este formulário pertence ao Grupo: <b>{{form.groupName}}</b> para facilitar e ter uma boa coleta de feedback dos seus usuários</p>
             </div>
           </div>
         </ng-container>
@@ -46,7 +46,7 @@
   </div>
 </main>
 <app-questions-modal></app-questions-modal>
-<app-delete (deleteConfirmed)="loadForms()"></app-delete>
-<app-edit (editConfirmed)="loadForms()"></app-edit>
-<app-create-form (createdConfirmed)="loadForms()"></app-create-form>
+<app-delete (deleteConfirmed)="loadFormsAndGroups()"></app-delete>
+<app-edit (editConfirmed)="loadFormsAndGroups()"></app-edit>
+<app-create-form (createdConfirmed)="loadFormsAndGroups()"></app-create-form>
 <app-see-answers *ngIf="canShow()"></app-see-answers>

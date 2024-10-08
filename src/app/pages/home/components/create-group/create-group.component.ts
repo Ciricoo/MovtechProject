@@ -99,7 +99,7 @@ export class CreateGroupComponent {
     this.forms.push({
       id: this.forms.length + 1,
       name: '',
-      IdFormsGroup: 0,
+      idFormsGroup: 0,
       questions: [],
     });
   }
@@ -113,7 +113,7 @@ export class CreateGroupComponent {
     form.questions.push({
       id: form.questions.length + 1,
       text: '',
-      IdForms: form.id,
+      idForms: form.id,
     });
   }
 

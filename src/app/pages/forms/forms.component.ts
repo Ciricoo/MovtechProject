@@ -8,6 +8,8 @@ import { FormService } from 'src/app/services/form/form.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { QuestionsModalComponent } from '../../shared/questions-modal/questions-modal.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroupModel } from 'src/app/interfaces/FormGroup';
+import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 
 @Component({
   selector: 'app-forms',
@@ -22,23 +24,38 @@ export class FormsComponent {
   @ViewChild(QuestionsModalComponent) questionComponent!: QuestionsModalComponent;
 
   forms: FormModel[] = [];
+  groups: FormGroupModel[] = [];
   filteredForms: FormModel[] = [];
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
   formId!: number;
 
-  constructor(private formService: FormService,private loginService: LoginService, private route: ActivatedRoute) {}
+  constructor(private formService: FormService,private loginService: LoginService, private formGroupService: FormgroupService) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
-    this.loadForms();
+    this.loadFormsAndGroups();
   }
 
-  loadForms(): void {
+  loadFormsAndGroups(): void {
       this.formService.getForms().subscribe((data) => {
         this.forms = data;
         this.filteredForms = data;
+
+        this.formGroupService.getFormGroups().subscribe((data) => {
+          this.groups = data;
+          this.associateGroupName();
+        })
       });
+  }
+
+  associateGroupName(): void{
+    this.forms.forEach(form => {
+      console.log(form.idFormsGroup)
+      const group = this.groups.find(g => g.id == form.idFormsGroup);
+      if(group)
+        form.groupName = group.name;
+    })
   }
 
   canShow(): boolean{
@@ -54,7 +71,7 @@ export class FormsComponent {
         form.name.toLowerCase().includes(search.toLowerCase())
       );
     }else {
-      this.filteredForms = [...this.forms]; 
+      this.filteredForms = this.forms; 
     }
   }
 
@@ -85,11 +102,12 @@ export class FormsComponent {
     this.deleteComponent.showModal();
   }
 
-  openModalEdit(formId: number, formName: string, event: MouseEvent): void {
+  openModalEdit(formId: number, formName: string, groupId: number ,event: MouseEvent): void {
     this.handleClickOutside();
     event.stopPropagation();
     this.editComponent.itemId = formId;
     this.editComponent.oldName = formName;
+    this.editComponent.currentGroupId = groupId;
     this.editComponent.serviceType = 'form';
     this.editComponent.showModal();
   }

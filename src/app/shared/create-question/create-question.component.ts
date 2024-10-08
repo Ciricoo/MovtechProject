@@ -67,7 +67,7 @@ export class CreateQuestionComponent {
     if(!this.verificaQuestions()){
       return;
     }
-    const questions: QuestionModel[] = this.questions.map((question) => ({id: 0,text: question.text,IdForms: this.selectedFormId,}));
+    const questions: QuestionModel[] = this.questions.map((question) => ({id: 0,text: question.text, idForms: this.selectedFormId,}));
     this.questionService.createQuestion(questions).subscribe(() => {
       this.closeModal();
       this.resetForm();
@@ -86,7 +86,7 @@ export class CreateQuestionComponent {
     this.questions.push({
       id: this.questions.length + 1,
       text: '',
-      IdForms: 0,
+      idForms: 0,
     });
   }
 

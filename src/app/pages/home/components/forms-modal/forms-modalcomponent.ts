@@ -52,7 +52,6 @@ export class FormsModalComponent {
     }
     return true
   }
-
   
   showModal(): void {
     this.modal.nativeElement.showModal();

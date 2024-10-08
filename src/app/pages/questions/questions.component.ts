@@ -7,8 +7,9 @@ import { QuestionModel } from 'src/app/interfaces/Question';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AnswerService } from 'src/app/services/answer/answer.service';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+import { FormService } from 'src/app/services/form/form.service';
+import { FormModel } from 'src/app/interfaces/Form';
 
 @Component({
   selector: 'app-questions',
@@ -27,13 +28,14 @@ export class QuestionsComponent {
   
   userRole: string | null = null;
   questions: QuestionModel[] = [];
+  forms: FormModel[] = [];
   activeMenuIndex: number | null = null;
   modalType: 'edit' | 'delete' | null = null;
   grades: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   answers: AnswerModal[] = [];
   filteredQuestions: QuestionModel[] = []
 
-  constructor(private questionService: QuestionService, private loginService: LoginService, private answerService: AnswerService) {}
+  constructor(private questionService: QuestionService, private loginService: LoginService, private formService: FormService) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
@@ -45,7 +47,22 @@ export class QuestionsComponent {
     this.questionService.getQuestion().subscribe((data) => {
       this.questions = data;
       this.filteredQuestions = data;
+
+      this.formService.getForms().subscribe((data) => {
+        console.log(data)
+        this.forms = data;
+        this.associatedFormName();
+      })
     });
+  }
+
+  associatedFormName(): void{
+    this.questions.forEach(question => {
+      console.log(question)
+      const form = this.forms.find(f => f.id == question.idForms);
+      if(form)
+        question.formName = form.name;
+    })
   }
 
   canShow(): boolean{
@@ -61,7 +78,7 @@ export class QuestionsComponent {
         question.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       );
     } else{
-      this.filteredQuestions = [...this.questions];
+      this.filteredQuestions = this.questions;
     }
   }
 
@@ -71,9 +88,10 @@ export class QuestionsComponent {
       this.deleteComponent.showModal();
   }
 
-  openModalEdit(questionId: number, questionName: string): void {
+  openModalEdit(questionId: number, questionName: string, idForms: number): void {
       this.editComponent.itemId = questionId;
-      this.editComponent.oldName = questionName
+      this.editComponent.oldName = questionName;
+      this.editComponent.currentFormId = idForms;
       this.editComponent.serviceType = 'question';
       this.editComponent.showModal();
   }

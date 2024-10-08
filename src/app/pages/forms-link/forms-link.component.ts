@@ -1,4 +1,4 @@
-import {Component,ElementRef,Input,ViewChild,} from '@angular/core';
+import {Component,ElementRef,ViewChild,} from '@angular/core';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { QuestionService } from 'src/app/services/question/question.service';
@@ -58,7 +58,6 @@ export class FormsLinkComponent {
   loadNameForm(): void {
     this.formsService.getFormById(this.formId)
       .subscribe((data) => (this.nameForm = data.name))
-      console.log(this.nameForm);
   }
 
   canShow(): boolean {

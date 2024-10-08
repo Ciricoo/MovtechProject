@@ -79,7 +79,7 @@ export class CreateFormComponent {
     if(!this.verificaForm()){
       return;
     }
-    const form: FormModel = {id: 0, name: this.formName, IdFormsGroup: this.selectedGroupId, questions: this.questions};
+    const form: FormModel = {id: 0, name: this.formName, idFormsGroup: this.selectedGroupId, questions: this.questions};
     this.formService.createForm(form).subscribe( () =>
       {
         this.closeModal();
@@ -103,7 +103,7 @@ export class CreateFormComponent {
     this.questions.push({
       id: this.questions.length + 1,
       text: '',
-      IdForms: 0,
+      idForms: 0,
     });
   }
 

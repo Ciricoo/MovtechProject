@@ -45,7 +45,7 @@ export class NpsGraphComponent implements OnInit {
 
   updateScoreStyle(score: number): void {
     const npsScoreElement: HTMLDialogElement = this.nps.nativeElement;
-      npsScoreElement.classList.remove('positive', 'negative', 'passive');
+    npsScoreElement.classList.remove('positive', 'negative', 'passive');
       if (score >= 50) {
         npsScoreElement.classList.add('positive');
       } else if (score < 0) {

@@ -67,7 +67,6 @@ button:hover {
     left: 12px;
     cursor: pointer;
 }
-
   
 .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -134,7 +133,7 @@ label{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 90px;
+  height: 10vh;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   position: sticky;
@@ -256,6 +255,7 @@ h2{
   display: flex;
   justify-content: center;
   align-items: center;
+  --bs-btn-close-focus-shadow: 0;
 }
 
 .modal-body {
@@ -279,4 +279,22 @@ h2{
   padding: 10px;
   background-color: #f3f3f3;
   border-radius: 5px;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.7em;
+} 
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  background-color :#141E30;
+  border-radius: 0.2em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 0.3em #FFF, 0 0 10em #202e47
 }

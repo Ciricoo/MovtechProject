@@ -56,7 +56,7 @@ export class FormBuilderComponent implements OnInit {
         group.name.toLowerCase().includes(search.toLowerCase())
       );
     }else {
-      this.filteredGroups = [...this.formGroups]; 
+      this.filteredGroups = this.formGroups; 
     }
   }
 
