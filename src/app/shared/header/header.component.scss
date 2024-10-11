@@ -23,6 +23,8 @@
 }
 i{
     font-size: 35px;
+    transition: all 0.3s ease;
+    
 }
 .fa-sign-out-alt {
     cursor: pointer;
@@ -40,6 +42,7 @@ img {
     flex-direction: column;
     align-items: center;
     margin-top: 25px;
+    transition: all 0.3s;
 }
 
 
@@ -55,23 +58,15 @@ img {
 }
 
 .fas{
+    color: #141E30;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .fa-user{
     font-size: 35px;
     color: #141E30;
     cursor: auto;
-}
-
-.fas:hover{
-    transition: transform 0.5s ease;
-    transform: scale(1.1);
-}
-
-.fa-user:hover{
-    transition: 0;
-    transform: scale(1);
 }
 
 .icons {
@@ -99,4 +94,26 @@ form.form-inline {
 .forms{
     margin-right: -15px;
     margin-top: auto;
+}
+
+.fas:hover {
+    transform: scale(1.1); 
+    animation: pulse 1s infinite;
+}
+
+.fa-user:hover {
+    transform: none;
+    animation: none;
+}   
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormService } from 'src/app/services/form/form.service';
 import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { QuestionService } from 'src/app/services/question/question.service';
@@ -9,7 +9,7 @@ import { AlertModalComponent } from '../alert-modal/alert-modal.component';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })
-export class DeleteComponent {
+export class DeleteComponent{
   @Input() itemId!: number; 
   @Input() serviceType!: 'group' | 'form' | 'question';
   @ViewChild('delete') modal!: ElementRef<HTMLDialogElement>;
@@ -17,7 +17,7 @@ export class DeleteComponent {
   @Output() deleteConfirmed = new EventEmitter<number>();
   
   constructor(private formgroupService: FormgroupService, private formService: FormService, private questionService: QuestionService) {}
-  
+
   showModal(): void {
       this.modal.nativeElement.showModal();
   }

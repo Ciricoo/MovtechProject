@@ -33,3 +33,21 @@ h2 {
     max-height: 60vh;
     overflow-y: auto; 
 }
+
+@media screen and (max-width: 1700px) {
+    .base {
+        margin-top: 6%;
+    }
+  }
+
+@media screen and (max-width: 1400px) {
+    .base {
+        margin-top: 8%;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .base {
+        margin-top: 10%;
+    }
+  }

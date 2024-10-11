@@ -20,8 +20,8 @@ export class FormService {
     return this.http.delete<boolean>(`${this.apiUrl}${formId}`, {withCredentials: true });
   }
 
-  updateForm(formId: number, updatedForm: FormModel): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}${formId}`, updatedForm, {withCredentials: true });
+  updateForm(updatedForm: FormModel): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}${updatedForm.id}`, updatedForm, {withCredentials: true });
   }
   
   createForm(createForm: FormModel): Observable<FormModel> {

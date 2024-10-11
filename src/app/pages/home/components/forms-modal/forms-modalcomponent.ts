@@ -5,7 +5,7 @@ import {
   ViewChild,
   HostListener,
   Output,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { FormModel } from 'src/app/interfaces/Form';
 import { FormService } from 'src/app/services/form/form.service';
@@ -64,23 +64,17 @@ export class FormsModalComponent {
   openModalQuestion(formId: number, formName: string): void {
     this.questionComponent.formId = formId;
     this.questionComponent.formName = formName;
-    setTimeout(() => {
-      this.questionComponent.showModal();
-      this.questionComponent.loadQuestion();
-    });
+    this.questionComponent.showModal();
+    this.questionComponent.loadQuestion();
   }
   
-  openModalDelete(formId: number, event: MouseEvent): void {
-    this.handleClickOutside();
-    event.stopPropagation();
+  openModalDelete(formId: number): void {
     this.deleteComponent.itemId = formId;
     this.deleteComponent.serviceType = 'form';
     this.deleteComponent.showModal();
   }
   
-  openModalEdit(formId: number, formName: string, event: MouseEvent): void {
-    this.handleClickOutside();
-    event.stopPropagation();
+  openModalEdit(formId: number, formName: string): void {
     this.editComponent.itemId = formId;
     this.editComponent.oldName = formName;
     this.editComponent.serviceType = 'form';

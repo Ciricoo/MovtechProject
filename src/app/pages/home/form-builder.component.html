@@ -25,10 +25,10 @@
                 <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
                 <div *ngIf="activeMenuIndex === i" #menu class="menu">
                   <ul>
-                    <li (click)="openModalEdit(group.id, group.name, $event)">
+                    <li (click)="openModalEdit(group.id, group.name)">
                       <i class="fas fa-edit"></i> Editar
                     </li>
-                    <li (click)="openModalDelete(group.id, $event)">
+                    <li (click)="openModalDelete(group.id)">
                       <i class="fas fa-trash"></i> Excluir
                     </li>
                   </ul>
@@ -37,7 +37,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{group.name}}</h5>
-              <p class="card-text">Aqui estão todos os grupos de formulários para facilitar a coleta de feedback dos seus usuários.</p>
+              <p class="card-text">Esses são todos os grupos de formulários para facilitar a coleta de feedback dos seus usuários.</p>
             </div>
           </div>
         </ng-container>

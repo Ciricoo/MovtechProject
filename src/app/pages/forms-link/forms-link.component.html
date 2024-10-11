@@ -1,4 +1,4 @@
-<app-header [IsQuestion]="true"></app-header>
+<app-header [currentPage]="'questions'"></app-header>
 <main>
     <div class="base">
         <div class="nav-base">
@@ -40,9 +40,4 @@
         </div>
     </div>
 </main>
-<app-forms-modal></app-forms-modal>
-<app-delete (deleteConfirmed)="loadQuestions()"></app-delete>
-<app-edit (editConfirmed)="loadQuestions()"></app-edit>
-<app-create-question (createdConfirmed)="loadQuestions()"></app-create-question>
-<app-see-answers *ngIf="canShow()"></app-see-answers>
 <app-alert-modal></app-alert-modal>

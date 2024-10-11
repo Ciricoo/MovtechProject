@@ -4,37 +4,37 @@
   </a>
   <div class="icons">
     <div class="forms-icons">
-      <div *ngIf="!IsForms" class="forms user-icon">
-        <i (click)="Forms()" class="fas fa-file-alt"></i>
-        <p class="username">Formulários</p>
+      <div class="forms user-icon">
+        <i *ngIf="currentPage !== 'forms'" (click)="navigate('forms')" class="fas fa-file-alt"></i>
+        <a *ngIf="currentPage === 'forms'" (click)="navigate('home')">
+          <i class="fas fa-home"></i>
+        </a>
+        <p class="username">{{ currentPage === 'forms' ? 'Tela Inicial' : 'Formulários' }}</p>
       </div>
-      <div *ngIf="IsForms" class="forms user-icon">
-        <a (click)="Home()"><i class="fas fa-home"></i></a>
-        <p class="username nps">Tela Inicial</p>
-      </div>
-      <div *ngIf="!IsQuestion" class="user-icon perguntas">
-        <i (click)="Questions()" class="fas fa-comment-dots"></i>
-        <p class="username">Perguntas</p>
-      </div>
-      <div *ngIf="IsQuestion" class="user-icon perguntas">
-        <a (click)="Home()"><i class="fas fa-home"></i></a>
-        <p class="username nps">Tela Inicial</p>
+
+      <div class="user-icon perguntas">
+        <i *ngIf="currentPage !== 'questions'" (click)="navigate('questions')" class="fas fa-comment-dots"></i>
+        <a *ngIf="currentPage === 'questions'" (click)="navigate('home')">
+          <i class="fas fa-home"></i>
+        </a>
+        <p class="username">{{ currentPage === 'questions' ? 'Tela Inicial' : 'Perguntas' }}</p>
       </div>
     </div>
-    
+
     <form class="form-inline my-2 my-lg-0">
       <div *ngIf="canShow()" class="user-icon">
-        <a *ngIf="!IsNps" (click)="Nps()"><i class="fas fa-poll"></i></a>
-        <p *ngIf="!IsNps" class="username nps">Nps</p>
-        <a *ngIf="IsNps" (click)="Home()"><i class="fas fa-home"></i></a>
-        <p *ngIf="IsNps" class="username nps">Tela Inicial</p>
+        <i *ngIf="currentPage !== 'nps'" (click)="navigate('nps')" class="fas fa-poll"></i>
+        <a *ngIf="currentPage === 'nps'" (click)="navigate('home')">
+          <i class="fas fa-home"></i>
+        </a>
+        <p class="username">{{ currentPage === 'nps' ? 'Tela Inicial' : 'Nps' }}</p>
       </div>
-      
+
       <div class="user-icon">
         <i class="fas fa-user"></i>
         <p class="username">{{ username }}</p>
       </div>
-      
+
       <a (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
     </form>
   </div>

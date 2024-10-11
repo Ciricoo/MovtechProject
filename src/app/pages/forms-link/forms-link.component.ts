@@ -2,7 +2,7 @@ import {Component,ElementRef,ViewChild,} from '@angular/core';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { QuestionService } from 'src/app/services/question/question.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { AnswerService } from 'src/app/services/answer/answer.service';
 import { DeleteComponent } from 'src/app/shared/delete/delete.component';
@@ -79,21 +79,31 @@ export class FormsLinkComponent {
       answer.description = target.value;
     }
 
-    this.answers = [...this.answers.filter((a) => a.idQuestion !== questionId),answer,];
+    this.answers = [...this.answers.filter(a => a.idQuestion !== questionId),answer,];
     //atualiza o array removendo a resposta antiga (se houver) e adicionando a nova resposta modificada.
   }
 
+  answersValidator(): boolean{
+    for(const question of this.questions){
+      const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
+  
+      if(answer?.description && answer.description.length > 150){
+        this.alertModalComponent.open("Limite de caracteres na descrição excedido!");
+        return false;
+      }
+  
+      if(!answer || answer.grade == null){
+        this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
+        return false;
+      }
+    };
+    return true;
+  }
+
   submitAnswers(): void {
-    const allAnswered: boolean = this.questions.every((question) => {
-      const answer: AnswerModal | undefined = this.answers.find((a) => a.idQuestion === question.id);
-      return answer !== undefined && answer.grade !== null;
-    });
-
-    if (!allAnswered) {
-      this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
-      return;
-    }
-
+    if(!this.answersValidator())
+      return
+    
     this.answerService.sendAnswer(this.answers).subscribe(() => {
       this.alertModalComponent.open('Respostas enviadas com sucesso!');
       this.answers = [];

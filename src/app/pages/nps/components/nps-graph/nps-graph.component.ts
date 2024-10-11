@@ -10,8 +10,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./nps-graph.component.scss']
 })
 export class NpsGraphComponent implements OnInit {
-  @ViewChild('pointer') pointer!: ElementRef<HTMLDialogElement>;
-  @ViewChild('nps') nps!: ElementRef<HTMLDialogElement>;
+  @ViewChild('pointer') pointer!: ElementRef<HTMLImageElement>;
+  @ViewChild('nps') nps!: ElementRef<HTMLElement>;
   npsScore!: number;
   detractors!: string;
   passives!: string;
@@ -35,16 +35,16 @@ export class NpsGraphComponent implements OnInit {
   updateNeedlePosition(score: number): void {
     const minScore: number = -100;
     const maxScore: number = 100;
-   const angle: number = ((score - minScore) / (maxScore - minScore)) * 180 -90;
+   const angle: number = ((score - minScore) / (maxScore - minScore)) * 180 - 90;
     //ajusta o valor do score para   // a divisão serve para transformar a pontuação em uma fração                         
     //trabalhar em relação com a escala // ex: score = 100 resultado = 1, score = -100 resultado = 0
     //ex: score = 100 resultado = 200
-    const needleImg: HTMLDialogElement = this.pointer.nativeElement;
+    const needleImg: HTMLImageElement = this.pointer.nativeElement;
     needleImg.style.transform = `rotate(${angle}deg)`; 
   }
 
   updateScoreStyle(score: number): void {
-    const npsScoreElement: HTMLDialogElement = this.nps.nativeElement;
+    const npsScoreElement: HTMLElement = this.nps.nativeElement;
     npsScoreElement.classList.remove('positive', 'negative', 'passive');
       if (score >= 50) {
         npsScoreElement.classList.add('positive');

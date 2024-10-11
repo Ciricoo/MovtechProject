@@ -1,4 +1,3 @@
-// alert-modal.component.ts
 import { Component, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert/alert.service';

@@ -1,4 +1,4 @@
-<app-header [IsQuestion]="true"></app-header>
+<app-header [currentPage]="'questions'"></app-header>
 <app-search (searchEvent)="filterQuestions($event)"></app-search>
 <main>
   <div class="base">
@@ -46,8 +46,7 @@
   </div>
 </main>
 <app-forms-modal></app-forms-modal>
-<app-delete (deleteConfirmed)="loadQuestion()"></app-delete>
-<app-edit (editConfirmed)="loadQuestion()"></app-edit>
-<app-create-question (createdConfirmed)="loadQuestion()"></app-create-question>
+<app-delete (deleteConfirmed)="loadQuestionAndForms()"></app-delete>
+<app-edit (editConfirmed)="loadQuestionAndForms()"></app-edit>
+<app-create-question (createdConfirmed)="loadQuestionAndForms()"></app-create-question>
 <app-see-answers *ngIf="canShow()"></app-see-answers>
-<app-alert-modal></app-alert-modal>

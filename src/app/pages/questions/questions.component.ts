@@ -21,44 +21,38 @@ export class QuestionsComponent {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(CreateQuestionComponent) createQuestionComponent!: CreateQuestionComponent;
   @ViewChild(SeeAnswersComponent) seeAnswersComponent!: SeeAnswersComponent;
-  @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
 
-  @Input() formId!: number;
-  @Input() formName!: string;
-  
   userRole: string | null = null;
   questions: QuestionModel[] = [];
   forms: FormModel[] = [];
   activeMenuIndex: number | null = null;
-  modalType: 'edit' | 'delete' | null = null;
   grades: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   answers: AnswerModal[] = [];
   filteredQuestions: QuestionModel[] = []
+  searchTerm!: string;
 
   constructor(private questionService: QuestionService, private loginService: LoginService, private formService: FormService) {}
 
   ngOnInit(): void {
     this.userRole = this.loginService.getUserRole();
-    this.loadQuestion();
+    this.loadQuestionAndForms();
   }
 
-  loadQuestion(): void {
-    this.userRole = this.loginService.getUserRole();
+  loadQuestionAndForms(): void {
     this.questionService.getQuestion().subscribe((data) => {
       this.questions = data;
       this.filteredQuestions = data;
 
       this.formService.getForms().subscribe((data) => {
-        console.log(data)
         this.forms = data;
         this.associatedFormName();
       })
+      this.filterQuestions(this.searchTerm);
     });
   }
 
   associatedFormName(): void{
     this.questions.forEach(question => {
-      console.log(question)
       const form = this.forms.find(f => f.id == question.idForms);
       if(form)
         question.formName = form.name;
@@ -73,7 +67,8 @@ export class QuestionsComponent {
   }
 
   filterQuestions(search: string): void{
-    if(search.trim()){
+    this.searchTerm = search;
+    if(search){
       this.filteredQuestions = this.questions.filter(question =>
         question.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       );

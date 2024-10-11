@@ -8,7 +8,6 @@ import { CreateGroupComponent } from './components/create-group/create-group.com
 import { SeeAnswersComponent } from '../../shared/see-answers/see-answers.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
 
-
 @Component({
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
@@ -25,6 +24,7 @@ export class FormBuilderComponent implements OnInit {
   filteredGroups: FormGroupModel[] = [];
   userRole: string | null = null;
   activeMenuIndex: number | null = null;
+  searchTerm: string = '';  
 
   constructor(
     private formgroupService: FormgroupService,
@@ -40,6 +40,7 @@ export class FormBuilderComponent implements OnInit {
       this.formgroupService.getFormGroups().subscribe((data) => {
         this.formGroups = data;
         this.filteredGroups = data;
+        this.filterGroups(this.searchTerm);
       });
   }
 
@@ -50,13 +51,14 @@ export class FormBuilderComponent implements OnInit {
     return true
   }
 
-  filterGroups(search:string): void{
-    if(search.trim()){
+  filterGroups(search: string): void {
+    this.searchTerm = search
+    if (this.searchTerm) {
       this.filteredGroups = this.formGroups.filter(group =>
-        group.name.toLowerCase().includes(search.toLowerCase())
+        group.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
-    }else {
-      this.filteredGroups = this.formGroups; 
+    } else {
+      this.filteredGroups = this.formGroups;
     }
   }
 
@@ -73,23 +75,17 @@ export class FormBuilderComponent implements OnInit {
   openModalForm(groupId: number, groupName: string): void {
     this.formsComponent.groupId = groupId;
     this.formsComponent.groupName = groupName;
-    setTimeout(() => {
-      this.formsComponent.showModal();
-      this.formsComponent.loadForm();
-    });
+    this.formsComponent.showModal();
+    this.formsComponent.loadForm();
   }
 
-  openModalDelete(groupId: number, event: MouseEvent): void {
-      this.handleClickOutside()
-      event.stopPropagation();
+  openModalDelete(groupId: number): void {
       this.DeleteComponent.itemId = groupId;
       this.DeleteComponent.serviceType = 'group';
       this.DeleteComponent.showModal();
   }
 
-  openModalEdit(groupId: number, groupName: string, event: MouseEvent): void {
-    this.handleClickOutside()
-    event.stopPropagation();
+  openModalEdit(groupId: number, groupName: string): void {
     this.editComponent.itemId = groupId;
     this.editComponent.oldName = groupName;
     this.editComponent.serviceType = 'group';

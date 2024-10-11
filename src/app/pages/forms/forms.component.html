@@ -1,4 +1,4 @@
-<app-header [IsForms]="true"></app-header>
+<app-header [currentPage]="'forms'"></app-header>
 <app-search (searchEvent)="filterForms($event)"></app-search>
 <main>
   <div class="base">
@@ -25,10 +25,10 @@
                 <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
                 <div *ngIf="activeMenuIndex === i" class="menu">
                   <ul>
-                    <li (click)="openModalEdit(form.id, form.name, form.idFormsGroup, $event)">
+                    <li (click)="openModalEdit(form.id, form.name, form.idFormsGroup)">
                       <i class="fas fa-edit"></i> Editar
                     </li>
-                    <li (click)="openModalDelete(form.id, $event)">
+                    <li (click)="openModalDelete(form.id)">
                       <i class="fas fa-trash"></i> Excluir
                     </li>
                   </ul>

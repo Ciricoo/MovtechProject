@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { QuestionModel } from 'src/app/interfaces/Question';
+import { UserModel } from 'src/app/interfaces/User';
 import { AnswerService } from 'src/app/services/answer/answer.service';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -13,8 +14,8 @@ import { UserService } from 'src/app/services/user/user.service';
 export class SeeAnswersComponent{
   @ViewChild('alertModal') modal!: ElementRef<HTMLDialogElement>;
   
-  questions!: QuestionModel[];
-  users: { id: number, name: string }[] = [];
+  questions: QuestionModel[] = [];
+  users: UserModel[] = [];
   answers: AnswerModal[] = [];
   selectedQuestionId!: number;
   selectedUserId!: number;
@@ -22,7 +23,7 @@ export class SeeAnswersComponent{
   isQuestionMode = true;
 
   constructor(private questionService: QuestionService, private answerService: AnswerService, private userService: UserService){}
-
+ 
   loadQuestions() {
     this.questionService.getQuestion().subscribe((data) => {this.questions = data;});
   }

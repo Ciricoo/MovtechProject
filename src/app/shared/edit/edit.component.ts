@@ -59,7 +59,7 @@ export class EditComponent {
     this.name = ''
   }
 
-  verificaEdit(): boolean{
+  editValidator(): boolean{
     this.errorMessage = null;
 
     if (!this.name.trim()) {
@@ -81,24 +81,24 @@ export class EditComponent {
   }
 
   confirmEdit(): void {
-    if(!this.verificaEdit()){
+    if(!this.editValidator()){
       return;
     }
     if (this.serviceType === 'group') {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
-      this.formgroupService.updateFormGroup(this.itemId, updatedGroup).subscribe(() => {
+      this.formgroupService.updateFormGroup(updatedGroup).subscribe(() => {
         this.editConfirmed.emit();
         this.alertModalComponent.open('Grupo de Formulário editado com sucesso!')
       });
     } else if (this.serviceType === 'form') {
       const updatedForm: FormModel = { id: this.itemId, name: this.name, idFormsGroup: this.fk, questions: []}; 
-      this.formService.updateForm(this.itemId, updatedForm).subscribe(() => {
+      this.formService.updateForm(updatedForm).subscribe(() => {
         this.editConfirmed.emit();
         this.alertModalComponent.open('Formulário editado com sucesso!')
       });
     } else if (this.serviceType === 'question') {
       const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, idForms: this.fk};
-      this.questionService.updateQuestion(this.itemId, updatedQuestion).subscribe(() => {
+      this.questionService.updateQuestion(updatedQuestion).subscribe(() => {
         this.editConfirmed.emit();
       this.alertModalComponent.open('Pergunta editado com sucesso!')
       });

@@ -1,4 +1,4 @@
-import {Component,ElementRef,HostListener,Input,ViewChild,} from '@angular/core';
+import {Component,ElementRef,HostListener,Input,OnInit,ViewChild,} from '@angular/core';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { QuestionModel } from 'src/app/interfaces/Question';
 import { AnswerService } from 'src/app/services/answer/answer.service';
@@ -14,7 +14,7 @@ import { CreateQuestionComponent } from '../create-question/create-question.comp
   templateUrl: './questions-modal.component.html',
   styleUrls: ['./questions-modal.component.scss'],
 })
-export class QuestionsModalComponent {
+export class QuestionsModalComponent{
   @ViewChild('modalQuestion') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(DeleteComponent) deleteComponent!: DeleteComponent;
   @ViewChild(EditComponent) editComponent!: EditComponent;
@@ -26,7 +26,6 @@ export class QuestionsModalComponent {
   userRole: string | null = null;
   questions: QuestionModel[] = [];
   activeMenuIndex: number | null = null;
-  modalType: 'edit' | 'delete' | null = null;
   grades: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   answers: AnswerModal[] = [];
 
@@ -67,7 +66,6 @@ export class QuestionsModalComponent {
       this.editComponent.showModal();
   }
 
-
   toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();
     this.activeMenuIndex = this.activeMenuIndex === index ? null : index;
@@ -99,20 +97,26 @@ export class QuestionsModalComponent {
     //atualiza o array removendo a resposta antiga (se houver) e adicionando a nova resposta modificada.
   }
 
-  submitAnswers(): void {
+  answersValidator(): boolean{
     for(const question of this.questions){
       const answer: AnswerModal | undefined = this.answers.find(a => a.idQuestion === question.id);
-
+  
       if(answer?.description && answer.description.length > 150){
         this.alertModalComponent.open("Limite de caracteres na descrição excedido!");
-        return;
+        return false;
       }
-
+  
       if(!answer || answer.grade == null){
         this.alertModalComponent.open('Por favor, selecione uma nota para todas as perguntas antes de enviar as respostas!');
-        return;
+        return false;
       }
     };
+    return true;
+  }
+
+  submitAnswers(): void {
+    if(!this.answersValidator())
+      return
 
     this.answerService.sendAnswer(this.answers).subscribe(() => {
       this.closeModal();

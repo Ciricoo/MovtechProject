@@ -19,10 +19,10 @@
             <i *ngIf="canShow()" class="fas fa-ellipsis-v"></i>
             <div *ngIf="activeMenuIndex === i" class="menu">
               <ul>
-                <li (click)="openModalEdit(form.id, form.name, $event)">
+                <li (click)="openModalEdit(form.id, form.name)">
                   <i class="fas fa-edit"></i> Editar
                 </li>
-                <li (click)="openModalDelete(form.id, $event)">
+                <li (click)="openModalDelete(form.id)">
                   <i class="fas fa-trash"></i> Excluir
                 </li>
               </ul>

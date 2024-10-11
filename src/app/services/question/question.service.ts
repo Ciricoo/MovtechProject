@@ -19,8 +19,8 @@ export class QuestionService {
     return this.http.delete<boolean>(`${this.apiUrl}${questionId}`, { withCredentials: true });
   }
 
-  updateQuestion(questionId: number, updatedQuestion: QuestionModel): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}${questionId}`, updatedQuestion, { withCredentials: true });
+  updateQuestion(updatedQuestion: QuestionModel): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}${updatedQuestion.id}`, updatedQuestion, { withCredentials: true });
   }
 
   createQuestion(createQuestion: QuestionModel[]): Observable<QuestionModel[]> {

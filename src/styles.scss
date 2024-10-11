@@ -242,8 +242,8 @@ h2{
 
 .modal-container {
   display: flex;
-  flex-direction: column; /* Organiza os elementos em uma coluna */
-  height: 100%; /* Preenche toda a altura do modal */
+  flex-direction: column; 
+  height: 100%; 
 }
 
 .btn-close {
@@ -281,12 +281,10 @@ h2{
   border-radius: 5px;
 }
 
-
 ::-webkit-scrollbar {
   width: 0.7em;
 } 
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
@@ -294,7 +292,6 @@ h2{
   border-radius: 0.2em;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 0.3em #FFF, 0 0 10em #202e47
 }

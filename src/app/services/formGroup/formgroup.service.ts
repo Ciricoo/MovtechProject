@@ -20,8 +20,8 @@ export class FormgroupService {
     return this.http.delete<boolean>(`${this.apiUrl}${groupId}`, { withCredentials: true });
   }
 
-  updateFormGroup(groupId: number, updatedGroup: FormGroupModel): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}${groupId}`, updatedGroup, { withCredentials: true });
+  updateFormGroup(updatedGroup: FormGroupModel): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}${updatedGroup.id}`, updatedGroup, { withCredentials: true });
   }
 
   createFormGroup(createGroup: FormGroupModel): Observable<FormGroupModel> {

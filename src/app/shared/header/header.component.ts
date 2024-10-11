@@ -9,12 +9,9 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Output() searchGroup: EventEmitter<string> = new EventEmitter<string>();
   username: string | null = null;
   userRole: string | null = null;
-  @Input() IsNps: boolean = false;
-  @Input() IsForms: boolean = false;
-  @Input() IsQuestion: boolean = false;
+  @Input() currentPage: string = 'home';
 
   constructor(private loginService: LoginService, private router: Router){}
 
@@ -24,30 +21,16 @@ export class HeaderComponent {
   }
 
   canShow(): boolean{
-    if(this.userRole != 'Administrador'){
-      return false
-    }
-    return true
+    return this.userRole === 'Administrador';
   }
 
   logout(): void {
     this.loginService.logout();
   }
 
-  Home(): void {
-    this.router.navigate(['/home']);
-  }
-
-  Nps(): void {
-    this.router.navigate(['/nps']);
-  }
-
-  Forms(): void {
-    this.router.navigate(['/forms'])
-  }
-
-  Questions(): void {
-    this.router.navigate(['/questions'])
+  navigate(page: string): void{
+    this.currentPage = page
+    this.router.navigate([`/${page}`]);
   }
 }
 

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserModel } from 'src/app/interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,9 @@ export class UserService {
   private apiUrl: string = 'https://localhost:7193/api/User/'; 
 
   constructor(private http: HttpClient) {}
-
-  getUserById(idUser: number): Observable<{ id: number, name: string }> {
-    return this.http.get<{ id: number, name: string }>(`${this.apiUrl}${idUser}`, { withCredentials: true });
-  }
-
-  getUsers(): Observable<{ id: number, name: string }[]>{
-    return this.http.get<{ id: number, name: string }[]>(`${this.apiUrl}`, { withCredentials: true });
+  
+  getUsers(): Observable<UserModel[]>{
+    return this.http.get<UserModel[]>(`${this.apiUrl}`, { withCredentials: true });
   }
 
   npsList(): Observable<number[]> {

@@ -32,14 +32,13 @@ export class CreateFormComponent {
   showModal(): void {
     this.modal.nativeElement.showModal();
     this.selectedGroupId = this.currentGroupId;
-    console.log(this.selectedGroupId)
     this.loadFormGroups();
-    this.errorMessage = ''
   }
-
+  
   closeModal(): void {
     this.modal.nativeElement.close();
     this.resetForm();
+    this.errorMessage = ''
   }
 
   verificaForm(): boolean{
