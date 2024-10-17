@@ -20,9 +20,9 @@ export class QuestionsModalComponent{
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @ViewChild(CreateQuestionComponent)  createQuestionComponent!: CreateQuestionComponent;
-  @Input() formId!: number;
-  @Input() formName!: string;
-  
+
+  formId!: number;
+  formName!: string;
   userRole: string | null = null;
   questions: QuestionModel[] = [];
   activeMenuIndex: number | null = null;

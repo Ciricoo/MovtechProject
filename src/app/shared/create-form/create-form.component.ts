@@ -14,8 +14,9 @@ import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.comp
 export class CreateFormComponent {
   @ViewChild('createForm') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
-  @Output() createdConfirmed = new EventEmitter<number>();
-  @Input() currentGroupId!: number;
+  @Output() createdConfirmed = new EventEmitter<void>();
+
+  currentGroupId!: number;
   selectedGroupId: number = 0;
   formGroups: FormGroupModel[] = [];
   forms: FormModel[] = [];

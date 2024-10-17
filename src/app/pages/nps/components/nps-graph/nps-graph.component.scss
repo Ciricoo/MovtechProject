@@ -139,6 +139,10 @@ span{
   display: flex;
   justify-content: space-around;
   text-align: center;
+
+  span{
+    font-size: 22px;
+  }
 }
 
 .segment {
@@ -159,6 +163,6 @@ span{
 
 .segment strong {
   display: block;
-  font-size: 25px;
+  font-size: 27px;
   margin-top: 5px;
 }

@@ -11,7 +11,7 @@ import { AlertService } from 'src/app/services/alert/alert.service';
 export class AlertModalComponent implements AfterViewInit {
   @ViewChild('alertModal') modal!: ElementRef<HTMLDialogElement>;
   message: string = '';
-  @Input() goToHome!: boolean;
+  goToHome!: boolean;
 
   constructor(private alertService: AlertService, private router: Router) {}
 

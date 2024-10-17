@@ -20,16 +20,16 @@ import { CreateFormComponent } from '../../../../shared/create-form/create-form.
   templateUrl: './forms-modal.component.html',
   styleUrls: ['./forms-modal.component.scss'],
 })
+
 export class FormsModalComponent {
   @ViewChild(DeleteComponent) deleteComponent!: DeleteComponent;
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(QuestionsModalComponent) questionComponent!: QuestionsModalComponent;
   @ViewChild(CreateFormComponent) createFormComponent!: CreateFormComponent;
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
-  @Input() groupId!: number;
-  @Input() groupName!: string;
-  @Output() formsLoaded = new EventEmitter<number>();
 
+  groupId!: number;
+  groupName!: string;
   forms: FormModel[] = [];
   activeMenuIndex: number | null = null;
   userRole: string | null = null;

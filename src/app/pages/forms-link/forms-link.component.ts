@@ -30,9 +30,9 @@ export class FormsLinkComponent {
   @ViewChild(EditComponent) editComponent!: EditComponent;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
   @ViewChild(CreateQuestionComponent)
+
   createQuestionComponent!: CreateQuestionComponent;
   formId!: number;
-
   userRole: string | null = null;
   questions: QuestionModel[] = [];
   activeMenuIndex: number | null = null;

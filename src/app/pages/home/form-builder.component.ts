@@ -7,6 +7,7 @@ import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { CreateGroupComponent } from './components/create-group/create-group.component';
 import { SeeAnswersComponent } from '../../shared/see-answers/see-answers.component';
 import { EditComponent } from 'src/app/shared/edit/edit.component';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-form-builder',
@@ -46,9 +47,9 @@ export class FormBuilderComponent implements OnInit {
 
   canShow(): boolean{
     if(this.userRole != 'Administrador'){
-      return false
+      return false;
     }
-    return true
+    return true;
   }
 
   filterGroups(search: string): void {
@@ -99,4 +100,5 @@ export class FormBuilderComponent implements OnInit {
   openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
+
 }

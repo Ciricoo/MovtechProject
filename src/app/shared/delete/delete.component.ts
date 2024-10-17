@@ -10,11 +10,12 @@ import { AlertModalComponent } from '../alert-modal/alert-modal.component';
   styleUrls: ['./delete.component.scss']
 })
 export class DeleteComponent{
-  @Input() itemId!: number; 
-  @Input() serviceType!: 'group' | 'form' | 'question';
   @ViewChild('delete') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
-  @Output() deleteConfirmed = new EventEmitter<number>();
+  @Output() deleteConfirmed = new EventEmitter<void>();
+
+  itemId!: number; 
+  serviceType!: 'group' | 'form' | 'question';
   
   constructor(private formgroupService: FormgroupService, private formService: FormService, private questionService: QuestionService) {}
 

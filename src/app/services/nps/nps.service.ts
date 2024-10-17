@@ -13,4 +13,8 @@ export class NpsService {
   getNpsScore(): Observable<number> {
     return this.http.get<number>(this.apiUrl, { withCredentials: true });
   }
+
+  npsList(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.apiUrl}/Npslist`, { withCredentials: true });
+  }
 }

@@ -89,10 +89,8 @@ export class FormsComponent {
   openModalQuestion(formId: number, formName: string): void {
     this.questionComponent.formId = formId;
     this.questionComponent.formName = formName;
-    setTimeout(() => {
-      this.questionComponent.showModal();
-      this.questionComponent.loadQuestion();
-    });
+    this.questionComponent.showModal();
+    this.questionComponent.loadQuestion();
   }
 
   openModalDelete(formId: number): void {
@@ -115,4 +113,5 @@ export class FormsComponent {
   openModalSeeAnswers(): void {
     this.seeAnswersComponent.open();
   }
+
 }

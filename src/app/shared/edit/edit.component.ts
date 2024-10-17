@@ -15,13 +15,13 @@ import { AlertModalComponent } from '../alert-modal/alert-modal.component';
 export class EditComponent {
   @ViewChild('edit') modal!: ElementRef<HTMLDialogElement>;
   @ViewChild(AlertModalComponent) alertModalComponent!: AlertModalComponent;
-  @Input() serviceType!: 'group' | 'form' | 'question';
-  @Input() itemId!: number;
-  @Input() oldName!: string;
-  @Input() currentGroupId!: number; 
-  @Input() currentFormId!: number; 
-  @Output() editConfirmed = new EventEmitter<number>();
+  @Output() editConfirmed = new EventEmitter<void>();
 
+  serviceType!: 'group' | 'form' | 'question';
+  itemId!: number;
+  oldName!: string;
+  currentGroupId!: number; 
+  currentFormId!: number; 
   name: string = '';
   fk!: number;
   forms: FormModel[] = [];
@@ -55,8 +55,8 @@ export class EditComponent {
 
   closeModal(): void {
     this.modal.nativeElement.close();
-    this.errorMessage = null
-    this.name = ''
+    this.errorMessage = null;
+    this.name = '';
   }
 
   editValidator(): boolean{
@@ -68,7 +68,7 @@ export class EditComponent {
     }
 
     if(this.name.length > 150){
-      this.errorMessage = 'O nome não pode passar de 150 caracteres'
+      this.errorMessage = 'O nome não pode passar de 150 caracteres';
       return false;
     }
     
@@ -88,19 +88,19 @@ export class EditComponent {
       const updatedGroup: FormGroupModel = { id: this.itemId, name: this.name, forms: []};
       this.formgroupService.updateFormGroup(updatedGroup).subscribe(() => {
         this.editConfirmed.emit();
-        this.alertModalComponent.open('Grupo de Formulário editado com sucesso!')
+        this.alertModalComponent.open('Grupo de Formulário editado com sucesso!');
       });
     } else if (this.serviceType === 'form') {
       const updatedForm: FormModel = { id: this.itemId, name: this.name, idFormsGroup: this.fk, questions: []}; 
       this.formService.updateForm(updatedForm).subscribe(() => {
         this.editConfirmed.emit();
-        this.alertModalComponent.open('Formulário editado com sucesso!')
+        this.alertModalComponent.open('Formulário editado com sucesso!');
       });
     } else if (this.serviceType === 'question') {
       const updatedQuestion: QuestionModel = {id: this.itemId, text: this.name, idForms: this.fk};
       this.questionService.updateQuestion(updatedQuestion).subscribe(() => {
         this.editConfirmed.emit();
-      this.alertModalComponent.open('Pergunta editado com sucesso!')
+      this.alertModalComponent.open('Pergunta editado com sucesso!');
       });
     }
     this.closeModal();

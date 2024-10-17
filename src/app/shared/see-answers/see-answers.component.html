@@ -24,12 +24,24 @@
 
         <div *ngIf="answers.length > 0" class="answers-list">
             <h5>Respostas:</h5>
-            <div class="answer" *ngFor="let answer of answers">
-                <div *ngIf="isQuestionMode" class="username">Username: {{answer.username}}</div>
-                <div *ngIf="!isQuestionMode" class="pergunta">Pergunta: {{answer.questionText}}</div>
-                <div class="grade">Nota: {{ answer.grade }}</div>
-                <div class="description">Descrição: {{ answer.description }}</div>
-            </div>
+            <table class="answer-table">
+                <thead>
+                    <tr>
+                        <th *ngIf="isQuestionMode">Username</th>
+                        <th *ngIf="!isQuestionMode">Pergunta</th>
+                        <th>Nota</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let answer of answers">
+                        <td *ngIf="isQuestionMode">{{answer.username}}</td>
+                        <td *ngIf="!isQuestionMode">{{answer.questionText}}</td>
+                        <td>{{answer.grade}}</td>
+                        <td>{{answer.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div *ngIf="mensageError">

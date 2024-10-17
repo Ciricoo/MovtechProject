@@ -27,7 +27,7 @@
 
   label{
     left: 47.1%;
-    width: 60%;
+    width: 65%;
   }
   
   .base {
@@ -41,39 +41,13 @@
   .answers-list {
     width: 100%;
   }
-  
-  .answer {
-    display: flex;
-    gap: 25px;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-  }
-  
-  .answer .pergunta{
-    width: 85%;
-    text-align: left;
-  }
-  .answer .username{
-    width: 25%;
-    text-align: left;
-  }
-  .answer .grade {
-    width: 15%;
-    text-align: left;
-  }
-  .answer .description {
-    width: 65%; 
-    text-align: left;
-  }
-  
+
   button {
     padding: 1.1vh 6vh;
   }
   
   select {
-    width: 60%;
+    width: 65%;
     padding: 6px 8px;
     background-color: #f3f3f3;
     border: none;
@@ -97,3 +71,33 @@
     cursor: pointer;
   }
   
+  .answer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.answer-table th, .answer-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.answer-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.answer-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.answer-table tr:hover {
+    background-color: #ddd;
+}
+
+.nota-td{
+  align-items: center;
+}

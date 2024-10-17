@@ -33,6 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }),catchError((error: HttpErrorResponse) => {
         if(error.status == 401 && this.loginService.isTokenExpired()){
           this.loginService.clearLocalStorage();
+          this.loginService.logout();
           this.alertService.showMessage('Sua sessão expirou. Faça login novamente.');
           this.router.navigate(['/login'])
         }

@@ -22,17 +22,18 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/home']);
+      return;
+    }
+    this.route.queryParams.subscribe(params => {
+      this.returnUrl = localStorage.getItem('url') || '/home';  
+      console.log("NgOnInit do login:", this.returnUrl)
+    });
+    
     if (this.loginService.isTokenExpired()) {
       this.loginService.logout();
       this.loginService.clearLocalStorage();
-    }
-    
-    this.route.queryParams.subscribe(params => {
-      this.returnUrl = params['returnUrl'] || '/home';
-    });
-
-    if(localStorage.getItem('token')){
-      this.router.navigate(['/home']);
     }
   }
 
@@ -46,6 +47,7 @@ export class LoginComponent {
       () => {
         this.router.navigate([this.returnUrl]);
         this.errorMessage = null;
+        localStorage.removeItem('url');
       },
       (error) => {
         if (error.status === 500) {

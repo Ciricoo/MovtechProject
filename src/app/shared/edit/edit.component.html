@@ -8,7 +8,7 @@
     <div class="modal-bodyy">
       <div class="input-group">
         <label>Novo nome</label>
-        <input class="teste" (keyup.enter)="confirmEdit()" placeholder="Nome" [(ngModel)]="name" name="name" required />
+        <input class="teste" (keyup.enter)="confirmEdit()" placeholder="Nome" [(ngModel)]="name" />
       </div>
       <div class="select-group" *ngIf="serviceType !== 'group'">
         <div class="infield">
@@ -16,12 +16,12 @@
             <ng-container *ngIf="serviceType === 'form'">Selecione um Grupo</ng-container>
             <ng-container *ngIf="serviceType === 'question'">Selecione um Formulário</ng-container>
           </label>
-          <select *ngIf="serviceType === 'form'" [(ngModel)]="fk" name="fk" id="fk" required>
+          <select *ngIf="serviceType === 'form'" [(ngModel)]="fk">
             <option *ngFor="let group of formGroups" [value]="group.id">
               {{ group.name }}
             </option>
           </select>
-          <select *ngIf="serviceType === 'question'" [(ngModel)]="fk" name="fk" id="fk" required>
+          <select *ngIf="serviceType === 'question'" [(ngModel)]="fk">
             <option *ngFor="let form of forms" [value]="form.id">
               {{ form.name }}
             </option>

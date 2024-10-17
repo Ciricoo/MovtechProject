@@ -7,7 +7,6 @@ import { QuestionModel } from 'src/app/interfaces/Question';
 import { AnswerModal } from 'src/app/interfaces/Answer';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { FormService } from 'src/app/services/form/form.service';
 import { FormModel } from 'src/app/interfaces/Form';
 

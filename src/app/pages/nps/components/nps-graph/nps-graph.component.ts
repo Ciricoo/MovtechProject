@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { FormGroupModel } from 'src/app/interfaces/FormGroup';
+import { FormgroupService } from 'src/app/services/formGroup/formgroup.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { NpsService } from 'src/app/services/nps/nps.service';
-import { UserService } from 'src/app/services/user/user.service';
+
 
 @Component({
   selector: 'app-nps-graph',
@@ -12,22 +13,23 @@ import { UserService } from 'src/app/services/user/user.service';
 export class NpsGraphComponent implements OnInit {
   @ViewChild('pointer') pointer!: ElementRef<HTMLImageElement>;
   @ViewChild('nps') nps!: ElementRef<HTMLElement>;
+  formGroups: FormGroupModel[] = [];
   npsScore!: number;
   detractors!: string;
   passives!: string;
   promoters!: string;
   role!: string | null;
 
-  constructor(private npsService: NpsService, private userService: UserService, private loginService: LoginService) {}
+  constructor(private npsService: NpsService, private loginService: LoginService, private formGroupService: FormgroupService) {}
 
   ngOnInit(): void {
-    this.role = this.loginService.getUserRole()
+    this.role = this.loginService.getUserRole();
     if (this.role === 'Administrador') {
     this.npsService.getNpsScore().subscribe(score => {
       this.npsScore = score;
       this.updateNeedlePosition(score);
       this.updateScoreStyle(score);
-      this.calculateNps()
+      this.calculateNps();
     });
   }
 }
@@ -56,9 +58,9 @@ export class NpsGraphComponent implements OnInit {
   }
 
   calculateNps(): void {
-    this.userService.npsList().subscribe({
+    this.npsService.npsList().subscribe({
       next: ( npslist: number[] ) => {
-      const [promoters, passives, detractors] = npslist
+      const [promoters, passives, detractors] = npslist;
       const totalResponses: number = promoters + passives + detractors;
       this.promoters = ((promoters / totalResponses) * 100).toFixed(2);
       this.passives = ((passives / totalResponses) * 100).toFixed(2);

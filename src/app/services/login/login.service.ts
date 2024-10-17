@@ -34,15 +34,12 @@ export class LoginService {
   }
 
   logout(): void {
-    const token: string | null = localStorage.getItem('token');
-    if (token) {
-      this.http.post(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
+    this.http.post(`${this.urlLogin}/logout`, {}, {responseType: 'text' as 'json', withCredentials: true })
       .subscribe(() => {
-          this.clearLocalStorage();
-          this.router.navigate(['/login']);
-        }
-      );
-    }
+        this.clearLocalStorage();
+        this.router.navigate(['/login']);
+      }
+    );
   }
 
   isTokenExpired(): boolean {

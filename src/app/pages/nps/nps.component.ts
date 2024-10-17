@@ -13,7 +13,7 @@ export class NpsComponent implements OnInit {
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
-    this.role = this.loginService.getUserRole()
+    this.role = this.loginService.getUserRole();
     if (this.role != 'Administrador') {
       this.router.navigate(['/home']);
     }

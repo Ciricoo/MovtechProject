@@ -14,9 +14,4 @@ export class UserService {
   getUsers(): Observable<UserModel[]>{
     return this.http.get<UserModel[]>(`${this.apiUrl}`, { withCredentials: true });
   }
-
-  npsList(): Observable<number[]> {
-    return this.http.get<number[]>(`${this.apiUrl}Npslist`, { withCredentials: true });
-  }
-
 }
